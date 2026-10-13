@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# backup, dump, kalit va loglar (maxfiy ma'lumot)
+*.dump
+*.sql.gz
+*.backup
+*.bak
+*.key
+*.log
+restic-password*
+.restic*

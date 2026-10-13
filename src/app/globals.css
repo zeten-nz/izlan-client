@@ -1,26 +1,177 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ───────────── Dizayn tokenlari ─────────────
+   Brutalizm (qalin chiziq, qattiq soya, xom grid) + Maksimalizm (ko‘p rang,
+   katta tipografika, stikerlar, qatlamlar). Rang va shrift shu yerda o‘zgaradi. */
+@theme {
+  --color-paper: #f1eee4;
+  --color-paper-2: #e6e2d3;
+  --color-ink: #0b0b0b;
+  --color-acid: #d6ff3d;
+  --color-cobalt: #2a3bff;
+  --color-tomato: #ff4a22;
+  --color-bubble: #ff9bdc;
+  --color-sky: #9fd8ff;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-display: var(--font-archivo), "Arial Black", system-ui, sans-serif;
+  --font-sans: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-mono: var(--font-space-mono), ui-monospace, monospace;
+  --font-serif: var(--font-instrument-serif), Georgia, serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --shadow-hard: 6px 6px 0 0 var(--color-ink);
+  --shadow-hard-sm: 3px 3px 0 0 var(--color-ink);
+  --shadow-hard-lg: 10px 10px 0 0 var(--color-ink);
+
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-marquee-rev: marquee 46s linear infinite reverse;
+  --animate-wobble: wobble 5s ease-in-out infinite;
+  --animate-spin-slow: spin 22s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-coin: coin 8s linear infinite;
+
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+  @keyframes wobble {
+    0%, 100% { transform: rotate(-4deg); }
+    50% { transform: rotate(4deg); }
+  }
+  @keyframes coin {
+    to { transform: rotateY(360deg); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  --header-h: 68px;
 }
+
+html {
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 12px);
+  background: var(--color-paper);
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-acid);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-cobalt);
+  outline-offset: 3px;
+}
+
+/* Qog‘oz shovqini (butun sahifa ustida, bosishga xalaqit bermaydi) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.1;
+  mix-blend-mode: multiply;
+  background-image: url("/textures/grain.svg");
+  background-size: 220px 220px;
+}
+
+/* ───────────── Yordamchi sinflar ───────────── */
+.display {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-variation-settings: "wdth" 125;
+  letter-spacing: -0.02em;
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+.display-cond {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-variation-settings: "wdth" 62;
+  letter-spacing: -0.01em;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+.serif-i {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bordered { border: 3px solid var(--color-ink); }
+.shadow-hard { box-shadow: var(--shadow-hard); }
+
+/* To‘r fon (brutalist grid) */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(11 11 11 / 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(11 11 11 / 0.1) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.bg-dots {
+  background-image: radial-gradient(var(--color-ink) 1.2px, transparent 1.4px);
+  background-size: 14px 14px;
+}
+
+/* Rasm uchun brutalist ishlov (ikki rangli) */
+.img-mono { filter: grayscale(1) contrast(1.25); }
+
+/* 3D yordamchilar */
+.preserve-3d { transform-style: preserve-3d; }
+.perspective { perspective: 1200px; }
+.backface-hidden { backface-visibility: hidden; }
+
+/* ───────────── Preloader ─────────────
+   JS ishlamasa ham 3.5s dan keyin o‘zi yo‘qoladi (CSS fallback). */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  animation: preloader-failsafe 0.01s linear 3.8s forwards;
+}
+html[data-preloaded="1"] .preloader { display: none; }
+@keyframes preloader-failsafe {
+  to { visibility: hidden; opacity: 0; pointer-events: none; }
+}
+
+/* Harakatni kamaytirishni so‘ragan foydalanuvchilar uchun */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .preloader { display: none; }
+}
+
+/* Gorizontal skroll chizig'ini yashirish (mobil nav) */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
