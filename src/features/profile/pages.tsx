@@ -1,0 +1,86 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ROUTES } from "@/config/routes";
+import { apiGet } from "@/server/api";
+import { requireRole } from "@/server/session";
+import { EmptyState } from "@/features/notebook/ui";
+import { AchievementBadge, ProfileHeader } from "./identity";
+import { ProfileView } from "./ProfileView";
+import { RewardsView } from "./RewardsView";
+import type { CatalogItem, CollectionItem, Equipped, MyProfile, PublicProfile } from "./types";
+
+/** /student/account: shaxsiy profil. */
+export async function AccountPage() {
+  await requireRole("STUDENT");
+  const [profile, collection] = await Promise.all([
+    apiGet<MyProfile>("/profile/me"),
+    apiGet<{ items: CollectionItem[]; equipped: Equipped }>("/collection"),
+  ]);
+  return <ProfileView initial={profile} collection={collection} />;
+}
+
+/** /u/[username]: ommaviy profil (server maxfiylikni tekshirib bergan ma'lumotni ko'rsatadi). */
+export async function PublicProfilePage({ username }: { username: string }) {
+  await requireRole("STUDENT");
+  const p = await apiGet<PublicProfile>(`/profile/u/${encodeURIComponent(username)}`);
+  if (p.isPrivate) {
+    return (
+      <div className="mx-auto max-w-[760px] px-4 py-10 sm:px-8">
+        <EmptyState title={`@${p.username} profili yopiq`}>
+          Bu foydalanuvchi profilini ommaviy qilmagan.
+          {p.isOwner && (
+            <>
+              {" "}
+              <Link className="underline" href={`${ROUTES.student}/account`}>
+                Sozlamalarni o&apos;zgartirish
+              </Link>
+            </>
+          )}
+        </EmptyState>
+      </div>
+    );
+  }
+  return (
+    <div className="mx-auto max-w-[980px] px-4 py-8 sm:px-8 sm:py-10">
+      <ProfileHeader username={p.username} displayName={p.displayName} initials={p.initials} bio={p.bio} equipped={p.equipped} />
+      {p.stats && (
+        <section aria-label="O'quv ko'rsatkichlari" className="mt-8 grid gap-4 sm:grid-cols-2">
+          <div className="border-[3px] border-ink bg-white p-4 shadow-[4px_4px_0_0_var(--color-ink)]">
+            <p className="label">Yakunlangan darslar</p>
+            <p className="display-cond mt-1 text-4xl">{p.stats.completedLessons}</p>
+          </div>
+          <div className="border-[3px] border-ink bg-white p-4 shadow-[4px_4px_0_0_var(--color-ink)]">
+            <p className="label">Yo&apos;nalishlar</p>
+            <p className="mt-1 font-semibold">{p.stats.directions.length ? p.stats.directions.join(", ") : "—"}</p>
+          </div>
+        </section>
+      )}
+      {p.achievements && (
+        <section className="mt-8">
+          <h2 className="label">Yutuqlar</h2>
+          {p.achievements.length ? (
+            <ul className="mt-2 grid gap-3 sm:grid-cols-2">
+              {p.achievements.map((a) => (
+                <AchievementBadge key={a.slug} name={a.name} earnedAt={a.earnedAt} />
+              ))}
+            </ul>
+          ) : (
+            <p className="mt-2 text-ink/70">Hali yutuq yo&apos;q.</p>
+          )}
+        </section>
+      )}
+    </div>
+  );
+}
+
+/** /student/rewards */
+export async function RewardsPage() {
+  await requireRole("STUDENT");
+  const [me, cosmetics, izl] = await Promise.all([
+    apiGet<MyProfile>("/profile/me"),
+    apiGet<{ purchasesEnabled: boolean; items: CatalogItem[] }>("/rewards/cosmetics"),
+    apiGet<{ redeemEnabled: boolean; items: { category: string; title: string; note: string; status: string }[] }>("/rewards/izl"),
+  ]);
+  if (!me) notFound();
+  return <RewardsView me={me} items={cosmetics.items} izl={izl.items} />;
+}

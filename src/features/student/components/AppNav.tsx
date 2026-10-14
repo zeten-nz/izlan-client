@@ -13,7 +13,8 @@ const ITEMS = [
   { label: "Yo'nalishlar", href: `${S}/directions`, match: (p: string) => p.startsWith(`${S}/directions`) || p.startsWith(`${S}/topic`) || p.startsWith(`${S}/lesson`) },
   { label: "Jarayon", href: `${S}/progress`, match: (p: string) => p.startsWith(`${S}/progress`) },
   { label: "Daftar", href: `${S}/notebook`, match: (p: string) => p.startsWith(`${S}/notebook`) },
-  { label: "Hisobim", href: `${S}/account`, match: (p: string) => p.startsWith(`${S}/account`) },
+  { label: "Mukofotlar", href: `${S}/rewards`, match: (p: string) => p.startsWith(`${S}/rewards`) },
+  { label: "Profil", href: `${S}/account`, match: (p: string) => p.startsWith(`${S}/account`) },
 ] as const;
 
 export function AppNav() {

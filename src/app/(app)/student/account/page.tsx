@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { AccountPage } from "@/features/student/SimplePages";
+import { AccountPage } from "@/features/profile/pages";
 
-export const metadata: Metadata = { title: "Hisobim", robots: { index: false } };
+export const metadata: Metadata = { title: "Profil", robots: { index: false } };
 
 export default function Page() {
   return (
