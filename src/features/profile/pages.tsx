@@ -43,6 +43,11 @@ export async function PublicProfilePage({ username }: { username: string }) {
   return (
     <div className="mx-auto max-w-[980px] px-4 py-8 sm:px-8 sm:py-10">
       <ProfileHeader username={p.username} displayName={p.displayName} initials={p.initials} bio={p.bio} equipped={p.equipped} />
+      {p.level && (
+        <p className="label mt-6 inline-block border-[3px] border-ink bg-acid px-3 py-2 [overflow-wrap:anywhere]">
+          {p.level.level}-daraja · {p.level.title}
+        </p>
+      )}
       {p.stats && (
         <section aria-label="O'quv ko'rsatkichlari" className="mt-8 grid gap-4 sm:grid-cols-2">
           <div className="border-[3px] border-ink bg-white p-4 shadow-[4px_4px_0_0_var(--color-ink)]">

@@ -34,6 +34,7 @@ export type MyProfile = {
   bio: string;
   privacy: Privacy;
   wallet: { xpBalance: number; totalXpEarned: number; izlBalance: number };
+  xp?: { level: LevelInfo };
   equipped: Equipped;
   stats: Stats;
   achievements: Achievement[];
@@ -51,6 +52,7 @@ export type PublicProfile =
       bio: string;
       equipped: Equipped;
       stats: Pick<Stats, "completedLessons" | "directions" | "streak"> | null;
+      level?: { level: number; title: string } | null;
       achievements: { slug: string; name: string; earnedAt: string }[] | null;
     };
 
@@ -61,3 +63,42 @@ export const KIND_LABEL: Record<CosmeticKind, string> = { FRAME: "Ramka", BANNER
 export const RARITY_LABEL: Record<Rarity, string> = { COMMON: "Oddiy", RARE: "Noyob", EPIC: "Epik", LEGENDARY: "Afsonaviy" };
 export const KINDS = Object.keys(KIND_LABEL) as CosmeticKind[];
 export const RARITIES = Object.keys(RARITY_LABEL) as Rarity[];
+
+export type LevelInfo = {
+  level: number;
+  title: string;
+  minTotalXp: number;
+  nextLevel: number | null;
+  nextTitle: string | null;
+  nextMinTotalXp: number | null;
+  progressPct: number;
+  xpToNext: number;
+  isMax: boolean;
+};
+
+export type XpEvent = {
+  eventType: "LESSON_COMPLETE" | "TOPIC_COMPLETE" | "QUIZ_TIER" | "NOTE_VERIFIED";
+  duplicate: boolean;
+  disabled: boolean;
+  baseXp: number;
+  multiplierBp: number;
+  grantedXp: number;
+  topicDayOrd: number | null;
+  levelBefore: number;
+  levelAfter: number;
+  leveledUp: boolean;
+};
+
+export type XpAward = { grantedXp: number; events: XpEvent[]; leveledUp: boolean; level: LevelInfo };
+
+export type XpEntry = {
+  id: string;
+  eventType: XpEvent["eventType"];
+  kind: string;
+  baseXp: number;
+  multiplierPct: number;
+  grantedXp: number;
+  topicId: string | null;
+  label: string | null;
+  createdAt: string;
+};

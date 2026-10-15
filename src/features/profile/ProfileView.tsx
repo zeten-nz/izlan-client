@@ -9,6 +9,9 @@ import { EmptyState, Field, inputCls, primaryBtn, smallBtn } from "@/features/no
 import { LogoutButton } from "@/features/student/LogoutButton";
 import { CollectionPanel } from "./CollectionPanel";
 import { AchievementBadge, ProfileHeader } from "./identity";
+import { LevelCard, XpHistory } from "./xp";
+import { fmtDay } from "./format";
+import { levelFallback } from "./levels";
 import type { CollectionItem, Equipped, MyProfile, Privacy } from "./types";
 
 const TABS = [
@@ -168,13 +171,14 @@ export function ProfileView({ initial, collection }: { initial: MyProfile; colle
       <div role="tabpanel" id={`panel-${tab}`} aria-labelledby={`tab-${tab}`} className="mt-6">
         {tab === "umumiy" && (
           <div className="space-y-6 sm:space-y-8">
+            <LevelCard level={profile.xp?.level ?? levelFallback()} totalXp={w.totalXpEarned} balance={w.xpBalance} />
             <div className="grid grid-cols-3 gap-2 sm:gap-4">
               <Stat label="XP" value={String(w.xpBalance)} note="Bezaklar uchun sarflanadi" />
               <Stat label="Jami XP" value={String(w.totalXpEarned)} note="Hech qachon kamaymaydi" />
               <Stat label="IZL" value={String(w.izlBalance)} note="Faqat sizga ko'rinadi" />
             </div>
             <p className="border-l-[6px] border-ink pl-3 text-sm text-ink/80">
-              XP va IZL berish tizimi hali ishga tushmagan. Daraja tizimi keyingi bosqichda qo&apos;shiladi.
+              XP dars, mavzu va mavzu testi uchun beriladi. Daraja jami XP bo&apos;yicha hisoblanadi va bezak sotib olinsa ham pasaymaydi. IZL hali berilmaydi.
             </p>
 
             <section aria-label="O'quv ko'rsatkichlari" className="grid grid-cols-2 gap-2 sm:gap-4">
@@ -201,6 +205,13 @@ export function ProfileView({ initial, collection }: { initial: MyProfile; colle
               )}
             </section>
 
+            <section aria-label="XP tarixi">
+              <h2 className="label">XP tarixi</h2>
+              <div className="mt-2">
+                <XpHistory />
+              </div>
+            </section>
+
             <section>
               <h2 className="label">So&apos;nggi faoliyat</h2>
               {s.recent?.length ? (
@@ -208,7 +219,7 @@ export function ProfileView({ initial, collection }: { initial: MyProfile; colle
                   {s.recent.map((r, i) => (
                     <li key={i} className="flex flex-wrap justify-between gap-2 border-b-[3px] border-ink px-4 py-3 last:border-b-0">
                       <span className="font-semibold">{r.title}</span>
-                      <span className="label">{new Date(r.completedAt).toLocaleDateString("uz-UZ")}</span>
+                      <span className="label">{fmtDay(r.completedAt)}</span>
                     </li>
                   ))}
                 </ul>

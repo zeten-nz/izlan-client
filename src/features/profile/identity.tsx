@@ -2,6 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import type { Cosmetic, Equipped, Rarity } from "./types";
 import { RARITY_LABEL } from "./types";
+import { fmtDay } from "./format";
 import { BannerArt, FrameArt, TitleArt, designKeyOf } from "./designs";
 
 /**
@@ -122,7 +123,7 @@ export function AchievementBadge({ name, earnedAt }: { name: string; earnedAt?: 
       <span aria-hidden className="grid size-8 shrink-0 place-items-center border-2 border-ink bg-acid font-black">★</span>
       <span className="min-w-0">
         <span className="block truncate font-semibold">{name}</span>
-        {earnedAt && <span className="label block text-[11px]">{new Date(earnedAt).toLocaleDateString("uz-UZ")}</span>}
+        {earnedAt && <span className="label block text-[11px]">{fmtDay(earnedAt)}</span>}
       </span>
     </li>
   );

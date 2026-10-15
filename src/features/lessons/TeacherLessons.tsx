@@ -141,6 +141,9 @@ export function TeacherLessons({ lessons, directions }: { lessons: LessonRow[]; 
                 <Link href={`/teacher/lessons/${l.id}`} className={small}>
                   Tahrirlash
                 </Link>
+                <Link href={`/teacher/quiz/${l.topic.id}`} className={small}>
+                  Mavzu testi
+                </Link>
                 <button type="button" className={small} disabled={busy === l.id} onClick={() => act(l.id, "duplicate")}>
                   Nusxa
                 </button>

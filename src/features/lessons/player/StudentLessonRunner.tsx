@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { apiPost } from "@/lib/api";
+import type { XpAward } from "@/features/profile/types";
 import type { AnswerResult, PlayerView } from "../types";
 import { LessonPlayer, type PlayerAdapter } from "./LessonPlayer";
 
@@ -17,10 +18,10 @@ export function StudentLessonRunner({ initial, backHref, startPageId }: { initia
         return r.ok ? r.data : null;
       },
       async complete() {
-        const r = await apiPost(`/learning/lessons/${lessonId}/complete`, {});
+        const r = await apiPost<{ firstTime: boolean; xp: XpAward | null }>(`/learning/lessons/${lessonId}/complete`, {});
         // Asosiy, Jarayon va Xarita yangilangan holatni ko'rsatsin
         if (r.ok) router.refresh();
-        return r.ok;
+        return r.ok ? { ok: true, firstTime: r.data.firstTime, xp: r.data.xp } : { ok: false };
       },
       async visit(pageId) {
         return (await apiPost(`/learning/lessons/${lessonId}/visit`, { pageId })).ok;

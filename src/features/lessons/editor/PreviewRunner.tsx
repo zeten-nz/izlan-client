@@ -73,7 +73,7 @@ function PreviewInner({ lessonId, title, pages, onBack }: { lessonId: string; ti
         return { result: r.data, view: buildView(lessonId, title, pages, { ...attempts }) };
       },
       async complete() {
-        return true;
+        return { ok: true };
       },
     };
     return { initial: buildView(lessonId, title, pages, attempts), adapter };

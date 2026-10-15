@@ -26,12 +26,27 @@ export function BottomNav() {
   const [typing, setTyping] = useState(false);
 
   useEffect(() => {
-    const isField = (t: EventTarget | null) => t instanceof HTMLElement && /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName);
-    const on = (e: FocusEvent) => isField(e.target) && setTyping(true);
-    const off = () => setTyping(false);
+    // Faqat matn kiritiladigan maydonlar (klaviatura ochiladiganlar); radio/checkbox/tugma emas
+    const isTextField = (t: EventTarget | null) =>
+      t instanceof HTMLElement &&
+      (t.tagName === "TEXTAREA" ||
+        t.tagName === "SELECT" ||
+        (t instanceof HTMLInputElement && !["radio", "checkbox", "button", "submit", "reset", "range", "file", "color"].includes(t.type)));
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const on = (e: FocusEvent) => {
+      if (!isTextField(e.target)) return;
+      clearTimeout(timer);
+      setTyping(true);
+    };
+    // Qaytish kechiktiriladi: maydondan tugmaga o'tishda (blur -> click) navigatsiya tugma ustiga chiqib qolmasin
+    const off = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => setTyping(false), 350);
+    };
     document.addEventListener("focusin", on);
     document.addEventListener("focusout", off);
     return () => {
+      clearTimeout(timer);
       document.removeEventListener("focusin", on);
       document.removeEventListener("focusout", off);
     };
