@@ -53,10 +53,10 @@ export type PublicProfile =
       equipped: Equipped;
       stats: Pick<Stats, "completedLessons" | "directions" | "streak"> | null;
       level?: { level: number; title: string } | null;
-      achievements: { slug: string; name: string; earnedAt: string }[] | null;
+      achievements: { slug: string; name: string; earnedAt: string; showcase?: boolean }[] | null;
     };
 
-export type CatalogItem = Cosmetic & { owned: boolean; status: "OWNED" | "COMING_SOON" };
+export type CatalogItem = Cosmetic & { owned: boolean; status: "OWNED" | "AVAILABLE" | "NO_PRICE" };
 export type CollectionItem = Cosmetic & { source: string; acquiredAt: string };
 
 export const KIND_LABEL: Record<CosmeticKind, string> = { FRAME: "Ramka", BANNER: "Banner", EFFECT: "Effekt", TITLE: "Unvon" };
@@ -77,7 +77,7 @@ export type LevelInfo = {
 };
 
 export type XpEvent = {
-  eventType: "LESSON_COMPLETE" | "TOPIC_COMPLETE" | "QUIZ_TIER" | "NOTE_VERIFIED";
+  eventType: "LESSON_COMPLETE" | "TOPIC_COMPLETE" | "QUIZ_TIER" | "NOTE_VERIFIED" | "PURCHASE";
   duplicate: boolean;
   disabled: boolean;
   baseXp: number;

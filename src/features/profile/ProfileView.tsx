@@ -8,8 +8,9 @@ import { cn } from "@/lib/cn";
 import { EmptyState, Field, inputCls, primaryBtn, smallBtn } from "@/features/notebook/ui";
 import { LogoutButton } from "@/features/student/LogoutButton";
 import { CollectionPanel } from "./CollectionPanel";
-import { AchievementBadge, ProfileHeader } from "./identity";
+import { ProfileHeader } from "./identity";
 import { LevelCard, XpHistory } from "./xp";
+import { AchievementsPanel, type AchievementsData } from "./AchievementsPanel";
 import { fmtDay } from "./format";
 import { levelFallback } from "./levels";
 import type { CollectionItem, Equipped, MyProfile, Privacy } from "./types";
@@ -96,7 +97,15 @@ function Settings({ profile, onSaved }: { profile: MyProfile; onSaved: (bio: str
   );
 }
 
-export function ProfileView({ initial, collection }: { initial: MyProfile; collection: { items: CollectionItem[]; equipped: Equipped } }) {
+export function ProfileView({
+  initial,
+  collection,
+  achievements,
+}: {
+  initial: MyProfile;
+  collection: { items: CollectionItem[]; equipped: Equipped };
+  achievements: AchievementsData;
+}) {
   const [profile, setProfile] = useState(initial);
   const [tab, setTab] = useState<TabId>("umumiy");
   const [editing, setEditing] = useState(false);
@@ -234,16 +243,7 @@ export function ProfileView({ initial, collection }: { initial: MyProfile; colle
           </div>
         )}
 
-        {tab === "yutuqlar" &&
-          (profile.achievements.length ? (
-            <ul className="grid gap-3 sm:grid-cols-2">
-              {profile.achievements.map((a) => (
-                <AchievementBadge key={a.slug} name={a.name} earnedAt={a.earnedAt} />
-              ))}
-            </ul>
-          ) : (
-            <EmptyState title="Hali yutuq yo'q">Yutuqlar haqiqiy o&apos;quv natijalari uchun beriladi va sotilmaydi. Tez orada.</EmptyState>
-          ))}
+        {tab === "yutuqlar" && <AchievementsPanel data={achievements} />}
 
         {tab === "kolleksiya" && <CollectionPanel items={collection.items} equipped={equipped} onEquipped={setEquipped} />}
       </div>

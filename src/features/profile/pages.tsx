@@ -4,7 +4,10 @@ import { ROUTES } from "@/config/routes";
 import { apiGet } from "@/server/api";
 import { requireRole } from "@/server/session";
 import { EmptyState } from "@/features/notebook/ui";
-import { AchievementBadge, ProfileHeader } from "./identity";
+import { ProfileHeader } from "./identity";
+import { BadgeArt } from "./badges";
+import type { AchievementsData } from "./AchievementsPanel";
+import { fmtDay } from "./format";
 import { ProfileView } from "./ProfileView";
 import { RewardsView } from "./RewardsView";
 import type { CatalogItem, CollectionItem, Equipped, MyProfile, PublicProfile } from "./types";
@@ -12,11 +15,12 @@ import type { CatalogItem, CollectionItem, Equipped, MyProfile, PublicProfile } 
 /** /student/account: shaxsiy profil. */
 export async function AccountPage() {
   await requireRole("STUDENT");
-  const [profile, collection] = await Promise.all([
+  const [profile, collection, achievements] = await Promise.all([
     apiGet<MyProfile>("/profile/me"),
     apiGet<{ items: CollectionItem[]; equipped: Equipped }>("/collection"),
+    apiGet<AchievementsData>("/achievements"),
   ]);
-  return <ProfileView initial={profile} collection={collection} />;
+  return <ProfileView initial={profile} collection={collection} achievements={achievements} />;
 }
 
 /** /u/[username]: ommaviy profil (server maxfiylikni tekshirib bergan ma'lumotni ko'rsatadi). */
@@ -66,7 +70,16 @@ export async function PublicProfilePage({ username }: { username: string }) {
           {p.achievements.length ? (
             <ul className="mt-2 grid gap-3 sm:grid-cols-2">
               {p.achievements.map((a) => (
-                <AchievementBadge key={a.slug} name={a.name} earnedAt={a.earnedAt} />
+                <li
+                  key={a.slug}
+                  className={`flex items-center gap-3 border-[3px] border-ink px-3 py-2 shadow-[3px_3px_0_0_var(--color-ink)] ${a.showcase ? "bg-acid" : "bg-white"}`}
+                >
+                  <BadgeArt slug={a.slug} className="size-12 shrink-0" />
+                  <span className="min-w-0">
+                    <span className="block truncate font-semibold">{a.name}</span>
+                    <span className="label block text-[11px]">{fmtDay(a.earnedAt)}</span>
+                  </span>
+                </li>
               ))}
             </ul>
           ) : (

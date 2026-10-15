@@ -12,7 +12,7 @@ import type { AnswerResult, PlayerView } from "../types";
 
 export type PlayerAdapter = {
   answer(blockId: string, payload: Record<string, unknown>): Promise<{ result: AnswerResult; view?: PlayerView } | null>;
-  complete(): Promise<{ ok: boolean; firstTime?: boolean; xp?: XpAward | null }>;
+  complete(): Promise<{ ok: boolean; firstTime?: boolean; xp?: XpAward | null; achievements?: { slug: string; name: string }[] }>;
   /** Sahifa ochib ko'rildi (faqat o'quvchi rejimida; preview'da yo'q). */
   visit?(pageId: string): Promise<boolean>;
 };
@@ -47,7 +47,7 @@ export function LessonPlayer({ initial, adapter, backHref, preview, onBack, note
     return Math.max(0, Math.min(last, initial.unlocked - 1, initial.totalPages - 1));
   });
   const [busy, setBusy] = useState(false);
-  const [completion, setCompletion] = useState<{ firstTime?: boolean; xp?: XpAward | null } | null>(null);
+  const [completion, setCompletion] = useState<{ firstTime?: boolean; xp?: XpAward | null; achievements?: { slug: string; name: string }[] } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [visited, setVisited] = useState<Set<string>>(() => new Set(initial.visitedPageIds ?? []));
   const sent = useRef<Set<string>>(new Set(initial.visitedPageIds ?? []));
@@ -88,7 +88,7 @@ export function LessonPlayer({ initial, adapter, backHref, preview, onBack, note
     if (res.ok) {
       setView((v) => ({ ...v, completed: true }));
       // XP faqat server qaytargan haqiqiy natija bo'yicha ko'rsatiladi (preview'da yo'q)
-      if (!preview) setCompletion({ firstTime: res.firstTime, xp: res.xp });
+      if (!preview) setCompletion({ firstTime: res.firstTime, xp: res.xp, achievements: res.achievements });
     }
     else setError("Darsni yakunlab bo'lmadi");
   };
@@ -173,7 +173,7 @@ export function LessonPlayer({ initial, adapter, backHref, preview, onBack, note
           </button>
         )}
       </div>
-      {completion && <XpResult award={completion.xp} firstTime={completion.firstTime} kind="lesson" />}
+      {completion && <XpResult award={completion.xp} firstTime={completion.firstTime} kind="lesson" badges={completion.achievements} />}
       {isLast && !view.allDone && page.gate !== "free" ? <p className="label mt-3 text-right">{GATE_HINT[page.gate]}</p> : null}
     </div>
   );

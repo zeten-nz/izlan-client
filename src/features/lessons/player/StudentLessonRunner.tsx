@@ -18,10 +18,10 @@ export function StudentLessonRunner({ initial, backHref, startPageId }: { initia
         return r.ok ? r.data : null;
       },
       async complete() {
-        const r = await apiPost<{ firstTime: boolean; xp: XpAward | null }>(`/learning/lessons/${lessonId}/complete`, {});
+        const r = await apiPost<{ firstTime: boolean; xp: XpAward | null; achievements?: { slug: string; name: string }[] }>(`/learning/lessons/${lessonId}/complete`, {});
         // Asosiy, Jarayon va Xarita yangilangan holatni ko'rsatsin
         if (r.ok) router.refresh();
-        return r.ok ? { ok: true, firstTime: r.data.firstTime, xp: r.data.xp } : { ok: false };
+        return r.ok ? { ok: true, firstTime: r.data.firstTime, xp: r.data.xp, achievements: r.data.achievements } : { ok: false };
       },
       async visit(pageId) {
         return (await apiPost(`/learning/lessons/${lessonId}/visit`, { pageId })).ok;

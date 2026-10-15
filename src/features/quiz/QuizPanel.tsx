@@ -21,7 +21,7 @@ export type QuizView =
       maxXp: number;
     };
 
-type Result = { scorePct: number; correct: number; total: number; results: { questionId: string; correct: boolean }[]; xp: XpAward };
+type Result = { scorePct: number; correct: number; total: number; results: { questionId: string; correct: boolean }[]; xp: XpAward; achievements?: { slug: string; name: string }[] };
 
 /** Mavzu testi (o'quvchi). Natija va XP serverda hisoblanadi; bu yerda faqat javoblar yuboriladi. */
 export function QuizPanel({ topicId, quiz }: { topicId: string; quiz: QuizView }) {
@@ -141,7 +141,7 @@ export function QuizPanel({ topicId, quiz }: { topicId: string; quiz: QuizView }
               </li>
             ))}
           </ol>
-          <XpResult award={result.xp} kind="quiz" />
+          <XpResult award={result.xp} kind="quiz" badges={result.achievements} />
           <button
             type="button"
             className={cn(smallBtn, "mt-4")}

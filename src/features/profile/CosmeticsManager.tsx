@@ -7,7 +7,12 @@ import { CosmeticThumb, DESIGNS, designsOfKind, type DesignKey } from "./designs
 import { RarityTag } from "./identity";
 import { KINDS, KIND_LABEL, RARITIES, RARITY_LABEL, type Cosmetic, type CosmeticKind, type Rarity } from "./types";
 
-type Row = Cosmetic & { status: "DRAFT" | "ACTIVE" | "DISABLED" };
+type Row = Cosmetic & {
+  status: "DRAFT" | "ACTIVE" | "DISABLED";
+  recommended?: { min: number; max: number };
+  priceInRange?: boolean | null;
+  purchases?: number;
+};
 
 const STATUS_LABEL = { DRAFT: "Qoralama", ACTIVE: "Faol", DISABLED: "To'xtatilgan" } as const;
 const EMPTY = { slug: "", name: "", description: "", kind: "FRAME" as CosmeticKind, rarity: "COMMON" as Rarity, previewKey: "" as DesignKey | "", season: "" };
@@ -51,6 +56,11 @@ function RowEditor({ row, busy, onSave }: { row: Row; busy: boolean; onSave: (pa
   const [description, setDescription] = useState(row.description);
   const [rarity, setRarity] = useState<Rarity>(row.rarity);
   const [key, setKey] = useState<DesignKey | "">((row.preview?.key as DesignKey | undefined) ?? "");
+  const [price, setPrice] = useState(row.priceXp === null ? "" : String(row.priceXp));
+  const rec = row.recommended;
+  const n = price.trim() === "" ? null : Number(price);
+  const invalid = n !== null && (!Number.isInteger(n) || n <= 0);
+  const outside = n !== null && !invalid && rec ? n < rec.min || n > rec.max : false;
   return (
     <div className="mt-3 w-full space-y-3 border-t-[3px] border-ink pt-3">
       <div className="grid gap-3 sm:grid-cols-2">
@@ -71,11 +81,23 @@ function RowEditor({ row, busy, onSave }: { row: Row; busy: boolean; onSave: (pa
         <input className={inputCls} value={description} maxLength={300} onChange={(e) => setDescription(e.target.value)} />
       </Field>
       <DesignPicker kind={row.kind} value={key} onChange={setKey} name={name} rarity={rarity} />
+      <Field label="Narx (XP)" hint={rec ? `Tavsiya (${RARITY_LABEL[row.rarity]}): ${rec.min}–${rec.max} XP. Bo'sh = narx belgilanmagan` : "Bo'sh = narx belgilanmagan"}>
+        <input className={inputCls} inputMode="numeric" value={price} onChange={(e) => setPrice(e.target.value.replace(/[^0-9]/g, ""))} placeholder="masalan, 250" />
+      </Field>
+      {(row.purchases ?? 0) > 0 && (
+        <p className="text-sm text-ink/75">Bu bezak {row.purchases} marta sotib olingan: narx o&apos;zgarsa avvalgi xaridlar va egalik o&apos;zgarmaydi.</p>
+      )}
+      {invalid && <p role="alert" className="label border-2 border-ink bg-tomato px-2 py-1 text-paper">Narx noldan katta butun son bo&apos;lsin</p>}
+      {outside && rec && (
+        <p role="status" className="label border-2 border-ink bg-bubble px-2 py-1 [overflow-wrap:anywhere]">
+          Ogohlantirish: {n} XP tavsiya diapazonidan ({rec.min}–{rec.max}) tashqarida. Saqlash mumkin.
+        </p>
+      )}
       <button
         type="button"
         className={primaryBtn}
-        disabled={busy || !name.trim()}
-        onClick={() => onSave({ name, description, rarity, ...(key && { previewKey: key }) })}
+        disabled={busy || !name.trim() || invalid}
+        onClick={() => onSave({ name, description, rarity, priceXp: n, ...(key && { previewKey: key }) })}
       >
         Saqlash
       </button>
@@ -219,6 +241,8 @@ export function CosmeticsManager() {
                     <span className="label">{KIND_LABEL[r.kind]}</span>
                     <RarityTag rarity={r.rarity} />
                     <span className="label border-2 border-ink px-2 py-0.5">{STATUS_LABEL[r.status]}</span>
+                    <span className="label">{r.priceXp === null ? "Narx yo'q" : `${r.priceXp} XP`}</span>
+                    {r.priceInRange === false && <span className="label border-2 border-ink bg-bubble px-1.5 py-0.5">Diapazondan tashqari</span>}
                     <span className="font-mono text-xs text-ink/60">{r.slug}</span>
                   </p>
                 </div>

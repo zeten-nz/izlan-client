@@ -12,6 +12,7 @@ const EVENT_LABEL: Record<XpEvent["eventType"], string> = {
   TOPIC_COMPLETE: "Mavzu yakunlandi",
   QUIZ_TIER: "Mavzu testi",
   NOTE_VERIFIED: "Konspekt",
+  PURCHASE: "Xarid",
 };
 
 /** Progress chizig'i: matn kesilmasin, reduced-motion'da animatsiya yo'q. */
@@ -74,7 +75,17 @@ export function LevelMini({ level, totalXp }: { level: LevelInfo; totalXp: numbe
 /**
  * Dars/test natijasi: FAQAT haqiqatan berilgan XP ko'rsatiladi. Takroriy yakunlashda "+XP" yo'q, sababi tushuntiriladi.
  */
-export function XpResult({ award, firstTime, kind }: { award: XpAward | null | undefined; firstTime?: boolean; kind: "lesson" | "quiz" }) {
+export function XpResult({
+  award,
+  firstTime,
+  kind,
+  badges,
+}: {
+  award: XpAward | null | undefined;
+  firstTime?: boolean;
+  kind: "lesson" | "quiz";
+  badges?: { slug: string; name: string }[];
+}) {
   const real = award?.events.filter((e) => !e.duplicate && !e.disabled && e.grantedXp > 0) ?? [];
   const lowCoef = award?.events.find((e) => !e.duplicate && !e.disabled && e.baseXp > 0 && e.grantedXp === 0);
   return (
@@ -105,6 +116,15 @@ export function XpResult({ award, firstTime, kind }: { award: XpAward | null | u
         <p className="text-sm">Bu dars avval yakunlangan: XP faqat birinchi marta beriladi.</p>
       ) : (
         <p className="text-sm">Dars yakunlandi.</p>
+      )}
+      {badges && badges.length > 0 && (
+        <ul aria-label="Yangi badge" className="mt-3 space-y-1.5">
+          {badges.map((b) => (
+            <li key={b.slug} className="label border-[3px] border-ink bg-bubble px-3 py-2 [overflow-wrap:anywhere]">
+              Yangi badge: {b.name}
+            </li>
+          ))}
+        </ul>
       )}
       {award?.leveledUp && (
         <p className="label mt-3 border-[3px] border-ink bg-acid px-3 py-2 [overflow-wrap:anywhere]">
@@ -167,7 +187,7 @@ export function XpHistory() {
                 {e.multiplierPct < 100 ? ` · ${e.baseXp} × ${e.multiplierPct}%` : ""}
               </span>
             </span>
-            <span className={cn("shrink-0 font-display text-xl font-black tabular-nums", e.grantedXp === 0 && "text-ink/50")}>+{e.grantedXp}</span>
+            <span className={cn("shrink-0 font-display text-xl font-black tabular-nums", e.grantedXp === 0 && "text-ink/50")}>{e.grantedXp > 0 ? "+" : ""}{e.grantedXp}</span>
           </li>
         ))}
       </ul>

@@ -6,7 +6,7 @@ export type FieldErrors = Record<string, string>;
 
 export type ApiResult<T> =
   | { ok: true; data: T }
-  | { ok: false; status: number; message: string; fieldErrors: FieldErrors; retryAfterSeconds?: number };
+  | { ok: false; status: number; message: string; fieldErrors: FieldErrors; retryAfterSeconds?: number; code?: string };
 
 export async function apiPost<T = unknown>(path: string, body: unknown): Promise<ApiResult<T>> {
   try {
@@ -25,6 +25,7 @@ export async function apiPost<T = unknown>(path: string, body: unknown): Promise
       message: typeof json?.message === "string" ? json.message : "Xatolik yuz berdi. Qayta urinib ko'ring",
       fieldErrors,
       retryAfterSeconds: typeof json?.retryAfterSeconds === "number" ? json.retryAfterSeconds : undefined,
+      code: typeof json?.code === "string" ? json.code : undefined,
     };
   } catch {
     return { ok: false, status: 0, message: "Server bilan aloqa yo'q. Internetni tekshiring", fieldErrors: {} };
