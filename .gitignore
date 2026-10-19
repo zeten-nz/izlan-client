@@ -49,3 +49,6 @@ next-env.d.ts
 *.log
 restic-password*
 .restic*
+
+# Izolyatsiyalangan E2E build papkalari (NEXT_DIST_DIR=.next-e2e*)
+.next-*/

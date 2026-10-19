@@ -13,6 +13,7 @@ const ITEMS = [
   { label: "Yo'nalishlar", href: `${S}/directions`, match: (p: string) => p.startsWith(`${S}/directions`) || p.startsWith(`${S}/topic`) || p.startsWith(`${S}/lesson`) },
   { label: "Jarayon", href: `${S}/progress`, match: (p: string) => p.startsWith(`${S}/progress`) },
   { label: "Daftar", href: `${S}/notebook`, match: (p: string) => p.startsWith(`${S}/notebook`) },
+  { label: "Grammatika", href: ROUTES.grammar, match: (p: string) => p.startsWith(ROUTES.grammar), className: "hidden xl:block" },
   { label: "Mukofotlar", href: `${S}/rewards`, match: (p: string) => p.startsWith(`${S}/rewards`) },
   { label: "Profil", href: `${S}/account`, match: (p: string) => p.startsWith(`${S}/account`) },
 ] as const;
@@ -24,7 +25,7 @@ export function AppNav() {
       {ITEMS.map((item) => {
         const active = item.match(pathname);
         return (
-          <li key={item.label}>
+          <li key={item.label} className={"className" in item ? item.className : undefined}>
             <Link
               href={item.href}
               aria-current={active ? "page" : undefined}

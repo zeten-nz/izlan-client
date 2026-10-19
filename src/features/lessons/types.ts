@@ -25,7 +25,10 @@ export type ChoiceBlock = Frame & {
 export type Blank = { id: string; answers: string[]; caseSensitive: boolean };
 export type FillBlankBlock = Frame & { type: "fillblank"; template: string; blanks: Blank[]; explanation: string };
 
-export type Block = HeadingBlock | TextBlock | CalloutBlock | ImageBlock | AudioBlock | ChoiceBlock | FillBlankBlock;
+/** Grammatika havolasi: hujjatda faqat doimiy qoida ID'si (bo'sh = hali tanlanmagan). Nom/til/holat server reyestridan. */
+export type GrammarRefBlock = Frame & { type: "grammarRef"; grammarRuleId: string; label: string };
+
+export type Block = HeadingBlock | TextBlock | CalloutBlock | ImageBlock | AudioBlock | ChoiceBlock | FillBlankBlock | GrammarRefBlock;
 export type BlockType = Block["type"];
 export type Page = { id: string; title: string; gate: Gate; blocks: Block[] };
 export type LessonDoc = { schemaVersion: 1; pages: Page[] };
@@ -33,8 +36,15 @@ export type LessonDoc = { schemaVersion: 1; pages: Page[] };
 export const isInteractive = (b: { type: string }) => b.type === "choice" || b.type === "fillblank";
 
 /** O'quvchi ko'rinishi: to'g'ri javoblar yo'q. */
+/** O'quvchi ko'rinishida server qoidani hal qilib beradi (nafaqaga chiqarilgan bo'lsa almashtiruvchi ID bilan). */
+export type PlayerGrammarRule =
+  | { available: false }
+  | { available: true; id: string; lang: string; langName: string; title: string };
+export type PlayerGrammarRef = GrammarRefBlock & { rule: PlayerGrammarRule };
+
 export type PlayerBlock =
-  | Exclude<Block, ChoiceBlock | FillBlankBlock>
+  | Exclude<Block, ChoiceBlock | FillBlankBlock | GrammarRefBlock>
+  | PlayerGrammarRef
   | Omit<ChoiceBlock, "correctIds" | "explanation">
   | (Omit<FillBlankBlock, "blanks" | "explanation"> & { blanks: { id: string }[] });
 export type PlayerPage = Omit<Page, "blocks"> & { blocks: PlayerBlock[] };

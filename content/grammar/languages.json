@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "explanationLanguages": [
+    "uz"
+  ],
+  "languages": {
+    "en": {
+      "name": "English",
+      "nativeName": "English",
+      "enabled": true,
+      "dir": "ltr",
+      "levelSystem": "cefr",
+      "scripts": [
+        "Latn"
+      ],
+      "blocks": [
+        "table",
+        "conjugation"
+      ],
+      "categories": [
+        {
+          "id": "tenses",
+          "title": {
+            "uz": "Zamonlar va aspektlar"
+          }
+        },
+        {
+          "id": "irregular-verbs",
+          "title": {
+            "uz": "Noto'g'ri fe'llar"
+          }
+        },
+        {
+          "id": "modal-verbs",
+          "title": {
+            "uz": "Modal fe'llar"
+          }
+        },
+        {
+          "id": "articles",
+          "title": {
+            "uz": "Artikllar"
+          }
+        },
+        {
+          "id": "conditionals",
+          "title": {
+            "uz": "Shart gaplar"
+          }
+        },
+        {
+          "id": "passive-voice",
+          "title": {
+            "uz": "Majhul nisbat"
+          }
+        },
+        {
+          "id": "sentence-structure",
+          "title": {
+            "uz": "Gap tuzilishi"
+          }
+        }
+      ]
+    },
+    "ru": {
+      "name": "Russian",
+      "nativeName": "Русский",
+      "enabled": false,
+      "dir": "ltr",
+      "levelSystem": "cefr",
+      "scripts": [
+        "Cyrl"
+      ],
+      "blocks": [
+        "table",
+        "conjugation",
+        "declension"
+      ],
+      "categories": [
+        {
+          "id": "cases",
+          "title": {
+            "uz": "Kelishiklar"
+          }
+        },
+        {
+          "id": "gender",
+          "title": {
+            "uz": "Rodlar"
+          }
+        },
+        {
+          "id": "verb-aspect",
+          "title": {
+            "uz": "Fe'l aspektlari"
+          }
+        },
+        {
+          "id": "verb-conjugation",
+          "title": {
+            "uz": "Fe'l tuslanishi"
+          }
+        },
+        {
+          "id": "tenses",
+          "title": {
+            "uz": "Zamonlar"
+          }
+        },
+        {
+          "id": "motion-verbs",
+          "title": {
+            "uz": "Harakat fe'llari"
+          }
+        }
+      ]
+    },
+    "ja": {
+      "name": "Japanese",
+      "nativeName": "日本語",
+      "enabled": false,
+      "dir": "ltr",
+      "levelSystem": "jlpt",
+      "scripts": [
+        "Jpan"
+      ],
+      "blocks": [
+        "table",
+        "conjugation"
+      ],
+      "categories": [
+        {
+          "id": "particles",
+          "title": {
+            "uz": "Partikllar"
+          }
+        },
+        {
+          "id": "verb-forms",
+          "title": {
+            "uz": "Fe'l shakllari"
+          }
+        },
+        {
+          "id": "te-form",
+          "title": {
+            "uz": "て-shakl"
+          }
+        },
+        {
+          "id": "sentence-structure",
+          "title": {
+            "uz": "Gap tuzilishi"
+          }
+        },
+        {
+          "id": "politeness",
+          "title": {
+            "uz": "Muloyimlik darajalari"
+          }
+        },
+        {
+          "id": "constructions",
+          "title": {
+            "uz": "Grammatik konstruksiyalar"
+          }
+        }
+      ]
+    }
+  }
+}

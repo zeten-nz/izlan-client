@@ -175,3 +175,29 @@ html[data-preloaded="1"] .preloader { display: none; }
 /* Gorizontal skroll chizig'ini yashirish (mobil nav) */
 .no-scrollbar { scrollbar-width: none; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* ───────────── Grammatika: kirill va yapon yozuvi ─────────────
+   Qo'shimcha shrift fayli YUKLANMAYDI (global bundle kattalashmaydi, CLS yo'q): faqat `lang` atributli
+   elementlarga tizim shriftlari beriladi. Lotin glifi uchun Izlan shrifti birinchi turadi, yetishmagan
+   glif (kirill/kana/kanji) keyingi fallback'dan olinadi. */
+:lang(ru) {
+  font-family: var(--font-sans), "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", "DejaVu Sans", sans-serif;
+}
+:lang(ja) {
+  font-family: var(--font-sans), "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic",
+    "Meiryo", "Noto Sans CJK JP", "Noto Sans JP", sans-serif;
+  line-height: 1.9; /* furigana (rt) qator oralig'iga sig'ishi uchun */
+}
+ruby {
+  ruby-position: over;
+}
+rt {
+  font-size: 0.55em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+[data-furigana="off"] rt,
+[data-furigana="off"] rp {
+  display: none;
+}

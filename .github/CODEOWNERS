@@ -1,0 +1,12 @@
+# CODEOWNERS: grammatika kontenti va tasdiqlash qoidalari.
+#
+# DIQQAT: metodist hali tayinlanmagan, shuning uchun haqiqiy egalar YO'Q. Quyidagi qatorlar sharh sifatida qoldirilgan:
+# soxta @username yozish CODEOWNERS'ni buzadi (noto'g'ri egalar xato beradi) va noto'g'ri xavfsizlik tuyg'usi yaratadi.
+#
+# Metodist tayinlangach (va branch protection'da "Require review from Code Owners" yoqilgach) sharhni olib tashlang:
+#
+# /content/grammar/reviewers.json   @zeten-nz/<loyiha-egalari-jamoasi>
+# /content/grammar/**/*.mdx         @zeten-nz/<metodistlar-jamoasi>
+# /content/grammar/languages.json   @zeten-nz/<metodistlar-jamoasi>
+# /src/lib/grammar/                 @zeten-nz/<texnik-jamoa>
+# /.github/                         @zeten-nz/<loyiha-egalari-jamoasi>

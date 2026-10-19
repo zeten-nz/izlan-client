@@ -12,6 +12,7 @@ const TINT: Record<Block["type"], string> = {
   audio: "bg-bubble",
   choice: "bg-cobalt/70",
   fillblank: "bg-tomato/70",
+  grammarRef: "bg-bubble",
 };
 
 /** Kichik oldindan ko'rinish: bloklar rangli to'rtburchak sifatida (tez va yengil). */

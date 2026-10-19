@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { apiUpload } from "@/lib/api";
 import { cn } from "@/lib/cn";
-import { assetUrl, BLANK_RE, STAGE_H, STAGE_W, type Align, type Block, type Blank, type ChoiceBlock, type FillBlankBlock, type Gate, type Page } from "../types";
+import { assetUrl, BLANK_RE, STAGE_H, STAGE_W, type Align, type Block, type Blank, type ChoiceBlock, type FillBlankBlock, type Gate, type GrammarRefBlock, type Page } from "../types";
+import { useGrammarRules } from "../blocks/grammar-context";
 import { fitBlock, uid } from "./ops";
 
 export type Update = (f: (b: Block) => Block, key?: string) => void;
@@ -52,6 +53,7 @@ const BLOCK_NAMES: Record<Block["type"], string> = {
   audio: "Audio",
   choice: "Test savoli",
   fillblank: "Bo'sh joyni to'ldirish",
+  grammarRef: "Grammatika qoidasi",
 };
 
 type Props = {
@@ -171,6 +173,7 @@ export function Inspector({ page, block, onUpdate, onPage, onDelete, onDuplicate
         </>
       )}
 
+      {block.type === "grammarRef" && <GrammarRefFields block={block} set={set} k={k} />}
       {block.type === "choice" && <ChoiceFields block={block} set={set} k={k} mainRef={mainRef} />}
       {block.type === "fillblank" && <FillBlankFields block={block} set={set} k={k} mainRef={mainRef} />}
 
@@ -207,6 +210,66 @@ export function Inspector({ page, block, onUpdate, onPage, onDelete, onDuplicate
 }
 
 type SetFn = <K extends string>(patch: Record<K, unknown>, key?: string) => void;
+
+function GrammarRefFields({ block, set, k }: { block: GrammarRefBlock; set: SetFn; k: (f: string) => string }) {
+  const { rules, error, serverVersion } = useGrammarRules();
+  const [q, setQ] = useState("");
+  const current = rules?.find((r) => r.id === block.grammarRuleId);
+  const needle = q.trim().toLowerCase();
+  const shown = (rules ?? []).filter((r) => !needle || r.title.toLowerCase().includes(needle) || r.langName.toLowerCase().includes(needle)).slice(0, 50);
+  return (
+    <>
+      <div data-testid="grammar-current" className="border-[3px] border-ink bg-white p-2.5 text-[14px]">
+        {!block.grammarRuleId ? (
+          <span className="opacity-70">Qoida tanlanmagan</span>
+        ) : current ? (
+          <>
+            <b>{current.title}</b>
+            <span className="block opacity-70">{current.langName}</span>
+          </>
+        ) : rules === null ? (
+          <span className="opacity-70">Yuklanmoqda…</span>
+        ) : (
+          <span className="font-semibold text-tomato">Bu qoida mavjud emas yoki tasdiqlanmagan ({block.grammarRuleId}). Boshqasini tanlang.</span>
+        )}
+      </div>
+      <Field label="Qoidani qidirish">
+        <input className={input} value={q} maxLength={60} placeholder="Masalan: Present Perfect" onChange={(e) => setQ(e.target.value)} />
+      </Field>
+      {error ? (
+        <p role="alert" className="text-[13px] font-semibold text-tomato">
+          {error}
+        </p>
+      ) : null}
+      {rules !== null && rules.length === 0 && !error ? (
+        <p className="text-[13px] leading-snug opacity-70">Hozircha tasdiqlangan grammatika qoidasi yo&apos;q: metodist tasdiqlagach shu yerda ko&apos;rinadi.</p>
+      ) : null}
+      <ul className="max-h-56 space-y-1.5 overflow-y-auto" aria-label="Tasdiqlangan qoidalar">
+        {shown.map((r) => (
+          <li key={r.id}>
+            <button
+              type="button"
+              data-testid="grammar-option"
+              aria-pressed={r.id === block.grammarRuleId}
+              onClick={() => set({ grammarRuleId: r.id }, k("rule"))}
+              className={cn("w-full border-[3px] border-ink px-2.5 py-1.5 text-left text-[14px] font-bold", r.id === block.grammarRuleId ? "bg-ink text-paper" : "bg-white hover:bg-acid")}
+            >
+              {r.title}
+              <span className="block text-[12px] font-medium opacity-70">
+                {r.langName}
+                {r.level ? ` · ${r.level.confirmed ? "" : "≈ "}${r.level.value}` : ""}
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+      <Field label="Tugma yozuvi (ixtiyoriy)">
+        <input className={input} value={block.label} maxLength={80} placeholder="Qoidani ochish" onChange={(e) => set({ label: e.target.value }, k("label"))} />
+      </Field>
+      {serverVersion ? <p className="label opacity-50">Reyestr: {serverVersion}</p> : null}
+    </>
+  );
+}
 
 function ChoiceFields({ block, set, k, mainRef }: { block: ChoiceBlock; set: SetFn; k: (f: string) => string; mainRef: React.RefObject<(HTMLInputElement & HTMLTextAreaElement) | null> }) {
   const setOption = (id: string, text: string) => set({ options: block.options.map((o) => (o.id === id ? { ...o, text } : o)) }, k(`opt-${id}`));

@@ -49,6 +49,8 @@ function draftBlock(type: BlockType, existing: Block[]): Block {
         explanation: "",
       };
     }
+    case "grammarRef":
+      return { ...base, type, w: 800, h: 190, grammarRuleId: "", label: "" };
     case "fillblank":
       return { ...base, type, w: 1000, h: 220, template: "I [[1]] a student.", blanks: [{ id: "1", answers: ["am"], caseSensitive: false }], explanation: "" };
   }

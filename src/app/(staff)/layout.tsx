@@ -3,7 +3,7 @@ import { Suspense, type ReactNode } from "react";
 import { Logo } from "@/components/brand/Logo";
 import { LogoutButton } from "@/features/student/LogoutButton";
 import { requireUser } from "@/server/session";
-import { roleHome } from "@/config/routes";
+import { ROUTES, roleHome } from "@/config/routes";
 
 async function Who() {
   const user = await requireUser();
@@ -25,6 +25,14 @@ export default function StaffLayout({ children }: { children: ReactNode }) {
           <Link href={roleHome("ADMIN")} aria-label="Izlan">
             <Logo />
           </Link>
+          <nav aria-label="Bo'limlar" className="ml-auto">
+            <Link
+              href={ROUTES.grammar}
+              className="label inline-flex min-h-10 items-center border-[3px] border-ink bg-white px-3 py-2 hover:bg-acid"
+            >
+              Grammatika
+            </Link>
+          </nav>
           <Suspense fallback={<div className="h-10 w-24" />}>
             <Who />
           </Suspense>

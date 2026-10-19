@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "redirects": [
+    { "lang": "en", "from": "old-present-perfect", "id": "gr_en_000101" }
+  ],
+  "retired": [
+    { "id": "gr_en_000090", "reason": "Fixture: birlashtirildi", "retiredAt": "2026-01-05", "replacedBy": "gr_en_000102" },
+    { "id": "gr_en_000091", "reason": "Fixture: almashtiruvchisiz", "retiredAt": "2026-01-05" }
+  ]
+}

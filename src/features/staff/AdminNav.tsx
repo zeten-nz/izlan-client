@@ -6,6 +6,7 @@ const ITEMS = [
   { id: "catalog", label: "Ta'lim tuzilmasi", href: "/admin/catalog" },
   { id: "cosmetics", label: "Bezaklar", href: "/admin/cosmetics" },
   { id: "achievements", label: "Yutuqlar", href: "/admin/achievements" },
+  { id: "grammar", label: "Grammatika", href: "/admin/grammar" },
 ] as const;
 
 /** Admin bo'limlari orasida o'tish (mavjud neo-brutalist tugmalar uslubida). */

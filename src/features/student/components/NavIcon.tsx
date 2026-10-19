@@ -1,4 +1,4 @@
-export type NavIconId = "home" | "learn" | "progress" | "rewards" | "profile" | "notebook";
+export type NavIconId = "home" | "learn" | "progress" | "rewards" | "profile" | "notebook" | "grammar";
 
 /** Navigatsiya piktogrammalari: loyihadagi FeatureIcon uslubida (qalin chiziq, to'g'ri burchak). */
 export function NavIcon({ id, className }: { id: NavIconId; className?: string }) {
@@ -35,6 +35,13 @@ export function NavIcon({ id, className }: { id: NavIconId; className?: string }
         <>
           <circle cx="24" cy="16" r="9" {...c} />
           <path d="M7 43c1-10 8-14 17-14s16 4 17 14" {...c} />
+        </>
+      )}
+      {id === "grammar" && (
+        <>
+          <path d="M8 40L20 8l12 32" {...c} />
+          <path d="M12 29h16" {...c} />
+          <path d="M37 18v22M37 11v1" {...c} />
         </>
       )}
       {id === "notebook" && (

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000002",
+  "lang": "en",
+  "slug": "articles",
+  "category": "articles",
+  "level": { "system": "cefr", "value": "A1" },
+  "related": []
+}

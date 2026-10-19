@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "rules": [
+    {
+      "id": "gr_en_000001",
+      "lang": "en",
+      "slug": "present-perfect",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "654f4bba3ce84436"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000002",
+      "lang": "en",
+      "slug": "articles",
+      "category": "articles",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "8bd23a38040c1bab"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000003",
+      "lang": "en",
+      "slug": "first-conditional",
+      "category": "conditionals",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "8a927efcb6f27a12"
+        }
+      ]
+    },
+    {
+      "id": "gr_ja_000001",
+      "lang": "ja",
+      "slug": "te-form",
+      "category": "te-form",
+      "level": {
+        "system": "jlpt",
+        "value": "N5"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "d2645da8be26f058"
+        }
+      ]
+    },
+    {
+      "id": "gr_ru_000001",
+      "lang": "ru",
+      "slug": "gender-of-nouns",
+      "category": "gender",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "da70b8f083254787"
+        }
+      ]
+    }
+  ],
+  "redirects": [],
+  "retired": []
+}

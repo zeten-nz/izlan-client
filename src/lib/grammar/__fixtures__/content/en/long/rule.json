@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000105",
+  "lang": "en",
+  "slug": "fixture-long-table",
+  "category": "sentence-structure",
+  "level": {
+    "system": "cefr",
+    "value": "C1"
+  },
+  "related": []
+}

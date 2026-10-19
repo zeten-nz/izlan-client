@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000104",
+  "lang": "en",
+  "slug": "fixture-review-only",
+  "category": "tenses",
+  "level": {
+    "system": "cefr",
+    "value": "B2"
+  },
+  "related": []
+}

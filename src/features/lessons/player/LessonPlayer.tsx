@@ -7,6 +7,7 @@ import { cn } from "@/lib/cn";
 import { NotebookTools } from "@/features/notebook/player/NotebookTools";
 import { XpResult } from "@/features/profile/xp";
 import type { XpAward } from "@/features/profile/types";
+import { LessonLocationContext } from "../blocks/grammar-context";
 import { PageView } from "../PageView";
 import type { AnswerResult, PlayerView } from "../types";
 
@@ -145,7 +146,9 @@ export function LessonPlayer({ initial, adapter, backHref, preview, onBack, note
 
       <div className="mt-5">
         {page.title ? <p className="label mb-2">{page.title}</p> : null}
-        <PageView key={page.id} blocks={page.blocks} mode="play" attempts={view.attempts} onAnswer={onAnswer} />
+        <LessonLocationContext.Provider value={{ lessonId: view.lesson.id, pageId: page.id, surface: preview ? "preview" : "student" }}>
+          <PageView key={page.id} blocks={page.blocks} mode="play" attempts={view.attempts} onAnswer={onAnswer} />
+        </LessonLocationContext.Provider>
       </div>
 
       {error ? (

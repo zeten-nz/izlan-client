@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "languages": [
+    {
+      "code": "en",
+      "name": "English",
+      "nativeName": "English",
+      "dir": "ltr",
+      "levelSystem": "cefr",
+      "scripts": [
+        "Latn"
+      ],
+      "categories": [
+        {
+          "id": "tenses",
+          "title": {
+            "uz": "Zamonlar va aspektlar"
+          }
+        },
+        {
+          "id": "irregular-verbs",
+          "title": {
+            "uz": "Noto'g'ri fe'llar"
+          }
+        },
+        {
+          "id": "modal-verbs",
+          "title": {
+            "uz": "Modal fe'llar"
+          }
+        },
+        {
+          "id": "articles",
+          "title": {
+            "uz": "Artikllar"
+          }
+        },
+        {
+          "id": "conditionals",
+          "title": {
+            "uz": "Shart gaplar"
+          }
+        },
+        {
+          "id": "passive-voice",
+          "title": {
+            "uz": "Majhul nisbat"
+          }
+        },
+        {
+          "id": "sentence-structure",
+          "title": {
+            "uz": "Gap tuzilishi"
+          }
+        }
+      ]
+    }
+  ],
+  "rules": [],
+  "redirects": [],
+  "retired": []
+}

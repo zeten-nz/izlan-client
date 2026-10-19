@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { RichText } from "@/lib/rich";
 import { cn } from "@/lib/cn";
 import {
@@ -12,6 +13,7 @@ import {
   type FillBlankBlock,
   type PlayerBlock,
 } from "../types";
+import { grammarOpenHref, useGrammarRules, useLessonLocation } from "./grammar-context";
 import { ChoicePlay, FillBlankPlay } from "./InteractivePlay";
 import { u } from "./units";
 
@@ -88,6 +90,8 @@ export function BlockView({ block, mode, attempt, onAnswer }: Props) {
           ) : null}
         </div>
       );
+    case "grammarRef":
+      return <GrammarRefView block={block} mode={mode} />;
     case "choice":
       return mode === "design" ? (
         <ChoiceDesign block={block as ChoiceBlock} />
@@ -101,6 +105,76 @@ export function BlockView({ block, mode, attempt, onAnswer }: Props) {
         <FillBlankPlay block={block as Extract<PlayerBlock, { type: "fillblank" }>} attempt={attempt} onAnswer={onAnswer!} />
       );
   }
+}
+
+/** Grammatika havolasi: tahrirda tanlangan qoida nomi/tili; o'quvchida ichki havola yoki "mavjud emas" fallback. */
+function GrammarRefView({ block, mode }: { block: Block | PlayerBlock; mode: "design" | "play" }) {
+  const loc = useLessonLocation();
+  const { rules } = useGrammarRules();
+  if (block.type !== "grammarRef") return null;
+  const frame = { borderWidth: u(4), padding: u(14), boxShadow: `${u(8)} ${u(8)} 0 0 var(--color-ink)`, gap: u(8) };
+  const shell = "flex h-full w-full flex-col justify-center border-ink bg-paper";
+
+  if (mode === "design") {
+    const info = block.grammarRuleId ? rules?.find((r) => r.id === block.grammarRuleId) : undefined;
+    const state = !block.grammarRuleId ? "none" : rules === null ? "loading" : info ? "ok" : "missing";
+    return (
+      <div className={shell} style={frame} data-testid="grammar-ref-design">
+        <p className="label" style={{ fontSize: u(18) }}>
+          Grammatika qoidasi
+        </p>
+        <p className="font-display font-black leading-tight" style={{ fontSize: u(34) }}>
+          {state === "ok" && info
+            ? info.title
+            : state === "none"
+              ? "Qoida tanlanmagan"
+              : state === "loading"
+                ? "Yuklanmoqda…"
+                : "Qoida mavjud emas yoki tasdiqlanmagan"}
+        </p>
+        {state === "ok" && info ? (
+          <p className="font-semibold opacity-70" style={{ fontSize: u(22) }}>
+            {info.langName}
+          </p>
+        ) : null}
+      </div>
+    );
+  }
+
+  const rule = "rule" in block ? block.rule : { available: false as const };
+  if (!rule.available) {
+    return (
+      <div className={shell} style={{ ...frame, borderStyle: "dashed" }} data-testid="grammar-ref-unavailable">
+        <p className="label" style={{ fontSize: u(18) }}>
+          Grammatika qoidasi
+        </p>
+        <p className="font-semibold" style={{ fontSize: u(26) }}>
+          Bu qoida hozircha mavjud emas. Darsni davom ettiring.
+        </p>
+      </div>
+    );
+  }
+  return (
+    <div className={shell} style={frame} data-testid="grammar-ref">
+      <p className="label" style={{ fontSize: u(18) }}>
+        Grammatika qoidasi · {rule.langName}
+      </p>
+      <p className="font-display font-black leading-tight" style={{ fontSize: u(34) }}>
+        {rule.title}
+      </p>
+      <div>
+        <Link
+          href={grammarOpenHref(rule, loc)}
+          target={loc?.surface === "preview" ? "_blank" : undefined}
+          rel={loc?.surface === "preview" ? "noopener" : undefined}
+          className="inline-flex items-center border-ink bg-acid font-display font-black uppercase"
+          style={{ borderWidth: u(4), padding: `${u(6)} ${u(14)}`, fontSize: u(20), boxShadow: `${u(5)} ${u(5)} 0 0 var(--color-ink)` }}
+        >
+          {block.label.trim() || "Qoidani ochish"} →
+        </Link>
+      </div>
+    </div>
+  );
 }
 
 function Placeholder({ label }: { label: string }) {

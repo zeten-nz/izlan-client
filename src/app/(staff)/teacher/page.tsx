@@ -14,10 +14,16 @@ async function Teacher() {
         Salom, {user.firstName}
         <span className="text-tomato">.</span>
       </h1>
-      <ButtonLink href="/teacher/lessons" size="lg" className="mt-8">
-        Darslarim
-        <Arrow />
-      </ButtonLink>
+      <div className="mt-8 flex flex-wrap gap-4">
+        <ButtonLink href="/teacher/lessons" size="lg">
+          Darslarim
+          <Arrow />
+        </ButtonLink>
+        <ButtonLink href="/teacher/grammar" size="lg" variant="paper">
+          Grammatika qoidalarim
+          <Arrow />
+        </ButtonLink>
+      </div>
     </div>
   );
 }

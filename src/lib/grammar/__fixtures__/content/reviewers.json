@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "reviewers": [
+    {
+      "id": "fixture-reviewer",
+      "name": "Fixture Reviewer (sinov)",
+      "role": "methodist",
+      "languages": [
+        "en",
+        "ru",
+        "ja"
+      ],
+      "addedAt": "2026-01-01",
+      "appointedBy": "fixture (haqiqiy emas)"
+    }
+  ]
+}
