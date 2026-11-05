@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { RichText } from "@/lib/rich";
 import { cn } from "@/lib/cn";
 import {
@@ -9,6 +10,7 @@ import {
   type AnswerResult,
   type AttemptView,
   type Block,
+  type CalloutTone,
   type ChoiceBlock,
   type FillBlankBlock,
   type PlayerBlock,
@@ -27,11 +29,25 @@ type Props = {
   onAnswer?: OnAnswer;
 };
 
-const TONES = {
-  info: "bg-sky",
-  warning: "bg-acid",
-  success: "bg-[#8df0a8]",
-} as const;
+/** Darslik uslubidagi qutilar: rangli sarlavha tasmasi + belgi, ochroq tanasi. */
+const TONES: Record<CalloutTone, { label: string; strip: string; body: string; icon: ReactNode }> = {
+  rule: { label: "Qoida", strip: "bg-[#ffd400]", body: "bg-[#fff3b0]", icon: <path d="M6 3h12v18l-6-4-6 4z" /> },
+  example: {
+    label: "Misol",
+    strip: "bg-cobalt text-white",
+    body: "bg-[#dfe8ff]",
+    icon: <path d="M4 5h16v11H9l-5 4zM8 9h8M8 12h5" />,
+  },
+  tip: {
+    label: "Eslatma",
+    strip: "bg-acid",
+    body: "bg-[#f6ffd6]",
+    icon: <path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z" />,
+  },
+  warning: { label: "Diqqat", strip: "bg-tomato text-white", body: "bg-[#ffe1d6]", icon: <path d="M12 3 2 20h20zM12 10v4M12 17v.5" /> },
+  info: { label: "Ma'lumot", strip: "bg-sky", body: "bg-[#eaf6ff]", icon: <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 11v6M12 7.5v.5" /> },
+  success: { label: "Xulosa", strip: "bg-[#8df0a8]", body: "bg-[#e3fbe9]", icon: <path d="M4 12.5 9.5 18 20 6" /> },
+};
 
 /** O'quvchi pleerida matn bloklari belgilanib, Daftarga (Lug'at) qo'shilishi mumkin (savol/javob bloklari emas). */
 const selectable = (mode: "design" | "play", id: string) => (mode === "play" ? { "data-notebook-text": "", "data-block-id": id } : {});
@@ -41,7 +57,12 @@ export function BlockView({ block, mode, attempt, onAnswer }: Props) {
     case "heading": {
       const size = block.level === 1 ? 76 : block.level === 2 ? 54 : 40;
       return (
-        <h2 className="display h-full w-full" style={{ fontSize: u(size), textAlign: block.align, lineHeight: 1.02 }} {...selectable(mode, block.id)}>
+        <h2
+          className="display h-full w-full"
+          // .display qatlamsiz CSS'da uppercase qiladi — Tailwind klassi uni bosolmaydi, shuning uchun inline
+          style={{ fontSize: u(size), textAlign: block.align, lineHeight: 1.02, textTransform: block.caps === false ? "none" : undefined }}
+          {...selectable(mode, block.id)}
+        >
           {block.text || (mode === "design" ? "Sarlavha" : "")}
         </h2>
       );
@@ -52,22 +73,34 @@ export function BlockView({ block, mode, attempt, onAnswer }: Props) {
           {block.text ? <RichText text={block.text} /> : mode === "design" ? <span className="opacity-40">Matn…</span> : null}
         </div>
       );
-    case "callout":
+    case "callout": {
+      const tone = TONES[block.tone] ?? TONES.info;
       return (
         <div
-          {...selectable(mode, block.id)}
-          className={cn("h-full w-full border-ink font-semibold leading-snug", TONES[block.tone])}
-          style={{ fontSize: u(30), borderWidth: u(4), padding: u(20), boxShadow: `${u(8)} ${u(8)} 0 0 var(--color-ink)` }}
+          className={cn("flex h-full w-full flex-col overflow-hidden border-ink", tone.body)}
+          style={{ borderWidth: u(4), boxShadow: `${u(8)} ${u(8)} 0 0 var(--color-ink)` }}
         >
-          {block.text ? <RichText text={block.text} /> : mode === "design" ? <span className="opacity-40">Muhim tushuncha…</span> : null}
+          <div
+            className={cn("flex shrink-0 items-center border-b-ink font-display font-black uppercase tracking-wide", tone.strip)}
+            style={{ gap: u(10), padding: `${u(6)} ${u(16)}`, fontSize: u(20), borderBottomWidth: u(4) }}
+          >
+            <svg aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" style={{ width: u(26), height: u(26) }}>
+              {tone.icon}
+            </svg>
+            {block.title?.trim() || tone.label}
+          </div>
+          <div {...selectable(mode, block.id)} className="min-h-0 flex-1 font-semibold leading-snug" style={{ fontSize: u(28), padding: `${u(14)} ${u(20)}` }}>
+            {block.text ? <RichText text={block.text} /> : mode === "design" ? <span className="opacity-40">Muhim tushuncha…</span> : null}
+          </div>
         </div>
       );
+    }
     case "image":
       return block.assetId ? (
         // eslint-disable-next-line @next/next/no-img-element -- ustoz yuklagan rasm, o'lchami noma'lum
         <img src={assetUrl(block.assetId)} alt={block.alt} className="h-full w-full" style={{ objectFit: block.fit }} draggable={false} />
       ) : (
-        <Placeholder label="Rasm tanlanmagan" />
+        <Placeholder label="Rasm uchun joy" brief={block.brief} search={block.search} />
       );
     case "audio":
       return (
@@ -75,7 +108,7 @@ export function BlockView({ block, mode, attempt, onAnswer }: Props) {
           {block.assetId ? (
             <audio controls preload="metadata" src={assetUrl(block.assetId)} className="w-full" style={{ pointerEvents: mode === "design" ? "none" : "auto" }} />
           ) : (
-            <Placeholder label="Audio tanlanmagan" />
+            <Placeholder label="Audio uchun joy" brief={block.brief} search={block.search} />
           )}
           {block.caption ? (
             <p className="font-semibold" style={{ fontSize: u(24) }}>
@@ -177,13 +210,31 @@ function GrammarRefView({ block, mode }: { block: Block | PlayerBlock; mode: "de
   );
 }
 
-function Placeholder({ label }: { label: string }) {
+/** Bo'sh media joyi; ustoz topshirig'i (nima kerak + qidiruv so'zi) bo'lsa shu yerda ko'rinadi. */
+function Placeholder({ label, brief, search }: { label: string; brief?: string; search?: string }) {
+  const hasBrief = Boolean(brief?.trim() || search?.trim());
   return (
     <div
-      className="grid h-full min-h-10 w-full place-items-center border-dashed border-ink bg-paper-2 font-mono font-bold uppercase opacity-70"
-      style={{ borderWidth: u(3), fontSize: u(20) }}
+      className="flex h-full min-h-10 w-full flex-col items-center justify-center overflow-hidden border-dashed border-ink bg-paper-2 text-center"
+      style={{ borderWidth: u(3), gap: u(8), padding: u(14) }}
     >
-      {label}
+      <p className="font-mono font-bold uppercase opacity-70" style={{ fontSize: u(18) }}>
+        {label}
+      </p>
+      {hasBrief ? (
+        <>
+          {brief?.trim() ? (
+            <p className="font-semibold leading-snug" style={{ fontSize: u(22) }}>
+              {brief}
+            </p>
+          ) : null}
+          {search?.trim() ? (
+            <p className="border-ink bg-white font-mono leading-snug" style={{ fontSize: u(18), borderWidth: u(2), padding: `${u(4)} ${u(10)}` }}>
+              🔎 {search}
+            </p>
+          ) : null}
+        </>
+      ) : null}
     </div>
   );
 }

@@ -8,7 +8,7 @@ import { requireRole } from "@/server/session";
 export const metadata: Metadata = { title: "Dars muharriri", robots: { index: false } };
 
 async function Editor({ params }: { params: Promise<{ id: string }> }) {
-  await requireRole("TEACHER");
+  await requireRole(["TEACHER", "ADMIN"]);
   const { id } = await params;
   const lesson = await apiGet<EditorInitial & { topicId: string }>(`/staff/lessons/${id}`);
   return (

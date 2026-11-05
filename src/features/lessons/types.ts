@@ -8,11 +8,14 @@ export type Align = "left" | "center" | "right";
 
 type Frame = { id: string; x: number; y: number; w: number; h: number; z: number };
 
-export type HeadingBlock = Frame & { type: "heading"; text: string; level: 1 | 2 | 3; align: Align };
+export type HeadingBlock = Frame & { type: "heading"; text: string; level: 1 | 2 | 3; align: Align; caps: boolean };
 export type TextBlock = Frame & { type: "text"; text: string; align: Align };
-export type CalloutBlock = Frame & { type: "callout"; text: string; tone: "info" | "warning" | "success" };
-export type ImageBlock = Frame & { type: "image"; assetId: string | null; alt: string; fit: "contain" | "cover" };
-export type AudioBlock = Frame & { type: "audio"; assetId: string | null; caption: string; transcript: string };
+export type CalloutTone = "rule" | "example" | "tip" | "warning" | "info" | "success";
+export type CalloutBlock = Frame & { type: "callout"; text: string; tone: CalloutTone; title: string };
+/** Hali topilmagan media uchun ustozga topshiriq (o'quvchiga bo'sh keladi). */
+type MediaBrief = { brief: string; search: string };
+export type ImageBlock = Frame & MediaBrief & { type: "image"; assetId: string | null; alt: string; fit: "contain" | "cover" };
+export type AudioBlock = Frame & MediaBrief & { type: "audio"; assetId: string | null; caption: string; transcript: string };
 export type ChoiceOption = { id: string; text: string };
 export type ChoiceBlock = Frame & {
   type: "choice";

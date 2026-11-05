@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { apiUpload } from "@/lib/api";
 import { cn } from "@/lib/cn";
-import { assetUrl, BLANK_RE, STAGE_H, STAGE_W, type Align, type Block, type Blank, type ChoiceBlock, type FillBlankBlock, type Gate, type GrammarRefBlock, type Page } from "../types";
+import { assetUrl, BLANK_RE, STAGE_H, STAGE_W, type Align, type Block, type Blank, type CalloutTone, type ChoiceBlock, type FillBlankBlock, type Gate, type GrammarRefBlock, type Page } from "../types";
 import { useGrammarRules } from "../blocks/grammar-context";
 import { fitBlock, uid } from "./ops";
 
@@ -44,6 +44,30 @@ const ALIGN: { v: Align; l: string }[] = [
   { v: "center", l: "O'rta" },
   { v: "right", l: "O'ng" },
 ];
+
+const CALLOUT_TONES: { v: CalloutTone; l: string }[] = [
+  { v: "rule", l: "Qoida — sariq" },
+  { v: "example", l: "Misol — ko'k" },
+  { v: "tip", l: "Eslatma (tip) — yashil-sariq" },
+  { v: "warning", l: "Diqqat — qizil" },
+  { v: "info", l: "Ma'lumot — havorang" },
+  { v: "success", l: "Xulosa — yashil" },
+];
+
+/** Rasm/audio hali yo'q bo'lsa: nima kerakligi va qidiruv so'zi (faqat ustozga ko'rinadi). */
+function BriefFields({ brief, search, set, k }: { brief: string; search: string; set: SetFn; k: (f: string) => string }) {
+  return (
+    <fieldset className="space-y-2 border-[3px] border-dashed border-ink p-2.5">
+      <legend className="label bg-paper px-1">Topshiriq (o&apos;quvchiga ko&apos;rinmaydi)</legend>
+      <Field label="Nima kerak">
+        <textarea className={cn(input, "min-h-16")} value={brief} maxLength={1000} onChange={(e) => set({ brief: e.target.value }, k("brief"))} />
+      </Field>
+      <Field label="Qidiruv so'zi (internet uchun)">
+        <input className={input} value={search} maxLength={300} onChange={(e) => set({ search: e.target.value }, k("search"))} />
+      </Field>
+    </fieldset>
+  );
+}
 
 const BLOCK_NAMES: Record<Block["type"], string> = {
   heading: "Sarlavha",
@@ -118,6 +142,14 @@ export function Inspector({ page, block, onUpdate, onPage, onDelete, onDuplicate
           <Field label="Hajmi">
             <Seg value={String(block.level)} options={[{ v: "1", l: "Katta" }, { v: "2", l: "O'rta" }, { v: "3", l: "Kichik" }]} onChange={(v) => set({ level: Number(v) })} />
           </Field>
+          <Field label="Harflar">
+            <Seg
+              value={block.caps === false ? "as" : "caps"}
+              options={[{ v: "caps", l: "HAMMASI KATTA" }, { v: "as", l: "Yozilganidek" }]}
+              onChange={(v) => set({ caps: v === "caps" })}
+            />
+          </Field>
+          <p className="text-xs leading-snug opacity-70">Talaffuz [ay] yoki kichik harf (Aa) bo&apos;lsa — «Yozilganidek».</p>
           <Field label="Joylashuvi">
             <Seg value={block.align} options={ALIGN} onChange={(v) => set({ align: v })} />
           </Field>
@@ -143,8 +175,20 @@ export function Inspector({ page, block, onUpdate, onPage, onDelete, onDuplicate
           <Field label="Matn">
             <textarea ref={mainRef} className={cn(input, "min-h-32")} value={block.text} maxLength={4000} onChange={(e) => set({ text: e.target.value }, k("text"))} />
           </Field>
-          <Field label="Rangi">
-            <Seg value={block.tone} options={[{ v: "info", l: "Ko'k" }, { v: "warning", l: "Sariq" }, { v: "success", l: "Yashil" }]} onChange={(v) => set({ tone: v })} />
+          <p className="text-xs leading-snug opacity-70">
+            Qalin: <b>**so&apos;z**</b>. Sariq marker: <b>==so&apos;z==</b>.
+          </p>
+          <Field label="Turi">
+            <select className={input} value={block.tone} onChange={(e) => set({ tone: e.target.value as CalloutTone })}>
+              {CALLOUT_TONES.map((t) => (
+                <option key={t.v} value={t.v}>
+                  {t.l}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Sarlavha (bo'sh bo'lsa — turi nomi)">
+            <input className={input} value={block.title ?? ""} maxLength={60} onChange={(e) => set({ title: e.target.value }, k("title"))} />
           </Field>
         </>
       )}
@@ -158,6 +202,7 @@ export function Inspector({ page, block, onUpdate, onPage, onDelete, onDuplicate
           <Field label="Sig'dirish">
             <Seg value={block.fit} options={[{ v: "contain", l: "To'liq ko'rsat" }, { v: "cover", l: "To'ldir" }]} onChange={(v) => set({ fit: v })} />
           </Field>
+          <BriefFields brief={block.brief ?? ""} search={block.search ?? ""} set={set} k={k} />
         </>
       )}
 
@@ -170,6 +215,7 @@ export function Inspector({ page, block, onUpdate, onPage, onDelete, onDuplicate
           <Field label="Matni (transkript, ixtiyoriy)">
             <textarea className={cn(input, "min-h-24")} value={block.transcript} maxLength={4000} onChange={(e) => set({ transcript: e.target.value }, k("tr"))} />
           </Field>
+          <BriefFields brief={block.brief ?? ""} search={block.search ?? ""} set={set} k={k} />
         </>
       )}
 

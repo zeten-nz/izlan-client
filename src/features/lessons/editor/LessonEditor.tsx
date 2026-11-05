@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { buttonClasses } from "@/components/ui/Button";
 import { apiGetJson, apiSend } from "@/lib/api";
@@ -13,6 +12,7 @@ import { Inspector, type Update } from "./Inspector";
 import { duplicateBlock, duplicatePage, fitBlock, mapBlock, mapPage, newBlock, newPage, removeBlock, reorderZ } from "./ops";
 import { PageList } from "./PageList";
 import { PreviewRunner } from "./PreviewRunner";
+import { BackToLessons } from "../TeacherLessons";
 
 export type EditorInitial = {
   id: string;
@@ -324,9 +324,9 @@ function EditorInner({ initial, grammarRegistryVersion }: { initial: EditorIniti
           <p className="mt-3 text-lg leading-snug">
             Dars yaratish keng ekranda qulay va aniq bo&apos;ladi. Iltimos, kompyuterdan yoki planshetdan (yotiq holatda) kiring. Telefonda darslarni faqat o&apos;tish mumkin.
           </p>
-          <Link href="/teacher/lessons" className={cn(buttonClasses("ink"), "mt-5")}>
+          <BackToLessons className={cn(buttonClasses("ink"), "mt-5")}>
             ← Darslarim
-          </Link>
+          </BackToLessons>
         </div>
       </div>
     );
@@ -336,9 +336,9 @@ function EditorInner({ initial, grammarRegistryVersion }: { initial: EditorIniti
     <div className="flex min-h-[calc(100dvh-68px)] flex-col">
       {/* Yuqori panel */}
       <div className="flex flex-wrap items-center gap-3 border-b-[3px] border-ink bg-white px-4 py-2.5">
-        <Link href="/teacher/lessons" className="font-bold underline decoration-[3px] underline-offset-4 hover:bg-acid">
+        <BackToLessons className="font-bold underline decoration-[3px] underline-offset-4 hover:bg-acid">
           ← Darslarim
-        </Link>
+        </BackToLessons>
         <input
           aria-label="Dars nomi"
           value={title}
