@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000019",
+  "lang": "en",
+  "slug": "past-simple",
+  "category": "tenses",
+  "level": {
+    "system": "cefr",
+    "value": "A1"
+  },
+  "related": [
+    "gr_en_000052",
+    "gr_en_000018",
+    "gr_en_000031",
+    "gr_en_000033"
+  ]
+}

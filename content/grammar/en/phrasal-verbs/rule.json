@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000064",
+  "lang": "en",
+  "slug": "phrasal-verbs",
+  "category": "verb-basics",
+  "level": {
+    "system": "cefr",
+    "value": "B1"
+  },
+  "related": [
+    "gr_en_000071"
+  ]
+}

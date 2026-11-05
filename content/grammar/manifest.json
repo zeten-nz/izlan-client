@@ -56,6 +56,1644 @@
       ]
     },
     {
+      "id": "gr_en_000004",
+      "lang": "en",
+      "slug": "subject-object-pronouns",
+      "category": "pronouns",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "eaeb0769fc5c0d0b"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000005",
+      "lang": "en",
+      "slug": "possessives",
+      "category": "pronouns",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "67996e7a437e45b6"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000006",
+      "lang": "en",
+      "slug": "demonstratives",
+      "category": "pronouns",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "f9cd1d0362064488"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000007",
+      "lang": "en",
+      "slug": "plural-nouns",
+      "category": "nouns",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "592deff16ee0e723"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000008",
+      "lang": "en",
+      "slug": "countable-uncountable",
+      "category": "nouns",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "9faf5ee14d79591c"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000009",
+      "lang": "en",
+      "slug": "verb-to-be",
+      "category": "verb-basics",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "234ba88953fdb741"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000010",
+      "lang": "en",
+      "slug": "have-got",
+      "category": "verb-basics",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "0fd0ed17f5d8e6da"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000011",
+      "lang": "en",
+      "slug": "imperatives",
+      "category": "verb-basics",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "4e5ed27e3ae8fe44"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000012",
+      "lang": "en",
+      "slug": "like-love-hate-ing",
+      "category": "verb-basics",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "50e60d9db79837e7"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000013",
+      "lang": "en",
+      "slug": "want-would-like",
+      "category": "verb-basics",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "47b822a7c7698a77"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000014",
+      "lang": "en",
+      "slug": "lets",
+      "category": "verb-basics",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "91e8e6d7784173d4"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000015",
+      "lang": "en",
+      "slug": "tenses-overview",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "bea612dfaae9dff1"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000016",
+      "lang": "en",
+      "slug": "present-simple",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "792fe3bb6c23b8f5"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000017",
+      "lang": "en",
+      "slug": "present-continuous",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "9637ac0f832eb53e"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000018",
+      "lang": "en",
+      "slug": "was-were",
+      "category": "verb-basics",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "63846873d54a506d"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000019",
+      "lang": "en",
+      "slug": "past-simple",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "e4f32d00b05e2205"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000020",
+      "lang": "en",
+      "slug": "be-going-to",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "7bf9e1017d9cdb3c"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000021",
+      "lang": "en",
+      "slug": "can-could",
+      "category": "modal-verbs",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "43b334e671fa6039"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000022",
+      "lang": "en",
+      "slug": "there-is-there-are",
+      "category": "sentence-structure",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "c4a9496892eda222"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000023",
+      "lang": "en",
+      "slug": "question-words",
+      "category": "sentence-structure",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "b252c2ed2c748334"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000024",
+      "lang": "en",
+      "slug": "word-order",
+      "category": "sentence-structure",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "56146cce029a93a4"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000025",
+      "lang": "en",
+      "slug": "conjunctions",
+      "category": "sentence-structure",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "2e9211fedb28a799"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000026",
+      "lang": "en",
+      "slug": "short-answers",
+      "category": "sentence-structure",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "cb127e6b56a7309a"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000027",
+      "lang": "en",
+      "slug": "prepositions-of-time",
+      "category": "prepositions",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "5803c9dbd326ed55"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000028",
+      "lang": "en",
+      "slug": "prepositions-of-place",
+      "category": "prepositions",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "d5d52aa70ef9774d"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000029",
+      "lang": "en",
+      "slug": "adverbs-of-frequency",
+      "category": "adjectives-adverbs",
+      "level": {
+        "system": "cefr",
+        "value": "A1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "cc4189205884bd70"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000030",
+      "lang": "en",
+      "slug": "future-simple-will",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "06912e45eda4f23b"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000031",
+      "lang": "en",
+      "slug": "past-continuous",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "3e2f9714406686fe"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000032",
+      "lang": "en",
+      "slug": "present-simple-vs-continuous",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "5c2e2f2bd4d5756b"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000033",
+      "lang": "en",
+      "slug": "past-simple-vs-present-perfect",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "e83cffb6f7b35e53"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000034",
+      "lang": "en",
+      "slug": "present-perfect-continuous",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "0f064c94202874e3"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000035",
+      "lang": "en",
+      "slug": "past-perfect",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "dca8f21796b5df9d"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000036",
+      "lang": "en",
+      "slug": "past-perfect-continuous",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 2,
+          "contentHash": "ad5f8555a7f6e986"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000037",
+      "lang": "en",
+      "slug": "future-continuous",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 2,
+          "contentHash": "ea09baa20b55fb09"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000038",
+      "lang": "en",
+      "slug": "future-perfect",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 2,
+          "contentHash": "00dd111974105bb1"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000039",
+      "lang": "en",
+      "slug": "future-perfect-continuous",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 2,
+          "contentHash": "fba8822bd06f0c06"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000040",
+      "lang": "en",
+      "slug": "used-to",
+      "category": "verb-basics",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "5eea46e25deb56e7"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000041",
+      "lang": "en",
+      "slug": "reflexive-pronouns",
+      "category": "pronouns",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "29f40a8a390474a2"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000042",
+      "lang": "en",
+      "slug": "indefinite-pronouns",
+      "category": "pronouns",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "43833e7c5f5719d3"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000043",
+      "lang": "en",
+      "slug": "one-ones",
+      "category": "pronouns",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 2,
+          "contentHash": "27616034b7af7264"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000044",
+      "lang": "en",
+      "slug": "a-lot-of-few-little",
+      "category": "nouns",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "d330d99e47d1765b"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000045",
+      "lang": "en",
+      "slug": "comparatives-superlatives",
+      "category": "adjectives-adverbs",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "1cd3d38761e214bb"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000046",
+      "lang": "en",
+      "slug": "adverbs-ly",
+      "category": "adjectives-adverbs",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "753a997e1438e2b7"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000047",
+      "lang": "en",
+      "slug": "too-enough",
+      "category": "adjectives-adverbs",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "f82b66e479510798"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000048",
+      "lang": "en",
+      "slug": "adjective-order",
+      "category": "adjectives-adverbs",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "d4f1ccc061300fef"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000049",
+      "lang": "en",
+      "slug": "must-have-to",
+      "category": "modal-verbs",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "db0db2cc08818dc4"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000050",
+      "lang": "en",
+      "slug": "should",
+      "category": "modal-verbs",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "3aa6ca3d88e96ff4"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000051",
+      "lang": "en",
+      "slug": "prepositions-of-movement",
+      "category": "prepositions",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "73ec8d642848ad66"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000052",
+      "lang": "en",
+      "slug": "irregular-verbs",
+      "category": "irregular-verbs",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "94be8e8a2be831ee"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000053",
+      "lang": "en",
+      "slug": "it-for-time-weather",
+      "category": "sentence-structure",
+      "level": {
+        "system": "cefr",
+        "value": "A2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "b19fa48db657e452"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000054",
+      "lang": "en",
+      "slug": "zero-conditional",
+      "category": "conditionals",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "745da059d6f88e9c"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000055",
+      "lang": "en",
+      "slug": "second-conditional",
+      "category": "conditionals",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "3b6a797a9952ff7c"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000056",
+      "lang": "en",
+      "slug": "passive-voice",
+      "category": "passive-voice",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "980d5e10a65554be"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000057",
+      "lang": "en",
+      "slug": "gerund-infinitive",
+      "category": "verb-basics",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "aacaccb84470f404"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000058",
+      "lang": "en",
+      "slug": "be-used-to",
+      "category": "verb-basics",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "d7cdc3e7162782bc"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000059",
+      "lang": "en",
+      "slug": "relative-clauses-defining",
+      "category": "relative-clauses",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "b11334417eb151d5"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000060",
+      "lang": "en",
+      "slug": "may-might",
+      "category": "modal-verbs",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "8c220bc6dbe7cc27"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000061",
+      "lang": "en",
+      "slug": "modals-of-deduction",
+      "category": "modal-verbs",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "3d73af45cfd23cfc"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000062",
+      "lang": "en",
+      "slug": "question-tags",
+      "category": "sentence-structure",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "f5b91b76654e6aa6"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000063",
+      "lang": "en",
+      "slug": "so-neither",
+      "category": "sentence-structure",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "c41bf325694d7d5c"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000064",
+      "lang": "en",
+      "slug": "phrasal-verbs",
+      "category": "verb-basics",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "d4b558d322671f89"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000065",
+      "lang": "en",
+      "slug": "future-forms",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "cc9fa578c0c9d244"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000066",
+      "lang": "en",
+      "slug": "adjectives-ed-ing",
+      "category": "adjectives-adverbs",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "15893d5889292601"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000067",
+      "lang": "en",
+      "slug": "so-such",
+      "category": "adjectives-adverbs",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "215fb1bbc2e6693b"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000068",
+      "lang": "en",
+      "slug": "indirect-questions",
+      "category": "sentence-structure",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "549e37d9e917c668"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000069",
+      "lang": "en",
+      "slug": "both-either-neither",
+      "category": "nouns",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "4a6013ab07f49d63"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000070",
+      "lang": "en",
+      "slug": "each-every-all",
+      "category": "nouns",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "cdd0c7317552fb69"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000071",
+      "lang": "en",
+      "slug": "dependent-prepositions",
+      "category": "prepositions",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "26ba2777496a45eb"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000072",
+      "lang": "en",
+      "slug": "had-better",
+      "category": "modal-verbs",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "ffefadcc763b3553"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000073",
+      "lang": "en",
+      "slug": "subject-object-questions",
+      "category": "sentence-structure",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "a3487e9694951af4"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000074",
+      "lang": "en",
+      "slug": "time-clauses",
+      "category": "sentence-structure",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "755b41d559587dc7"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000075",
+      "lang": "en",
+      "slug": "third-conditional",
+      "category": "conditionals",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "aeb84397eb10f81c"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000076",
+      "lang": "en",
+      "slug": "wish-if-only",
+      "category": "conditionals",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "be60dca49a8eddc8"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000077",
+      "lang": "en",
+      "slug": "passive-advanced",
+      "category": "passive-voice",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "9fd49adde72ba46e"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000078",
+      "lang": "en",
+      "slug": "reported-speech",
+      "category": "reported-speech",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "0507954e5a4080ce"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000079",
+      "lang": "en",
+      "slug": "relative-clauses-non-defining",
+      "category": "relative-clauses",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "5bb7365476e9838a"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000080",
+      "lang": "en",
+      "slug": "modals-past",
+      "category": "modal-verbs",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "b9c2c25dfd0c48d2"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000081",
+      "lang": "en",
+      "slug": "causative-have-get",
+      "category": "passive-voice",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "8a00d791bdfa6387"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000082",
+      "lang": "en",
+      "slug": "future-in-the-past",
+      "category": "tenses",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "d7f6b7bcd3c68485"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000083",
+      "lang": "en",
+      "slug": "contrast-linkers",
+      "category": "linking-words",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "7921281836158a13"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000084",
+      "lang": "en",
+      "slug": "would-past-habits",
+      "category": "verb-basics",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "7e04f605bd792965"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000085",
+      "lang": "en",
+      "slug": "unless-provided",
+      "category": "conditionals",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "e59165e077c94f0f"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000086",
+      "lang": "en",
+      "slug": "impersonal-passive",
+      "category": "passive-voice",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "122005bad13a9d03"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000087",
+      "lang": "en",
+      "slug": "purpose-clauses",
+      "category": "linking-words",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "3dfc8b8971dd1f0c"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000088",
+      "lang": "en",
+      "slug": "verbs-changing-meaning",
+      "category": "verb-basics",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "99f7a39837637262"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000089",
+      "lang": "en",
+      "slug": "so-not-substitution",
+      "category": "sentence-structure",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "3d6c036c56dd0d4f"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000090",
+      "lang": "en",
+      "slug": "mixed-conditionals",
+      "category": "conditionals",
+      "level": {
+        "system": "cefr",
+        "value": "C1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "6ef93af15cc3f3dc"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000091",
+      "lang": "en",
+      "slug": "inversion",
+      "category": "sentence-structure",
+      "level": {
+        "system": "cefr",
+        "value": "C1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "8dd92b400964f1c3"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000092",
+      "lang": "en",
+      "slug": "cleft-sentences",
+      "category": "sentence-structure",
+      "level": {
+        "system": "cefr",
+        "value": "C1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "cbc726ad31024b4d"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000093",
+      "lang": "en",
+      "slug": "participle-clauses",
+      "category": "sentence-structure",
+      "level": {
+        "system": "cefr",
+        "value": "C1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "6ab0489be66a331b"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000094",
+      "lang": "en",
+      "slug": "subjunctive",
+      "category": "verb-basics",
+      "level": {
+        "system": "cefr",
+        "value": "C1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "f75258d966cfd605"
+        }
+      ]
+    },
+    {
       "id": "gr_ja_000001",
       "lang": "ja",
       "slug": "te-form",

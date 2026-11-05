@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000090",
+  "lang": "en",
+  "slug": "mixed-conditionals",
+  "category": "conditionals",
+  "level": {
+    "system": "cefr",
+    "value": "C1"
+  },
+  "related": [
+    "gr_en_000055",
+    "gr_en_000075"
+  ]
+}

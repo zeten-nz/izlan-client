@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Arrow, ButtonLink } from "@/components/ui/Button";
-import type { RuleRow } from "@/features/grammar-admin/gapi";
+import { categoryTitles, type LanguageCfg, type RuleRow } from "@/features/grammar-admin/gapi";
 import { GrammarLoading } from "@/features/grammar-admin/RulePage";
 import { RuleList } from "@/features/grammar-admin/RuleList";
 import { apiGet } from "@/server/api";
@@ -11,7 +11,10 @@ export const metadata: Metadata = { title: "Grammatika qoidalarim", robots: { in
 
 async function TeacherGrammar() {
   await requireRole("TEACHER");
-  const rules = await apiGet<RuleRow[]>("/staff/grammar/manage/rules");
+  const [rules, languages] = await Promise.all([
+    apiGet<RuleRow[]>("/staff/grammar/manage/rules"),
+    apiGet<LanguageCfg[]>("/staff/grammar/languages"),
+  ]);
   return (
     <div className="mx-auto max-w-[1000px] px-4 py-8 sm:px-8 sm:py-10">
       <span className="label inline-block -rotate-2 border-[3px] border-ink bg-acid px-3 py-1.5 shadow-[3px_3px_0_0_var(--color-ink)]">Ustoz</span>
@@ -24,7 +27,7 @@ async function TeacherGrammar() {
         <Arrow />
       </ButtonLink>
       <div className="mt-8">
-        <RuleList rules={rules} base="/teacher/grammar" role="TEACHER" />
+        <RuleList rules={rules} base="/teacher/grammar" role="TEACHER" categories={categoryTitles(languages)} />
       </div>
     </div>
   );

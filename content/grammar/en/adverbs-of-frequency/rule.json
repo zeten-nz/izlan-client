@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000029",
+  "lang": "en",
+  "slug": "adverbs-of-frequency",
+  "category": "adjectives-adverbs",
+  "level": {
+    "system": "cefr",
+    "value": "A1"
+  },
+  "related": [
+    "gr_en_000016",
+    "gr_en_000024"
+  ]
+}

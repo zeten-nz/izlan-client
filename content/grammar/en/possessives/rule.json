@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000005",
+  "lang": "en",
+  "slug": "possessives",
+  "category": "pronouns",
+  "level": {
+    "system": "cefr",
+    "value": "A1"
+  },
+  "related": [
+    "gr_en_000004",
+    "gr_en_000041"
+  ]
+}

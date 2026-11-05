@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000036",
+  "lang": "en",
+  "slug": "past-perfect-continuous",
+  "category": "tenses",
+  "level": {
+    "system": "cefr",
+    "value": "B2"
+  },
+  "related": [
+    "gr_en_000035",
+    "gr_en_000034",
+    "gr_en_000015"
+  ]
+}

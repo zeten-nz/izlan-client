@@ -59,6 +59,54 @@
           "title": {
             "uz": "Gap tuzilishi"
           }
+        },
+        {
+          "id": "pronouns",
+          "title": {
+            "uz": "Olmoshlar"
+          }
+        },
+        {
+          "id": "nouns",
+          "title": {
+            "uz": "Otlar va miqdor"
+          }
+        },
+        {
+          "id": "verb-basics",
+          "title": {
+            "uz": "Asosiy fe'llar va fe'l qoliplari"
+          }
+        },
+        {
+          "id": "adjectives-adverbs",
+          "title": {
+            "uz": "Sifat va ravishlar"
+          }
+        },
+        {
+          "id": "prepositions",
+          "title": {
+            "uz": "Predloglar"
+          }
+        },
+        {
+          "id": "relative-clauses",
+          "title": {
+            "uz": "Nisbiy ergash gaplar"
+          }
+        },
+        {
+          "id": "reported-speech",
+          "title": {
+            "uz": "Ko'chirma gap"
+          }
+        },
+        {
+          "id": "linking-words",
+          "title": {
+            "uz": "Bog'lovchi so'z va iboralar"
+          }
         }
       ]
     },

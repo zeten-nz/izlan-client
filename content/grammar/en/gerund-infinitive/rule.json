@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000057",
+  "lang": "en",
+  "slug": "gerund-infinitive",
+  "category": "verb-basics",
+  "level": {
+    "system": "cefr",
+    "value": "B1"
+  },
+  "related": [
+    "gr_en_000012",
+    "gr_en_000013",
+    "gr_en_000088"
+  ]
+}

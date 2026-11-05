@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000084",
+  "lang": "en",
+  "slug": "would-past-habits",
+  "category": "verb-basics",
+  "level": {
+    "system": "cefr",
+    "value": "B2"
+  },
+  "related": [
+    "gr_en_000040"
+  ]
+}

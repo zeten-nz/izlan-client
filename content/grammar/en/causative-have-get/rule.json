@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000081",
+  "lang": "en",
+  "slug": "causative-have-get",
+  "category": "passive-voice",
+  "level": {
+    "system": "cefr",
+    "value": "B2"
+  },
+  "related": [
+    "gr_en_000077"
+  ]
+}

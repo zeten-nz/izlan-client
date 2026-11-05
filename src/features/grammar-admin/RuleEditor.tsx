@@ -205,7 +205,7 @@ export function RuleEditor({ rule, revision, lang, role, base }: Props) {
 
       <div role="tablist" aria-label="Ko'rinish" className="mt-6 flex gap-2 lg:hidden">
         {(["edit", "preview"] as const).map((t) => (
-          <button key={t} type="button" role="tab" aria-selected={tab === t} onClick={() => setTab(t)} className={cn(smallBtn, tab === t && "bg-ink text-paper")}>
+          <button key={t} type="button" role="tab" aria-selected={tab === t} onClick={() => setTab(t)} className={cn(smallBtn, tab === t && "bg-ink! text-paper!")}>
             {t === "edit" ? "Tahrir" : "Ko'rinish"}
           </button>
         ))}

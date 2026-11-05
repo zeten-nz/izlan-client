@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Arrow, ButtonLink } from "@/components/ui/Button";
-import type { RuleRow } from "@/features/grammar-admin/gapi";
+import { categoryTitles, type LanguageCfg, type RuleRow } from "@/features/grammar-admin/gapi";
 import { GrammarLoading } from "@/features/grammar-admin/RulePage";
 import { RuleList } from "@/features/grammar-admin/RuleList";
 import { AdminNav } from "@/features/staff/AdminNav";
@@ -12,7 +12,10 @@ export const metadata: Metadata = { title: "Admin: grammatika", robots: { index:
 
 async function Dashboard() {
   await requireRole("ADMIN");
-  const rules = await apiGet<RuleRow[]>("/staff/grammar/manage/rules");
+  const [rules, languages] = await Promise.all([
+    apiGet<RuleRow[]>("/staff/grammar/manage/rules"),
+    apiGet<LanguageCfg[]>("/staff/grammar/languages"),
+  ]);
   const c = { total: rules.length, inReview: 0, draft: 0, approved: 0, changes: 0, hidden: 0 };
   for (const r of rules) {
     const s = r.revisions[0]?.status;
@@ -53,7 +56,7 @@ async function Dashboard() {
         </ButtonLink>
       </div>
       <div className="mt-8">
-        <RuleList rules={rules} base="/admin/grammar" role="ADMIN" />
+        <RuleList rules={rules} base="/admin/grammar" role="ADMIN" categories={categoryTitles(languages)} />
       </div>
     </div>
   );

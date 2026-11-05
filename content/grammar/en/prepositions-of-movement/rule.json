@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000051",
+  "lang": "en",
+  "slug": "prepositions-of-movement",
+  "category": "prepositions",
+  "level": {
+    "system": "cefr",
+    "value": "A2"
+  },
+  "related": [
+    "gr_en_000028",
+    "gr_en_000027"
+  ]
+}

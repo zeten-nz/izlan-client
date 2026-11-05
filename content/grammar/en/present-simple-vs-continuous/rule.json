@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000032",
+  "lang": "en",
+  "slug": "present-simple-vs-continuous",
+  "category": "tenses",
+  "level": {
+    "system": "cefr",
+    "value": "A2"
+  },
+  "related": [
+    "gr_en_000016",
+    "gr_en_000017"
+  ]
+}

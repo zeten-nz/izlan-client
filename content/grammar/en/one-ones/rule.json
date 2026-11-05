@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000043",
+  "lang": "en",
+  "slug": "one-ones",
+  "category": "pronouns",
+  "level": {
+    "system": "cefr",
+    "value": "A2"
+  },
+  "related": [
+    "gr_en_000006"
+  ]
+}

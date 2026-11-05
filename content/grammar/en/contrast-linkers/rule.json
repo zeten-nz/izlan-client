@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000083",
+  "lang": "en",
+  "slug": "contrast-linkers",
+  "category": "linking-words",
+  "level": {
+    "system": "cefr",
+    "value": "B2"
+  },
+  "related": [
+    "gr_en_000025",
+    "gr_en_000087"
+  ]
+}

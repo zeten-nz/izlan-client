@@ -64,6 +64,7 @@ export type RuleRow = {
   lang: string;
   slug: string;
   category: string;
+  level: { system: string; value: string | null; confirmed: boolean } | null;
   state: "OPEN" | "RETIRED";
   hidden: boolean;
   mine: boolean;
@@ -81,6 +82,13 @@ export type LanguageCfg = {
   blocks: string[];
   categories: { id: string; title: Record<string, string> }[];
 };
+
+/** Kategoriya ID → o'zbekcha nom (barcha tillar bo'yicha; bir xil ID bo'lsa birinchisi). */
+export function categoryTitles(languages: LanguageCfg[]): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const l of languages) for (const c of l.categories) out[c.id] ??= c.title.uz ?? c.id;
+  return out;
+}
 
 export const STATUS_LABEL: Record<RevisionView["status"], string> = {
   DRAFT: "Qoralama",

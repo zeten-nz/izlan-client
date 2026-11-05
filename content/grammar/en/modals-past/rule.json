@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000080",
+  "lang": "en",
+  "slug": "modals-past",
+  "category": "modal-verbs",
+  "level": {
+    "system": "cefr",
+    "value": "B2"
+  },
+  "related": [
+    "gr_en_000061",
+    "gr_en_000050",
+    "gr_en_000075"
+  ]
+}

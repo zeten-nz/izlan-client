@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000072",
+  "lang": "en",
+  "slug": "had-better",
+  "category": "modal-verbs",
+  "level": {
+    "system": "cefr",
+    "value": "B1"
+  },
+  "related": [
+    "gr_en_000050",
+    "gr_en_000049"
+  ]
+}

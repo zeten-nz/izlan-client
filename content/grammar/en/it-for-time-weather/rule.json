@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000053",
+  "lang": "en",
+  "slug": "it-for-time-weather",
+  "category": "sentence-structure",
+  "level": {
+    "system": "cefr",
+    "value": "A2"
+  },
+  "related": [
+    "gr_en_000024",
+    "gr_en_000009"
+  ]
+}

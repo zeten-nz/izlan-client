@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000044",
+  "lang": "en",
+  "slug": "a-lot-of-few-little",
+  "category": "nouns",
+  "level": {
+    "system": "cefr",
+    "value": "A2"
+  },
+  "related": [
+    "gr_en_000008"
+  ]
+}

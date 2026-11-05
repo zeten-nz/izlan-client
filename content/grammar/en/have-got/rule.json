@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000010",
+  "lang": "en",
+  "slug": "have-got",
+  "category": "verb-basics",
+  "level": {
+    "system": "cefr",
+    "value": "A1"
+  },
+  "related": [
+    "gr_en_000016",
+    "gr_en_000009"
+  ]
+}

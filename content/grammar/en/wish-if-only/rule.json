@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000076",
+  "lang": "en",
+  "slug": "wish-if-only",
+  "category": "conditionals",
+  "level": {
+    "system": "cefr",
+    "value": "B2"
+  },
+  "related": [
+    "gr_en_000055",
+    "gr_en_000075"
+  ]
+}

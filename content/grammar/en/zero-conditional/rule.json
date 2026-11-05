@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000054",
+  "lang": "en",
+  "slug": "zero-conditional",
+  "category": "conditionals",
+  "level": {
+    "system": "cefr",
+    "value": "B1"
+  },
+  "related": [
+    "gr_en_000003",
+    "gr_en_000055",
+    "gr_en_000016"
+  ]
+}
