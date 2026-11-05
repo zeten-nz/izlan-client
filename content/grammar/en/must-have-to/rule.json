@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000049",
+  "lang": "en",
+  "slug": "must-have-to",
+  "category": "modal-verbs",
+  "level": {
+    "system": "cefr",
+    "value": "A2"
+  },
+  "related": [
+    "gr_en_000050",
+    "gr_en_000021"
+  ]
+}

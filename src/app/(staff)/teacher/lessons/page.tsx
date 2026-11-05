@@ -7,7 +7,7 @@ import { requireRole } from "@/server/session";
 export const metadata: Metadata = { title: "Darslarim", robots: { index: false } };
 
 async function Lessons() {
-  await requireRole("TEACHER");
+  await requireRole(["TEACHER", "ADMIN"]);
   const [{ lessons }, { directions }] = await Promise.all([
     apiGet<{ lessons: LessonRow[] }>("/staff/lessons"),
     apiGet<{ directions: CatalogDirection[] }>("/staff/catalog"),

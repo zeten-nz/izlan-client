@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000045",
+  "lang": "en",
+  "slug": "comparatives-superlatives",
+  "category": "adjectives-adverbs",
+  "level": {
+    "system": "cefr",
+    "value": "A2"
+  },
+  "related": [
+    "gr_en_000046",
+    "gr_en_000047"
+  ]
+}

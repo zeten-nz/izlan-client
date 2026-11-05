@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000093",
+  "lang": "en",
+  "slug": "participle-clauses",
+  "category": "sentence-structure",
+  "level": {
+    "system": "cefr",
+    "value": "C1"
+  },
+  "related": [
+    "gr_en_000059",
+    "gr_en_000056"
+  ]
+}

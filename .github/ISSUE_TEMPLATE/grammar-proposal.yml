@@ -1,0 +1,60 @@
+name: Grammatika qoidasi taklifi
+description: MDX/Git bilmasdan yangi qoida yoki tuzatish taklif qiling
+title: "[Grammatika] "
+labels: ["grammar-proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Taklif tahrirchi tomonidan qoralamaga (`draft`) aylantiriladi va metodist tekshiruvidan o'tadi.
+        Mualliflik huquqi bilan himoyalangan darslik/sayt matnini nusxalamang.
+  - type: dropdown
+    id: language
+    attributes:
+      label: O'rganilayotgan til
+      options: [Ingliz tili, Rus tili, Yapon tili, Boshqa]
+    validations:
+      required: true
+  - type: input
+    id: title
+    attributes:
+      label: Qoida nomi
+      placeholder: Present Perfect
+    validations:
+      required: true
+  - type: textarea
+    id: explanation
+    attributes:
+      label: Tushuntirish (o'zbekcha)
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Misollar va tarjimalar (kamida 2 ta)
+      placeholder: |
+        I have visited Samarkand. — Men Samarqandga borganman.
+    validations:
+      required: true
+  - type: textarea
+    id: exceptions
+    attributes:
+      label: Istisnolar va ko'p uchraydigan xatolar
+  - type: input
+    id: level
+    attributes:
+      label: Taxminiy daraja (CEFR/JLPT), ishonchingiz komil bo'lmasa bo'sh qoldiring
+  - type: textarea
+    id: sources
+    attributes:
+      label: Manba va litsenziya
+      description: "O'zingiz yozgan bo'lsa «original». Aks holda havola va litsenziya."
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Tasdiqlash
+      options:
+        - label: Matn menga tegishli yoki ochiq litsenziyali va nusxa ko'chirilmagan
+          required: true

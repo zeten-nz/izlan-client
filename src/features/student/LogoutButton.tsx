@@ -15,7 +15,7 @@ export function LogoutButton() {
         await apiPost("/auth/logout", {});
         window.location.assign(ROUTES.login);
       }}
-      className="label border-[3px] border-ink bg-white px-3 py-2 shadow-[3px_3px_0_0_var(--color-ink)] hover:bg-acid disabled:opacity-60"
+      className="label inline-flex min-h-10 shrink-0 items-center justify-center whitespace-nowrap border-[3px] border-ink bg-white px-3 py-2 shadow-[3px_3px_0_0_var(--color-ink)] hover:bg-acid focus-visible:outline-[3px] focus-visible:outline-cobalt disabled:opacity-60"
     >
       {pending ? "Chiqilmoqda..." : "Chiqish"}
     </button>

@@ -5,36 +5,51 @@ import { ROUTES } from "@/config/routes";
 import { requireUser } from "@/server/session";
 import { LogoutButton } from "../LogoutButton";
 import { AppNav } from "./AppNav";
+import { NavIcon } from "./NavIcon";
 
 async function UserChip() {
   const user = await requireUser();
   return (
     <div className="flex items-center gap-3">
-      <span className="label hidden max-w-[160px] truncate sm:inline">@{user.username}</span>
+      <span className="label hidden max-w-[160px] truncate sm:inline lg:hidden xl:inline">@{user.username}</span>
       <LogoutButton />
     </div>
   );
 }
 
+/** Mobil: ixcham sarlavha (logo, Daftar, chiqish); asosiy bo'limlar pastki navigatsiyada. Desktop: o'zgarishsiz. */
 export function AppHeader() {
   return (
     <header className="sticky top-0 z-40 border-b-[3px] border-ink bg-paper">
-      <div className="mx-auto flex max-w-[1480px] items-center justify-between gap-4 px-4 py-3 sm:px-8">
-        <Link href={ROUTES.student} aria-label="Izlan, asosiy">
-          <Logo />
+      <div className="mx-auto flex max-w-[1480px] items-center justify-between gap-2 px-3 min-[360px]:gap-3 min-[360px]:px-4 py-2.5 sm:px-8 sm:py-3">
+        <Link href={ROUTES.student} aria-label="Izlan, asosiy" className="shrink-0">
+          {/* <400px: faqat belgi, aks holda sarlavha 5 ta element bilan sig'maydi */}
+          <span className="min-[400px]:hidden"><Logo markOnly /></span>
+          <span className="hidden min-[400px]:block"><Logo /></span>
         </Link>
-        <nav aria-label="Bo'limlar" className="hidden md:block">
+        <nav aria-label="Bo'limlar" className="hidden lg:block">
           <AppNav />
         </nav>
-        <Suspense fallback={<div className="h-10 w-24" />}>
-          <UserChip />
-        </Suspense>
-      </div>
-      <nav aria-label="Bo'limlar" className="no-scrollbar overflow-x-auto border-t-[3px] border-ink md:hidden">
-        <div className="min-w-max px-4 py-2">
-          <AppNav />
+        <div className="flex shrink-0 items-center gap-2">
+          <Link
+            href={ROUTES.grammar}
+            aria-label="Grammatika"
+            className="grid size-10 shrink-0 place-items-center border-[3px] border-ink bg-white shadow-[3px_3px_0_0_var(--color-ink)] hover:bg-acid focus-visible:outline-[3px] focus-visible:outline-cobalt xl:hidden"
+          >
+            <NavIcon id="grammar" className="size-5" />
+          </Link>
+          <Link
+            href={`${ROUTES.student}/notebook`}
+            aria-label="Daftar"
+            className="grid size-10 shrink-0 place-items-center border-[3px] border-ink bg-white shadow-[3px_3px_0_0_var(--color-ink)] hover:bg-acid focus-visible:outline-[3px] focus-visible:outline-cobalt lg:hidden"
+          >
+            <NavIcon id="notebook" className="size-5" />
+          </Link>
+          <Suspense fallback={<div className="h-10 w-20" />}>
+            <UserChip />
+          </Suspense>
         </div>
-      </nav>
+      </div>
     </header>
   );
 }

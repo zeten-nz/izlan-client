@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000094",
+  "lang": "en",
+  "slug": "subjunctive",
+  "category": "verb-basics",
+  "level": {
+    "system": "cefr",
+    "value": "C1"
+  },
+  "related": [
+    "gr_en_000050",
+    "gr_en_000057"
+  ]
+}

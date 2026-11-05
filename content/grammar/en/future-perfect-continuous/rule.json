@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000039",
+  "lang": "en",
+  "slug": "future-perfect-continuous",
+  "category": "tenses",
+  "level": {
+    "system": "cefr",
+    "value": "B2"
+  },
+  "related": [
+    "gr_en_000038",
+    "gr_en_000015"
+  ]
+}

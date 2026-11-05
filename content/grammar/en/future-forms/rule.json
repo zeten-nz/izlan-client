@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000065",
+  "lang": "en",
+  "slug": "future-forms",
+  "category": "tenses",
+  "level": {
+    "system": "cefr",
+    "value": "B1"
+  },
+  "related": [
+    "gr_en_000030",
+    "gr_en_000020",
+    "gr_en_000017"
+  ]
+}

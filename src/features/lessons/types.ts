@@ -8,11 +8,14 @@ export type Align = "left" | "center" | "right";
 
 type Frame = { id: string; x: number; y: number; w: number; h: number; z: number };
 
-export type HeadingBlock = Frame & { type: "heading"; text: string; level: 1 | 2 | 3; align: Align };
+export type HeadingBlock = Frame & { type: "heading"; text: string; level: 1 | 2 | 3; align: Align; caps: boolean };
 export type TextBlock = Frame & { type: "text"; text: string; align: Align };
-export type CalloutBlock = Frame & { type: "callout"; text: string; tone: "info" | "warning" | "success" };
-export type ImageBlock = Frame & { type: "image"; assetId: string | null; alt: string; fit: "contain" | "cover" };
-export type AudioBlock = Frame & { type: "audio"; assetId: string | null; caption: string; transcript: string };
+export type CalloutTone = "rule" | "example" | "tip" | "warning" | "info" | "success";
+export type CalloutBlock = Frame & { type: "callout"; text: string; tone: CalloutTone; title: string };
+/** Hali topilmagan media uchun ustozga topshiriq (o'quvchiga bo'sh keladi). */
+type MediaBrief = { brief: string; search: string };
+export type ImageBlock = Frame & MediaBrief & { type: "image"; assetId: string | null; alt: string; fit: "contain" | "cover" };
+export type AudioBlock = Frame & MediaBrief & { type: "audio"; assetId: string | null; caption: string; transcript: string };
 export type ChoiceOption = { id: string; text: string };
 export type ChoiceBlock = Frame & {
   type: "choice";
@@ -25,7 +28,10 @@ export type ChoiceBlock = Frame & {
 export type Blank = { id: string; answers: string[]; caseSensitive: boolean };
 export type FillBlankBlock = Frame & { type: "fillblank"; template: string; blanks: Blank[]; explanation: string };
 
-export type Block = HeadingBlock | TextBlock | CalloutBlock | ImageBlock | AudioBlock | ChoiceBlock | FillBlankBlock;
+/** Grammatika havolasi: hujjatda faqat doimiy qoida ID'si (bo'sh = hali tanlanmagan). Nom/til/holat server reyestridan. */
+export type GrammarRefBlock = Frame & { type: "grammarRef"; grammarRuleId: string; label: string };
+
+export type Block = HeadingBlock | TextBlock | CalloutBlock | ImageBlock | AudioBlock | ChoiceBlock | FillBlankBlock | GrammarRefBlock;
 export type BlockType = Block["type"];
 export type Page = { id: string; title: string; gate: Gate; blocks: Block[] };
 export type LessonDoc = { schemaVersion: 1; pages: Page[] };
@@ -33,8 +39,15 @@ export type LessonDoc = { schemaVersion: 1; pages: Page[] };
 export const isInteractive = (b: { type: string }) => b.type === "choice" || b.type === "fillblank";
 
 /** O'quvchi ko'rinishi: to'g'ri javoblar yo'q. */
+/** O'quvchi ko'rinishida server qoidani hal qilib beradi (nafaqaga chiqarilgan bo'lsa almashtiruvchi ID bilan). */
+export type PlayerGrammarRule =
+  | { available: false }
+  | { available: true; id: string; lang: string; langName: string; title: string };
+export type PlayerGrammarRef = GrammarRefBlock & { rule: PlayerGrammarRule };
+
 export type PlayerBlock =
-  | Exclude<Block, ChoiceBlock | FillBlankBlock>
+  | Exclude<Block, ChoiceBlock | FillBlankBlock | GrammarRefBlock>
+  | PlayerGrammarRef
   | Omit<ChoiceBlock, "correctIds" | "explanation">
   | (Omit<FillBlankBlock, "blanks" | "explanation"> & { blanks: { id: string }[] });
 export type PlayerPage = Omit<Page, "blocks"> & { blocks: PlayerBlock[] };

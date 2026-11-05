@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000078",
+  "lang": "en",
+  "slug": "reported-speech",
+  "category": "reported-speech",
+  "level": {
+    "system": "cefr",
+    "value": "B2"
+  },
+  "related": [
+    "gr_en_000068",
+    "gr_en_000082"
+  ]
+}

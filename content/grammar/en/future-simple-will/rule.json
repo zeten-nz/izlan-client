@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000030",
+  "lang": "en",
+  "slug": "future-simple-will",
+  "category": "tenses",
+  "level": {
+    "system": "cefr",
+    "value": "A2"
+  },
+  "related": [
+    "gr_en_000020",
+    "gr_en_000015",
+    "gr_en_000037"
+  ]
+}

@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { apiUpload } from "@/lib/api";
 import { cn } from "@/lib/cn";
-import { assetUrl, BLANK_RE, STAGE_H, STAGE_W, type Align, type Block, type Blank, type ChoiceBlock, type FillBlankBlock, type Gate, type Page } from "../types";
+import { assetUrl, BLANK_RE, STAGE_H, STAGE_W, type Align, type Block, type Blank, type CalloutTone, type ChoiceBlock, type FillBlankBlock, type Gate, type GrammarRefBlock, type Page } from "../types";
+import { useGrammarRules } from "../blocks/grammar-context";
 import { fitBlock, uid } from "./ops";
 
 export type Update = (f: (b: Block) => Block, key?: string) => void;
@@ -44,6 +45,30 @@ const ALIGN: { v: Align; l: string }[] = [
   { v: "right", l: "O'ng" },
 ];
 
+const CALLOUT_TONES: { v: CalloutTone; l: string }[] = [
+  { v: "rule", l: "Qoida — sariq" },
+  { v: "example", l: "Misol — ko'k" },
+  { v: "tip", l: "Eslatma (tip) — yashil-sariq" },
+  { v: "warning", l: "Diqqat — qizil" },
+  { v: "info", l: "Ma'lumot — havorang" },
+  { v: "success", l: "Xulosa — yashil" },
+];
+
+/** Rasm/audio hali yo'q bo'lsa: nima kerakligi va qidiruv so'zi (faqat ustozga ko'rinadi). */
+function BriefFields({ brief, search, set, k }: { brief: string; search: string; set: SetFn; k: (f: string) => string }) {
+  return (
+    <fieldset className="space-y-2 border-[3px] border-dashed border-ink p-2.5">
+      <legend className="label bg-paper px-1">Topshiriq (o&apos;quvchiga ko&apos;rinmaydi)</legend>
+      <Field label="Nima kerak">
+        <textarea className={cn(input, "min-h-16")} value={brief} maxLength={1000} onChange={(e) => set({ brief: e.target.value }, k("brief"))} />
+      </Field>
+      <Field label="Qidiruv so'zi (internet uchun)">
+        <input className={input} value={search} maxLength={300} onChange={(e) => set({ search: e.target.value }, k("search"))} />
+      </Field>
+    </fieldset>
+  );
+}
+
 const BLOCK_NAMES: Record<Block["type"], string> = {
   heading: "Sarlavha",
   text: "Matn",
@@ -52,6 +77,7 @@ const BLOCK_NAMES: Record<Block["type"], string> = {
   audio: "Audio",
   choice: "Test savoli",
   fillblank: "Bo'sh joyni to'ldirish",
+  grammarRef: "Grammatika qoidasi",
 };
 
 type Props = {
@@ -116,6 +142,14 @@ export function Inspector({ page, block, onUpdate, onPage, onDelete, onDuplicate
           <Field label="Hajmi">
             <Seg value={String(block.level)} options={[{ v: "1", l: "Katta" }, { v: "2", l: "O'rta" }, { v: "3", l: "Kichik" }]} onChange={(v) => set({ level: Number(v) })} />
           </Field>
+          <Field label="Harflar">
+            <Seg
+              value={block.caps === false ? "as" : "caps"}
+              options={[{ v: "caps", l: "HAMMASI KATTA" }, { v: "as", l: "Yozilganidek" }]}
+              onChange={(v) => set({ caps: v === "caps" })}
+            />
+          </Field>
+          <p className="text-xs leading-snug opacity-70">Talaffuz [ay] yoki kichik harf (Aa) bo&apos;lsa — «Yozilganidek».</p>
           <Field label="Joylashuvi">
             <Seg value={block.align} options={ALIGN} onChange={(v) => set({ align: v })} />
           </Field>
@@ -141,8 +175,20 @@ export function Inspector({ page, block, onUpdate, onPage, onDelete, onDuplicate
           <Field label="Matn">
             <textarea ref={mainRef} className={cn(input, "min-h-32")} value={block.text} maxLength={4000} onChange={(e) => set({ text: e.target.value }, k("text"))} />
           </Field>
-          <Field label="Rangi">
-            <Seg value={block.tone} options={[{ v: "info", l: "Ko'k" }, { v: "warning", l: "Sariq" }, { v: "success", l: "Yashil" }]} onChange={(v) => set({ tone: v })} />
+          <p className="text-xs leading-snug opacity-70">
+            Qalin: <b>**so&apos;z**</b>. Sariq marker: <b>==so&apos;z==</b>.
+          </p>
+          <Field label="Turi">
+            <select className={input} value={block.tone} onChange={(e) => set({ tone: e.target.value as CalloutTone })}>
+              {CALLOUT_TONES.map((t) => (
+                <option key={t.v} value={t.v}>
+                  {t.l}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Sarlavha (bo'sh bo'lsa — turi nomi)">
+            <input className={input} value={block.title ?? ""} maxLength={60} onChange={(e) => set({ title: e.target.value }, k("title"))} />
           </Field>
         </>
       )}
@@ -156,6 +202,7 @@ export function Inspector({ page, block, onUpdate, onPage, onDelete, onDuplicate
           <Field label="Sig'dirish">
             <Seg value={block.fit} options={[{ v: "contain", l: "To'liq ko'rsat" }, { v: "cover", l: "To'ldir" }]} onChange={(v) => set({ fit: v })} />
           </Field>
+          <BriefFields brief={block.brief ?? ""} search={block.search ?? ""} set={set} k={k} />
         </>
       )}
 
@@ -168,9 +215,11 @@ export function Inspector({ page, block, onUpdate, onPage, onDelete, onDuplicate
           <Field label="Matni (transkript, ixtiyoriy)">
             <textarea className={cn(input, "min-h-24")} value={block.transcript} maxLength={4000} onChange={(e) => set({ transcript: e.target.value }, k("tr"))} />
           </Field>
+          <BriefFields brief={block.brief ?? ""} search={block.search ?? ""} set={set} k={k} />
         </>
       )}
 
+      {block.type === "grammarRef" && <GrammarRefFields block={block} set={set} k={k} />}
       {block.type === "choice" && <ChoiceFields block={block} set={set} k={k} mainRef={mainRef} />}
       {block.type === "fillblank" && <FillBlankFields block={block} set={set} k={k} mainRef={mainRef} />}
 
@@ -207,6 +256,66 @@ export function Inspector({ page, block, onUpdate, onPage, onDelete, onDuplicate
 }
 
 type SetFn = <K extends string>(patch: Record<K, unknown>, key?: string) => void;
+
+function GrammarRefFields({ block, set, k }: { block: GrammarRefBlock; set: SetFn; k: (f: string) => string }) {
+  const { rules, error, serverVersion } = useGrammarRules();
+  const [q, setQ] = useState("");
+  const current = rules?.find((r) => r.id === block.grammarRuleId);
+  const needle = q.trim().toLowerCase();
+  const shown = (rules ?? []).filter((r) => !needle || r.title.toLowerCase().includes(needle) || r.langName.toLowerCase().includes(needle)).slice(0, 50);
+  return (
+    <>
+      <div data-testid="grammar-current" className="border-[3px] border-ink bg-white p-2.5 text-[14px]">
+        {!block.grammarRuleId ? (
+          <span className="opacity-70">Qoida tanlanmagan</span>
+        ) : current ? (
+          <>
+            <b>{current.title}</b>
+            <span className="block opacity-70">{current.langName}</span>
+          </>
+        ) : rules === null ? (
+          <span className="opacity-70">Yuklanmoqda…</span>
+        ) : (
+          <span className="font-semibold text-tomato">Bu qoida mavjud emas yoki tasdiqlanmagan ({block.grammarRuleId}). Boshqasini tanlang.</span>
+        )}
+      </div>
+      <Field label="Qoidani qidirish">
+        <input className={input} value={q} maxLength={60} placeholder="Masalan: Present Perfect" onChange={(e) => setQ(e.target.value)} />
+      </Field>
+      {error ? (
+        <p role="alert" className="text-[13px] font-semibold text-tomato">
+          {error}
+        </p>
+      ) : null}
+      {rules !== null && rules.length === 0 && !error ? (
+        <p className="text-[13px] leading-snug opacity-70">Hozircha tasdiqlangan grammatika qoidasi yo&apos;q: metodist tasdiqlagach shu yerda ko&apos;rinadi.</p>
+      ) : null}
+      <ul className="max-h-56 space-y-1.5 overflow-y-auto" aria-label="Tasdiqlangan qoidalar">
+        {shown.map((r) => (
+          <li key={r.id}>
+            <button
+              type="button"
+              data-testid="grammar-option"
+              aria-pressed={r.id === block.grammarRuleId}
+              onClick={() => set({ grammarRuleId: r.id }, k("rule"))}
+              className={cn("w-full border-[3px] border-ink px-2.5 py-1.5 text-left text-[14px] font-bold", r.id === block.grammarRuleId ? "bg-ink text-paper" : "bg-white hover:bg-acid")}
+            >
+              {r.title}
+              <span className="block text-[12px] font-medium opacity-70">
+                {r.langName}
+                {r.level ? ` · ${r.level.confirmed ? "" : "≈ "}${r.level.value}` : ""}
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+      <Field label="Tugma yozuvi (ixtiyoriy)">
+        <input className={input} value={block.label} maxLength={80} placeholder="Qoidani ochish" onChange={(e) => set({ label: e.target.value }, k("label"))} />
+      </Field>
+      {serverVersion ? <p className="label opacity-50">Reyestr: {serverVersion}</p> : null}
+    </>
+  );
+}
 
 function ChoiceFields({ block, set, k, mainRef }: { block: ChoiceBlock; set: SetFn; k: (f: string) => string; mainRef: React.RefObject<(HTMLInputElement & HTMLTextAreaElement) | null> }) {
   const setOption = (id: string, text: string) => set({ options: block.options.map((o) => (o.id === id ? { ...o, text } : o)) }, k(`opt-${id}`));

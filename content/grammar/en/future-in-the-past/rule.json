@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000082",
+  "lang": "en",
+  "slug": "future-in-the-past",
+  "category": "tenses",
+  "level": {
+    "system": "cefr",
+    "value": "B2"
+  },
+  "related": [
+    "gr_en_000078",
+    "gr_en_000015",
+    "gr_en_000020"
+  ]
+}

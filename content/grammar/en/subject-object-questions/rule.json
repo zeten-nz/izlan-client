@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000073",
+  "lang": "en",
+  "slug": "subject-object-questions",
+  "category": "sentence-structure",
+  "level": {
+    "system": "cefr",
+    "value": "B1"
+  },
+  "related": [
+    "gr_en_000023",
+    "gr_en_000024"
+  ]
+}

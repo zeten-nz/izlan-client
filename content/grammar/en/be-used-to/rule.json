@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000058",
+  "lang": "en",
+  "slug": "be-used-to",
+  "category": "verb-basics",
+  "level": {
+    "system": "cefr",
+    "value": "B1"
+  },
+  "related": [
+    "gr_en_000040",
+    "gr_en_000057"
+  ]
+}

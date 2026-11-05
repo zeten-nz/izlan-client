@@ -4,10 +4,15 @@ export const ROUTES = {
   login: "/login",
   register: "/register",
   forgotPassword: "/forgot-password",
+  grammar: "/grammar",
   student: "/student",
   teacher: "/teacher",
   admin: "/admin",
 } as const;
+
+/** Grammatika kutubxonasi: `lang` — o'rganilayotgan til (en, ru, ja), tushuntirish tili URL'da emas. */
+export const grammarHref = (lang?: string, slug?: string) =>
+  [ROUTES.grammar, lang, slug].filter(Boolean).join("/");
 
 export type Role = "STUDENT" | "TEACHER" | "ADMIN";
 

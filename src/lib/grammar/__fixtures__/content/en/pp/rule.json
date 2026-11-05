@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000101",
+  "lang": "en",
+  "slug": "fixture-present-perfect",
+  "category": "tenses",
+  "level": {
+    "system": "cefr",
+    "value": "A2"
+  },
+  "related": [
+    "gr_en_000102",
+    "gr_en_000103"
+  ]
+}

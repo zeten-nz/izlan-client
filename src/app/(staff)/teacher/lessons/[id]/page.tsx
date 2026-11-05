@@ -1,16 +1,23 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { LessonEditor, type EditorInitial } from "@/features/lessons/editor/LessonEditor";
+import registry from "@/generated/grammar-registry.json";
 import { apiGet } from "@/server/api";
 import { requireRole } from "@/server/session";
 
 export const metadata: Metadata = { title: "Dars muharriri", robots: { index: false } };
 
 async function Editor({ params }: { params: Promise<{ id: string }> }) {
-  await requireRole("TEACHER");
+  await requireRole(["TEACHER", "ADMIN"]);
   const { id } = await params;
   const lesson = await apiGet<EditorInitial & { topicId: string }>(`/staff/lessons/${id}`);
-  return <LessonEditor key={lesson.id} initial={{ id: lesson.id, title: lesson.title, draft: lesson.draft, published: lesson.published }} />;
+  return (
+    <LessonEditor
+      key={lesson.id}
+      initial={{ id: lesson.id, title: lesson.title, draft: lesson.draft, published: lesson.published }}
+      grammarRegistryVersion={registry.version}
+    />
+  );
 }
 
 export default function LessonEditorPage({ params }: { params: Promise<{ id: string }> }) {

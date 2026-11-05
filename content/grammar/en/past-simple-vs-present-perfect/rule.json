@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000033",
+  "lang": "en",
+  "slug": "past-simple-vs-present-perfect",
+  "category": "tenses",
+  "level": {
+    "system": "cefr",
+    "value": "A2"
+  },
+  "related": [
+    "gr_en_000019",
+    "gr_en_000001",
+    "gr_en_000034"
+  ]
+}

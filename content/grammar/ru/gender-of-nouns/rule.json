@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_ru_000001",
+  "lang": "ru",
+  "slug": "gender-of-nouns",
+  "category": "gender",
+  "level": {
+    "system": "cefr",
+    "value": "A1"
+  },
+  "related": []
+}

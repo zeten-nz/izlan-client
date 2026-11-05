@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { ROUTES } from "@/config/routes";
 import { apiGet } from "@/server/api";
+import { QuizPanel, type QuizView } from "@/features/quiz/QuizPanel";
 
 export const metadata: Metadata = { title: "Mavzu", robots: { index: false } };
 
@@ -17,9 +18,10 @@ async function TopicContent({ params, searchParams }: { params: Promise<{ id: st
   const [{ id }, { stay }] = await Promise.all([params, searchParams]);
   const topic = await apiGet<TopicView>(`/learning/topics/${id}`, { forbiddenTo: ROUTES.student });
   const { lessons, topic: progress } = await apiGet<TopicLessons>(`/learning/topics/${id}/lessons`);
+  const quiz = await apiGet<QuizView>(`/learning/topics/${id}/quiz`);
 
   // Mavzuda bitta dars bo'lsa, oraliq sahifa kerak emas. Playerdan "Mavzuga qaytish" (?stay=1) bu qoidani o'tkazadi.
-  if (lessons.length === 1 && !stay) redirect(`${ROUTES.student}/lesson/${lessons[0].id}`);
+  if (lessons.length === 1 && !stay && !quiz.available) redirect(`${ROUTES.student}/lesson/${lessons[0].id}`);
 
   return (
     <div className="mx-auto max-w-[1100px] px-4 py-8 sm:px-8 sm:py-12">
@@ -68,6 +70,7 @@ async function TopicContent({ params, searchParams }: { params: Promise<{ id: st
           </p>
         </div>
       )}
+      <QuizPanel topicId={topic.id} quiz={quiz} />
     </div>
   );
 }

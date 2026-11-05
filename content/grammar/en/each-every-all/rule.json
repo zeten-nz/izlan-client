@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000070",
+  "lang": "en",
+  "slug": "each-every-all",
+  "category": "nouns",
+  "level": {
+    "system": "cefr",
+    "value": "B1"
+  },
+  "related": [
+    "gr_en_000069",
+    "gr_en_000042"
+  ]
+}

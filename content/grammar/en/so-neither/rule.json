@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000063",
+  "lang": "en",
+  "slug": "so-neither",
+  "category": "sentence-structure",
+  "level": {
+    "system": "cefr",
+    "value": "B1"
+  },
+  "related": [
+    "gr_en_000026",
+    "gr_en_000062"
+  ]
+}

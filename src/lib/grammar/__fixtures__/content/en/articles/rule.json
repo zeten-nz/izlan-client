@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000102",
+  "lang": "en",
+  "slug": "fixture-articles",
+  "category": "articles",
+  "level": {
+    "system": "cefr",
+    "value": "A1"
+  },
+  "related": []
+}

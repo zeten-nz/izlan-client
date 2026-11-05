@@ -7,6 +7,8 @@ import { btn, ContinueCard, NextLessonList } from "./components/LessonCards";
 import { OnboardingHost } from "./components/OnboardingHost";
 import { OnboardingTrigger } from "./components/OnboardingTrigger";
 import { ReviewPanel } from "./components/ReviewPanel";
+import { LevelMini } from "@/features/profile/xp";
+import type { LevelInfo } from "@/features/profile/types";
 import type { CatalogDirection, MistakeGroup, NextLessons, Overview, ProgressSummary } from "./types";
 
 const MAX_DIRECTIONS = 2;
@@ -48,12 +50,13 @@ function Stat({ value, label }: { value: number | string; label: string }) {
 export async function StudentHome() {
   // Avval rolni tekshiramiz: boshqa rol bo'lsa redirect, API 403 bilan to'qnashmasin
   const user = await requireRole("STUDENT");
-  const [overview, mistakes, catalog, next, progress] = await Promise.all([
+  const [overview, mistakes, catalog, next, progress, xpSummary] = await Promise.all([
     apiGet<Overview>("/learning/overview"),
     apiGet<{ groups: MistakeGroup[] }>("/learning/mistakes"),
     apiGet<CatalogDirection[]>("/learning/catalog"),
     apiGet<NextLessons>("/learning/next-lessons"),
     apiGet<ProgressSummary>("/learning/progress"),
+    apiGet<{ xpBalance: number; totalXpEarned: number; level: LevelInfo }>("/xp/summary"),
   ]);
 
   const hasDirections = overview.directions.length > 0;
@@ -81,6 +84,8 @@ export async function StudentHome() {
           </OnboardingTrigger>
         )}
       </header>
+
+      <LevelMini level={xpSummary.level} totalXp={xpSummary.totalXpEarned} />
 
       {/* 4.2 Oxirgi dars / davom ettirish */}
       {!hasDirections ? (

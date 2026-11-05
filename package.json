@@ -5,14 +5,27 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "prebuild": "npm run grammar:validate",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "grammar:validate": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/grammar.mjs validate",
+    "grammar:sync": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/grammar.mjs sync",
+    "grammar:public": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/grammar.mjs public",
+    "test:grammar": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test src/lib/grammar/__tests__/*.test.ts",
+    "grammar:export-registry": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/grammar.mjs export-registry",
+    "grammar:check-registry": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/grammar.mjs check-registry",
+    "grammar:hash": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/grammar.mjs hash",
+    "grammar:report": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/grammar.mjs report",
+    "grammar:compat": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/grammar.mjs compat",
+    "lint:grammar": "eslint src/lib/grammar src/features/grammar src/features/lessons \"src/app/(shared)\" src/app/grammar-missing \"src/app/(staff)\" scripts src/proxy.ts",
+    "ci:local": "npm run grammar:validate && npm run test:grammar && npx tsc --noEmit && npm run lint:grammar && npm run build"
   },
   "dependencies": {
     "motion": "^14.0.0",
     "next": "16.4.0",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",
@@ -23,5 +36,8 @@
     "eslint-config-next": "16.4.0",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=22.18.0"
   }
 }

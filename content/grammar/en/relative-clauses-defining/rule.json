@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000059",
+  "lang": "en",
+  "slug": "relative-clauses-defining",
+  "category": "relative-clauses",
+  "level": {
+    "system": "cefr",
+    "value": "B1"
+  },
+  "related": [
+    "gr_en_000079"
+  ]
+}

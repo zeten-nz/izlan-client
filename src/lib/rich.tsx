@@ -1,12 +1,20 @@
 import { Fragment, type ReactNode } from "react";
 
 function inline(text: string): ReactNode[] {
-  return text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
-    part.startsWith("**") && part.endsWith("**") ? <strong key={i}>{part.slice(2, -2)}</strong> : <Fragment key={i}>{part}</Fragment>,
+  return text.split(/(\*\*[^*]+\*\*|==[^=]+==)/g).map((part, i) =>
+    part.startsWith("**") && part.endsWith("**") ? (
+      <strong key={i}>{part.slice(2, -2)}</strong>
+    ) : part.length > 4 && part.startsWith("==") && part.endsWith("==") ? (
+      <mark key={i} className="bg-[#ffe45c] px-[0.15em] font-bold text-ink [box-decoration-break:clone]">
+        {part.slice(2, -2)}
+      </mark>
+    ) : (
+      <Fragment key={i}>{part}</Fragment>
+    ),
   );
 }
 
-/** Tushuntirish matni: "- " bilan boshlangan qatorlar ro'yxat, **...** qalin. */
+/** Tushuntirish matni: "- " bilan boshlangan qatorlar ro'yxat, **...** qalin, ==...== sariq marker. */
 export function RichText({ text }: { text: string }) {
   const lines = text.split("\n");
   const blocks: ReactNode[] = [];

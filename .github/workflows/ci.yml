@@ -1,0 +1,77 @@
+name: CI
+
+# Client (Next.js) + Grammar Library kontent darvozasi.
+# Server repo'si (izlan-server) alohida; cross-repo tekshiruv uchun faqat o'qish tokeni ishlatiladi.
+on:
+  pull_request:
+  push:
+    branches: [main, "phase/**"]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Grammar validatsiya, testlar, tip, lint, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.x" # grammar skriptlari Node >= 22.18 talab qiladi (scripts/grammar.mjs tekshiradi)
+          cache: npm
+      - run: npm ci
+      - name: Kontent validatsiyasi (sxema, tasdiqlash siyosati, manifest/reyestr dolzarbligi)
+        run: npm run grammar:validate
+      - name: Unit testlar (governance, izolyatsiya, routing, moslik)
+        run: npm run test:grammar
+      - name: TypeScript
+        run: npx tsc --noEmit
+      - name: ESLint (grammatika, dars muharriri/pleeri, qobiqlar)
+        run: npm run lint:grammar
+      - name: Production build
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+
+  registry-compat:
+    name: Server reyestri bilan moslik (ogohlantiruvchi)
+    runs-on: ubuntu-latest
+    # Ikkita repo mustaqil birlashtiriladi, shuning uchun PR bosqichida bu tekshiruv to'sqinlik qilmaydi.
+    # Qat'iy darvoza: .github/workflows/release-gate.yml
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: client
+      - name: Token tekshiruvi
+        env:
+          TOKEN: ${{ secrets.SERVER_REPO_READ_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::warning::SERVER_REPO_READ_TOKEN sozlanmagan: cross-repo moslik tekshirilmadi (bu PASS emas)."
+            echo "SKIP_COMPAT=1" >> "$GITHUB_ENV"
+          fi
+      - name: Server repo'sini olish (faqat o'qish)
+        if: env.SKIP_COMPAT != '1'
+        uses: actions/checkout@v4
+        with:
+          repository: zeten-nz/izlan-server
+          ref: ${{ vars.SERVER_REF || 'main' }}
+          path: server
+          token: ${{ secrets.SERVER_REPO_READ_TOKEN }}
+          persist-credentials: false
+      - if: env.SKIP_COMPAT != '1'
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+      - name: Yo'naltirilgan moslik
+        if: env.SKIP_COMPAT != '1'
+        working-directory: client
+        run: |
+          npm ci
+          npm run grammar:compat -- ../server/src/grammar/grammar-registry.data.ts

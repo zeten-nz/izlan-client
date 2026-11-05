@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000007",
+  "lang": "en",
+  "slug": "plural-nouns",
+  "category": "nouns",
+  "level": {
+    "system": "cefr",
+    "value": "A1"
+  },
+  "related": [
+    "gr_en_000008",
+    "gr_en_000006"
+  ]
+}

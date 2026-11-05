@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000068",
+  "lang": "en",
+  "slug": "indirect-questions",
+  "category": "sentence-structure",
+  "level": {
+    "system": "cefr",
+    "value": "B1"
+  },
+  "related": [
+    "gr_en_000023",
+    "gr_en_000078"
+  ]
+}

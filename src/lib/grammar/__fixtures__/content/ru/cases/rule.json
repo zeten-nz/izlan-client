@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_ru_000101",
+  "lang": "ru",
+  "slug": "fixture-kelishiklar",
+  "category": "cases",
+  "level": {
+    "system": "cefr",
+    "value": "A1"
+  },
+  "related": [
+    "gr_ja_000101"
+  ]
+}

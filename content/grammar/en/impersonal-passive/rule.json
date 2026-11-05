@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000086",
+  "lang": "en",
+  "slug": "impersonal-passive",
+  "category": "passive-voice",
+  "level": {
+    "system": "cefr",
+    "value": "B2"
+  },
+  "related": [
+    "gr_en_000077"
+  ]
+}

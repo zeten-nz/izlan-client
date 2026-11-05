@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_ja_000101",
+  "lang": "ja",
+  "slug": "fixture-te-form",
+  "category": "te-form",
+  "level": {
+    "system": "jlpt",
+    "value": "N5"
+  },
+  "related": [
+    "gr_ru_000101"
+  ]
+}

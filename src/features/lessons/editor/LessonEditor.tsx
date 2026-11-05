@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { buttonClasses } from "@/components/ui/Button";
-import { apiSend } from "@/lib/api";
+import { apiGetJson, apiSend } from "@/lib/api";
 import { cn } from "@/lib/cn";
+import { GrammarRulesContext, type GrammarRuleInfo, type GrammarRulesState } from "../blocks/grammar-context";
 import type { Block, BlockType, LessonDoc, Page } from "../types";
 import { Canvas } from "./Canvas";
 import { historyReducer, initHistory } from "./history";
@@ -12,6 +12,7 @@ import { Inspector, type Update } from "./Inspector";
 import { duplicateBlock, duplicatePage, fitBlock, mapBlock, mapPage, newBlock, newPage, removeBlock, reorderZ } from "./ops";
 import { PageList } from "./PageList";
 import { PreviewRunner } from "./PreviewRunner";
+import { BackToLessons } from "../TeacherLessons";
 
 export type EditorInitial = {
   id: string;
@@ -31,6 +32,7 @@ const PALETTE: { type: BlockType; label: string; icon: string }[] = [
   { type: "audio", label: "Audio", icon: "♪" },
   { type: "choice", label: "Test", icon: "◉" },
   { type: "fillblank", label: "Bo'sh joy", icon: "_" },
+  { type: "grammarRef", label: "Grammatika", icon: "Aa" },
 ];
 
 const SAVE_LABEL: Record<SaveState, string> = {
@@ -58,7 +60,41 @@ function useMinWidth(px: number) {
   return ok;
 }
 
-export function LessonEditor({ initial }: { initial: EditorInitial }) {
+/**
+ * Muharrir. Grammatika qoidalari ro'yxati serverdan olinadi (serverning o'z reyestri: faqat approved va faol til);
+ * `grammarRegistryVersion` — shu client qurilgan reyestr versiyasi, nashr so'rovida server bilan solishtirish uchun yuboriladi.
+ */
+export function LessonEditor({ initial, grammarRegistryVersion }: { initial: EditorInitial; grammarRegistryVersion?: string }) {
+  const [grammar, setGrammar] = useState<GrammarRulesState>({ rules: null, serverVersion: null, error: null });
+  useEffect(() => {
+    let live = true;
+    apiGetJson<{ registryVersion: string | null; ok: boolean; rules: GrammarRuleInfo[] }>("/staff/grammar/rules").then((r) => {
+      if (!live) return;
+      if (!r.ok) return setGrammar({ rules: null, serverVersion: null, error: r.message });
+      const stale = r.data.registryVersion && grammarRegistryVersion && r.data.registryVersion !== grammarRegistryVersion;
+      setGrammar({
+        rules: r.data.rules,
+        serverVersion: r.data.registryVersion,
+        error: !r.data.ok
+          ? "Grammatika reyestri serverda yaroqsiz: qoidalarni hozir tanlab bo'lmaydi."
+          : stale
+            ? "Grammatika reyestri versiyasi server bilan mos emas: sahifani yangilang."
+            : null,
+      });
+    });
+    return () => {
+      live = false;
+    };
+  }, [grammarRegistryVersion]);
+
+  return (
+    <GrammarRulesContext.Provider value={grammar}>
+      <EditorInner initial={initial} grammarRegistryVersion={grammarRegistryVersion} />
+    </GrammarRulesContext.Provider>
+  );
+}
+
+function EditorInner({ initial, grammarRegistryVersion }: { initial: EditorInitial; grammarRegistryVersion?: string }) {
   const wideEnough = useMinWidth(768);
   const isLg = useMinWidth(1100);
 
@@ -215,7 +251,10 @@ export function LessonEditor({ initial }: { initial: EditorInitial }) {
       return;
     }
     try {
-      const res = await fetch(`/api/staff/lessons/${initial.id}/publish`, { method: "POST" });
+      const res = await fetch(`/api/staff/lessons/${initial.id}/publish`, {
+        method: "POST",
+        headers: grammarRegistryVersion ? { "x-grammar-registry": grammarRegistryVersion } : undefined,
+      });
       const json = (await res.json().catch(() => null)) as { issues?: Issue[]; message?: string; rev?: number } | null;
       if (res.ok) {
         setPublished({ rev: json?.rev ?? revRef.current, at: new Date().toISOString() });
@@ -285,9 +324,9 @@ export function LessonEditor({ initial }: { initial: EditorInitial }) {
           <p className="mt-3 text-lg leading-snug">
             Dars yaratish keng ekranda qulay va aniq bo&apos;ladi. Iltimos, kompyuterdan yoki planshetdan (yotiq holatda) kiring. Telefonda darslarni faqat o&apos;tish mumkin.
           </p>
-          <Link href="/teacher/lessons" className={cn(buttonClasses("ink"), "mt-5")}>
+          <BackToLessons className={cn(buttonClasses("ink"), "mt-5")}>
             ← Darslarim
-          </Link>
+          </BackToLessons>
         </div>
       </div>
     );
@@ -297,9 +336,9 @@ export function LessonEditor({ initial }: { initial: EditorInitial }) {
     <div className="flex min-h-[calc(100dvh-68px)] flex-col">
       {/* Yuqori panel */}
       <div className="flex flex-wrap items-center gap-3 border-b-[3px] border-ink bg-white px-4 py-2.5">
-        <Link href="/teacher/lessons" className="font-bold underline decoration-[3px] underline-offset-4 hover:bg-acid">
+        <BackToLessons className="font-bold underline decoration-[3px] underline-offset-4 hover:bg-acid">
           ← Darslarim
-        </Link>
+        </BackToLessons>
         <input
           aria-label="Dars nomi"
           value={title}
@@ -390,7 +429,7 @@ export function LessonEditor({ initial }: { initial: EditorInitial }) {
           {/* Chap: elementlar + sahifalar */}
           <aside className={cn("border-ink bg-paper-2 p-3", isLg ? "h-[calc(100dvh-68px-64px)] overflow-y-auto border-r-[3px]" : "border-b-[3px]")}>
             <p className="label mb-2">Elementlar</p>
-            <div className={cn("grid gap-2", isLg ? "grid-cols-2" : "grid-cols-4 sm:grid-cols-7")}>
+            <div className={cn("grid gap-2", isLg ? "grid-cols-2" : "grid-cols-4 sm:grid-cols-8")}>
               {PALETTE.map((p) => (
                 <button
                   key={p.type}

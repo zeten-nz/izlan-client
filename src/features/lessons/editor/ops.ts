@@ -23,15 +23,15 @@ function draftBlock(type: BlockType, existing: Block[]): Block {
   const base = { id: uid("b"), x: 200 + n * 24, y: 140 + n * 24, z: existing.reduce((m, b) => Math.max(m, b.z + 1), 0) };
   switch (type) {
     case "heading":
-      return { ...base, type, w: 1000, h: 110, text: "Yangi sarlavha", level: 1, align: "left" };
+      return { ...base, type, w: 1000, h: 110, text: "Yangi sarlavha", level: 1, align: "left", caps: true };
     case "text":
       return { ...base, type, w: 800, h: 240, text: "Matn yozing…", align: "left" };
     case "callout":
-      return { ...base, type, w: 800, h: 190, text: "Muhim tushuncha", tone: "warning" };
+      return { ...base, type, w: 800, h: 220, text: "Muhim tushuncha", tone: "rule", title: "" };
     case "image":
-      return { ...base, type, w: 600, h: 400, assetId: null, alt: "", fit: "contain" };
+      return { ...base, type, w: 600, h: 400, assetId: null, alt: "", fit: "contain", brief: "", search: "" };
     case "audio":
-      return { ...base, type, w: 800, h: 150, assetId: null, caption: "", transcript: "" };
+      return { ...base, type, w: 800, h: 150, assetId: null, caption: "", transcript: "", brief: "", search: "" };
     case "choice": {
       const a = uid("o");
       return {
@@ -49,6 +49,8 @@ function draftBlock(type: BlockType, existing: Block[]): Block {
         explanation: "",
       };
     }
+    case "grammarRef":
+      return { ...base, type, w: 800, h: 190, grammarRuleId: "", label: "" };
     case "fillblank":
       return { ...base, type, w: 1000, h: 220, template: "I [[1]] a student.", blanks: [{ id: "1", answers: ["am"], caseSensitive: false }], explanation: "" };
   }

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000020",
+  "lang": "en",
+  "slug": "be-going-to",
+  "category": "tenses",
+  "level": {
+    "system": "cefr",
+    "value": "A1"
+  },
+  "related": [
+    "gr_en_000030",
+    "gr_en_000017"
+  ]
+}

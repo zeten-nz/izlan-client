@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000034",
+  "lang": "en",
+  "slug": "present-perfect-continuous",
+  "category": "tenses",
+  "level": {
+    "system": "cefr",
+    "value": "B1"
+  },
+  "related": [
+    "gr_en_000001",
+    "gr_en_000036",
+    "gr_en_000015"
+  ]
+}

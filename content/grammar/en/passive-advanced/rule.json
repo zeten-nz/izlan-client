@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000077",
+  "lang": "en",
+  "slug": "passive-advanced",
+  "category": "passive-voice",
+  "level": {
+    "system": "cefr",
+    "value": "B2"
+  },
+  "related": [
+    "gr_en_000056",
+    "gr_en_000086",
+    "gr_en_000081"
+  ]
+}

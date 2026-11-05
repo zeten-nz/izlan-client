@@ -3,7 +3,6 @@ import { ROUTES } from "@/config/routes";
 import { cn } from "@/lib/cn";
 import { apiGet } from "@/server/api";
 import { requireRole } from "@/server/session";
-import { LogoutButton } from "./LogoutButton";
 import { btn } from "./components/LessonCards";
 import { OnboardingHost } from "./components/OnboardingHost";
 import { OnboardingTrigger } from "./components/OnboardingTrigger";
@@ -121,33 +120,3 @@ export async function DirectionsPage() {
   );
 }
 
-/** Hisobim: profil va chiqish. */
-export async function AccountPage() {
-  const user = await requireRole("STUDENT");
-  const overview = await apiGet<Overview>("/learning/overview");
-  const rows: [string, string][] = [
-    ["Ism", `${user.firstName} ${user.lastName}`],
-    ["Foydalanuvchi nomi", `@${user.username}`],
-    ["Email", user.email],
-  ];
-  return (
-    <div className={cn(shell, "max-w-[760px]")}>
-      <Head label="Hisobim" title="Profil" />
-      <dl className="mt-8 border-[3px] border-ink bg-white shadow-[6px_6px_0_0_var(--color-ink)]">
-        {rows.map(([k, v]) => (
-          <div key={k} className="flex flex-wrap items-baseline justify-between gap-2 border-b-[3px] border-ink px-5 py-4 last:border-b-0">
-            <dt className="label">{k}</dt>
-            <dd className="text-lg font-semibold">{v}</dd>
-          </div>
-        ))}
-        <div className="flex flex-wrap items-baseline justify-between gap-2 px-5 py-4">
-          <dt className="label">Yo&apos;nalishlar</dt>
-          <dd className="text-lg font-semibold">{overview.directions.length ? overview.directions.map((d) => d.title).join(", ") : "Tanlanmagan"}</dd>
-        </div>
-      </dl>
-      <div className="mt-8">
-        <LogoutButton />
-      </div>
-    </div>
-  );
-}

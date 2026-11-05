@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000087",
+  "lang": "en",
+  "slug": "purpose-clauses",
+  "category": "linking-words",
+  "level": {
+    "system": "cefr",
+    "value": "B2"
+  },
+  "related": [
+    "gr_en_000083",
+    "gr_en_000025"
+  ]
+}

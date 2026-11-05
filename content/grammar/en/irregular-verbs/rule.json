@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000052",
+  "lang": "en",
+  "slug": "irregular-verbs",
+  "category": "irregular-verbs",
+  "level": {
+    "system": "cefr",
+    "value": "A2"
+  },
+  "related": [
+    "gr_en_000019",
+    "gr_en_000001",
+    "gr_en_000035"
+  ]
+}

@@ -1,12 +1,7 @@
 import type { ReactNode } from "react";
-import { AppHeader } from "@/features/student/components/AppHeader";
+import { StudentShell } from "@/features/student/components/StudentShell";
 
-/** Talaba qismi: bitta umumiy yuqori panel (logo, bo'limlar, foydalanuvchi). */
+/** Talaba qismi: yuqori panel (logo, bo'limlar, foydalanuvchi) + mobilda pastki navigatsiya. */
 export default function AppLayout({ children }: { children: ReactNode }) {
-  return (
-    <div className="min-h-screen bg-paper">
-      <AppHeader />
-      <main>{children}</main>
-    </div>
-  );
+  return <StudentShell>{children}</StudentShell>;
 }

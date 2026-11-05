@@ -35,9 +35,9 @@ export async function requireUser(): Promise<SessionUser> {
   return user;
 }
 
-/** Sahifa faqat shu rolga: boshqa rol o'z bosh sahifasiga yuboriladi. */
-export async function requireRole(role: Role): Promise<SessionUser> {
+/** Sahifa faqat shu rol(lar)ga: boshqa rol o'z bosh sahifasiga yuboriladi. */
+export async function requireRole(role: Role | Role[]): Promise<SessionUser> {
   const user = await requireUser();
-  if (user.role !== role) redirect(roleHome(user.role));
+  if (!(Array.isArray(role) ? role : [role]).includes(user.role)) redirect(roleHome(user.role));
   return user;
 }

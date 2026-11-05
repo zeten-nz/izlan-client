@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000022",
+  "lang": "en",
+  "slug": "there-is-there-are",
+  "category": "sentence-structure",
+  "level": {
+    "system": "cefr",
+    "value": "A1"
+  },
+  "related": [
+    "gr_en_000028",
+    "gr_en_000008"
+  ]
+}

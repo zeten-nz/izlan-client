@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000092",
+  "lang": "en",
+  "slug": "cleft-sentences",
+  "category": "sentence-structure",
+  "level": {
+    "system": "cefr",
+    "value": "C1"
+  },
+  "related": [
+    "gr_en_000091",
+    "gr_en_000059"
+  ]
+}

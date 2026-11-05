@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000013",
+  "lang": "en",
+  "slug": "want-would-like",
+  "category": "verb-basics",
+  "level": {
+    "system": "cefr",
+    "value": "A1"
+  },
+  "related": [
+    "gr_en_000012",
+    "gr_en_000021"
+  ]
+}

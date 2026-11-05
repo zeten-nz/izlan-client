@@ -1,0 +1,89 @@
+name: Release gate (grammatika)
+
+# Deploy'dan OLDIN qo'lda ishga tushiriladi. Ikkala repo'ning aniq ref'larini (branch/tag/SHA) tekshiradi.
+# Bu yerda hech narsa deploy qilinmaydi. Natija PASS bo'lmasa release'ga ruxsat yo'q.
+on:
+  workflow_dispatch:
+    inputs:
+      client_ref:
+        description: "Client ref (branch/tag/SHA)"
+        required: true
+        default: main
+      server_ref:
+        description: "Server ref (branch/tag/SHA)"
+        required: true
+        default: main
+      require_identical:
+        description: "Reyestr versiyalari bir xil bo'lishi shart (deploy TUGAGANDAN keyingi konvergensiya tekshiruvi)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Server repo tokeni (majburiy)
+        env:
+          TOKEN: ${{ secrets.SERVER_REPO_READ_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::error::SERVER_REPO_READ_TOKEN sozlanmagan. Release darvozasi tokensiz o'tmaydi (fine-grained, faqat izlan-server, Contents: read)."
+            exit 1
+          fi
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.client_ref }}
+          path: client
+      - uses: actions/checkout@v4
+        with:
+          repository: zeten-nz/izlan-server
+          ref: ${{ inputs.server_ref }}
+          path: server
+          token: ${{ secrets.SERVER_REPO_READ_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+
+      - name: Client — validatsiya, testlar, tip, lint, build
+        working-directory: client
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+        run: |
+          npm ci
+          npm run grammar:validate
+          npm run test:grammar
+          npx tsc --noEmit
+          npm run lint:grammar
+          npm run build
+
+      - name: Server — testlar (reyestr yaxlitligi, publish validatsiyasi, eski hujjatlar)
+        working-directory: server
+        run: |
+          npm ci
+          npx prisma generate
+          npm test
+          npx tsc --noEmit
+
+      - name: Yo'naltirilgan moslik (server approved ⊆ client approved)
+        working-directory: client
+        run: npm run grammar:compat -- ../server/src/grammar/grammar-registry.data.ts
+
+      - name: Reyestrlar bir xilligi (deploy tugagach)
+        if: ${{ inputs.require_identical }}
+        working-directory: client
+        run: npm run grammar:check-registry -- ../server/src/grammar/grammar-registry.data.ts
+
+      - name: Xulosa
+        if: always()
+        run: |
+          {
+            echo "### Grammar release gate"
+            echo "- client: \`${{ inputs.client_ref }}\`"
+            echo "- server: \`${{ inputs.server_ref }}\`"
+            echo "- bir xillik talab qilindi: \`${{ inputs.require_identical }}\`"
+            echo "- holat: \`${{ job.status }}\`"
+          } >> "$GITHUB_STEP_SUMMARY"

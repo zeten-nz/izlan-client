@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000017",
+  "lang": "en",
+  "slug": "present-continuous",
+  "category": "tenses",
+  "level": {
+    "system": "cefr",
+    "value": "A1"
+  },
+  "related": [
+    "gr_en_000016",
+    "gr_en_000032",
+    "gr_en_000031"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000066",
+  "lang": "en",
+  "slug": "adjectives-ed-ing",
+  "category": "adjectives-adverbs",
+  "level": {
+    "system": "cefr",
+    "value": "B1"
+  },
+  "related": [
+    "gr_en_000046",
+    "gr_en_000067"
+  ]
+}
