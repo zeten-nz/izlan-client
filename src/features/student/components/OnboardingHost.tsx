@@ -35,13 +35,22 @@ function Back({ onClick, children = "← Orqaga" }: { onClick: () => void; child
 
 export function OnboardingHost({ catalog, directions, autoOpen }: Props) {
   const router = useRouter();
-  const [step, setStep] = useState<Step | null>(null);
+  const [step, setStep] = useState<Step | null>(autoOpen ? { t: "pick" } : null);
   const [dirs, setDirs] = useState(directions);
+  // Prop o'zgarganda holatni render paytida moslash (effect ichida setState o'rniga — React tavsiyasi)
+  const [prevDirections, setPrevDirections] = useState(directions);
+  const [prevAutoOpen, setPrevAutoOpen] = useState(autoOpen);
+  if (directions !== prevDirections) {
+    setPrevDirections(directions);
+    setDirs(directions);
+  }
+  if (autoOpen !== prevAutoOpen) {
+    setPrevAutoOpen(autoOpen);
+    if (autoOpen) setStep({ t: "pick" });
+  }
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => setDirs(directions), [directions]);
 
   // Boshqa joydagi tugmalardan ochish
   useEffect(() => {
@@ -53,10 +62,6 @@ export function OnboardingHost({ catalog, directions, autoOpen }: Props) {
     window.addEventListener(ONBOARDING_EVENT, onOpen);
     return () => window.removeEventListener(ONBOARDING_EVENT, onOpen);
   }, []);
-
-  useEffect(() => {
-    if (autoOpen) setStep({ t: "pick" });
-  }, [autoOpen]);
 
   const close = useCallback(
     async (dismissPrompt = false) => {

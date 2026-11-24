@@ -9,11 +9,12 @@ const isDev = process.env.NODE_ENV !== "production";
 const CSP_ENFORCED = ["frame-ancestors 'none'", "base-uri 'self'", "object-src 'none'", "form-action 'self'"].join("; ");
 
 /**
- * To'liq CSP hozircha faqat Report-Only: brauzer konsolida buzilishlarni ko'rsatadi, hech narsani bloklamaydi.
- * Inline preloader skripti (app/layout.tsx) va Next'ning inline skriptlari uchun 'unsafe-inline' kerak;
- * nonce'ga o'tkazish keyingi qadam. Dev'da HMR uchun 'unsafe-eval' va ws: qo'shiladi.
+ * To'liq CSP — MAJBURIY (2026-11-24, Report-Only davrida buzilish kuzatilmadi). Faqat o'z origin'imizdan
+ * skript/ulanish/media: tashqi skript yoki ma'lumot yuborish (XSS'dan keyin exfiltration) bloklanadi.
+ * Inline preloader skripti (app/layout.tsx) va Next'ning inline skriptlari uchun 'unsafe-inline' hali kerak;
+ * nonce'ga o'tkazish — alohida qaror (dinamik render talab qiladi). Dev'da HMR uchun 'unsafe-eval' va ws:.
  */
-const CSP_REPORT_ONLY = [
+const CSP_FULL = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
@@ -26,8 +27,7 @@ const CSP_REPORT_ONLY = [
 ].join("; ");
 
 const SECURITY_HEADERS = [
-  { key: "Content-Security-Policy", value: CSP_ENFORCED },
-  { key: "Content-Security-Policy-Report-Only", value: CSP_REPORT_ONLY },
+  { key: "Content-Security-Policy", value: `${CSP_FULL}; ${CSP_ENFORCED}` },
   { key: "X-Frame-Options", value: "DENY" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
