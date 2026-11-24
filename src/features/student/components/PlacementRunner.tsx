@@ -87,7 +87,12 @@ export function PlacementRunner({ id }: { id: string }) {
   if (view.status === "DONE") return <Result view={view} />;
 
   const parts = view.question.prompt.split("_____");
-  const progress = view.total ? ((view.index - 1) / view.total) * 100 : Math.min(95, ((view.index - 1) / 30) * 100);
+  // UNKNOWN: umumiy soni oldindan noma'lum — progress pog'ona bo'yicha (A1 → C2)
+  const progress = view.total
+    ? ((view.index - 1) / view.total) * 100
+    : view.stage
+      ? Math.min(95, ((view.stage.ord - 1) / view.stage.of) * 100)
+      : 0;
 
   return (
     <div className="mx-auto max-w-[900px] px-4 py-8 sm:px-8 sm:py-12">
@@ -102,7 +107,11 @@ export function PlacementRunner({ id }: { id: string }) {
       <div className="mt-4 h-5 border-[3px] border-ink bg-white" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress)} aria-label="Test jarayoni">
         <div className="h-full bg-tomato transition-[width] duration-500" style={{ width: `${progress}%` }} />
       </div>
-      {!view.total && <p className="label mt-2 text-ink/60">10 tadan 30 tagacha savol</p>}
+      {!view.total && (
+        <p className="label mt-2 text-ink/60">
+          {view.stage ? `${view.stage.code} bosqichi · ` : ""}har bosqichda 8–12 ta savol
+        </p>
+      )}
 
       <section className="mt-8 border-[3px] border-ink bg-white p-5 shadow-[8px_8px_0_0_var(--color-ink)] sm:p-8" aria-labelledby="q">
         <p className="label text-ink/70">{view.question.instruction}</p>
