@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000101",
+  "lang": "en",
+  "slug": "cause-result-linkers",
+  "category": "linking-words",
+  "level": {
+    "system": "cefr",
+    "value": "B1"
+  },
+  "related": [
+    "gr_en_000025",
+    "gr_en_000087"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000095",
+  "lang": "en",
+  "slug": "verb-object-infinitive",
+  "category": "verb-basics",
+  "level": {
+    "system": "cefr",
+    "value": "B1"
+  },
+  "related": [
+    "gr_en_000057",
+    "gr_en_000013"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000097",
+  "lang": "en",
+  "slug": "would-rather-prefer",
+  "category": "modal-verbs",
+  "level": {
+    "system": "cefr",
+    "value": "B1"
+  },
+  "related": [
+    "gr_en_000013",
+    "gr_en_000057"
+  ]
+}
