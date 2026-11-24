@@ -6,7 +6,8 @@ import { decideGrammarRoute } from "@/lib/grammar/routing";
 const COOKIE = process.env.SESSION_COOKIE_NAME ?? "izlan_session";
 
 /**
- * Faqat /grammar/**. Grammatika ichki (login talab qiladi) bo'lim:
+ * Login talab qiladigan yo'llar (/student, /teacher, /admin, /u, /grammar): cookie yo'q → 307 /login.
+ * Qo'shimcha /grammar/** mantiqi. Grammatika ichki (login talab qiladi) bo'lim:
  * - sessiya cookie'si yo'q → /login (xuddi requireUser/apiGet kabi), mavjudligi oshkor qilinmaydi;
  * - eski slug → 308 (query saqlanadi);
  * - noma'lum til/slug → haqiqiy 404 (qobiqsiz statik sahifa).
@@ -16,6 +17,9 @@ export async function proxy(request: NextRequest) {
   if (!request.cookies.get(COOKIE)?.value) {
     return NextResponse.redirect(new URL(ROUTES.login, request.url));
   }
+  // Ilova/staff sahifalari: cookie bor — qolganini layout'dagi requireUser/requireRole tekshiradi.
+  // Cookie'siz holat yuqorida haqiqiy 307 bilan qaytadi (avval sahifa 200 bilan stream bo'lib, ichida redirect bo'lardi — SEC-08).
+  if (!request.nextUrl.pathname.startsWith(ROUTES.grammar)) return NextResponse.next();
   let store;
   try {
     store = await getGrammar();
@@ -35,4 +39,16 @@ export async function proxy(request: NextRequest) {
   return NextResponse.next();
 }
 
-export const config = { matcher: ["/grammar", "/grammar/:path*"] };
+export const config = {
+  matcher: [
+    "/grammar",
+    "/grammar/:path*",
+    "/student",
+    "/student/:path*",
+    "/teacher",
+    "/teacher/:path*",
+    "/admin",
+    "/admin/:path*",
+    "/u/:path*",
+  ],
+};

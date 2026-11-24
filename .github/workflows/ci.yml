@@ -19,8 +19,8 @@ jobs:
     name: Grammar validatsiya, testlar, tip, lint, build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "22.x" # grammar skriptlari Node >= 22.18 talab qiladi (scripts/grammar.mjs tekshiradi)
           cache: npm
@@ -45,7 +45,7 @@ jobs:
     # Qat'iy darvoza: .github/workflows/release-gate.yml
     continue-on-error: true
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           path: client
       - name: Token tekshiruvi
@@ -58,7 +58,7 @@ jobs:
           fi
       - name: Server repo'sini olish (faqat o'qish)
         if: env.SKIP_COMPAT != '1'
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: zeten-nz/izlan-server
           ref: ${{ vars.SERVER_REF || 'main' }}
@@ -66,7 +66,7 @@ jobs:
           token: ${{ secrets.SERVER_REPO_READ_TOKEN }}
           persist-credentials: false
       - if: env.SKIP_COMPAT != '1'
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "22.x"
       - name: Yo'naltirilgan moslik
