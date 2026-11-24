@@ -1,24 +1,10 @@
-import type { SVGProps } from "react";
-
 /**
- * Izlan belgisi: qora kvadrat ichida "i" harfi.
- * Nuqta = linza/nishon (izlanish), tanasi = yuqoriga yo‘l.
+ * Izlan belgisi — lupa (manba: D:\izlan-ads\brand\logo\izlan-logo-C-ilens.svg dagi lupa, public/brand/logo-lens.svg).
+ * Favicon va app ikonkalari ham shu belgidan yasalgan (src/app/icon.png, apple-icon.png).
  */
-export function LogoMark({ title, ...props }: SVGProps<SVGSVGElement> & { title?: string }) {
+export function LogoMark({ className, title }: { className?: string; title?: string }) {
   return (
-    <svg
-      viewBox="0 0 64 64"
-      role={title ? "img" : undefined}
-      aria-label={title}
-      aria-hidden={title ? undefined : true}
-      {...props}
-    >
-      <rect width="64" height="64" fill="#0b0b0b" />
-      <circle cx="32" cy="17" r="10" fill="#d6ff3d" />
-      <circle cx="32" cy="17" r="10" fill="none" stroke="#0b0b0b" strokeWidth="2" />
-      <circle cx="32" cy="17" r="3.4" fill="#0b0b0b" />
-      <rect x="23" y="33" width="18" height="23" fill="#f1eee4" />
-      <rect x="23" y="49" width="18" height="7" fill="#ff4a22" />
-    </svg>
+    // eslint-disable-next-line @next/next/no-img-element -- statik SVG
+    <img src="/brand/logo-lens.svg" alt={title ?? ""} aria-hidden={title ? undefined : true} width={64} height={64} className={className} />
   );
 }
