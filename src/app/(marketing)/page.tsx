@@ -6,7 +6,7 @@ import { FinalCta } from "@/features/landing/sections/FinalCta";
 import { FitAdvisor } from "@/features/landing/sections/FitAdvisor";
 import { Hero } from "@/features/landing/sections/Hero";
 import { HowItWorks } from "@/features/landing/sections/HowItWorks";
-import { Pricing } from "@/features/landing/sections/Pricing";
+import { Prices } from "@/features/landing/sections/Prices";
 import { Rewards } from "@/features/landing/sections/Rewards";
 
 export default function LandingPage() {
@@ -19,7 +19,7 @@ export default function LandingPage() {
       <Features />
       <FitAdvisor />
       <Rewards />
-      <Pricing />
+      <Prices />
       <Faq />
       <FinalCta />
     </>

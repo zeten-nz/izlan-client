@@ -18,6 +18,11 @@ export async function apiGet<T>(path: string, opts: { forbiddenTo?: string } = {
     throw new Error("Server bilan aloqa yo'q");
   }
   if (res.status === 401) redirect(ROUTES.login);
+  // Pullik mavzu (obuna yo'q): balans sahifasiga, shu kurs belgilangan holda
+  if (res.status === 402) {
+    const body = (await res.json().catch(() => null)) as { directionId?: string } | null;
+    redirect(`${ROUTES.student}/balance${body?.directionId ? `?buy=${encodeURIComponent(body.directionId)}` : ""}`);
+  }
   if (res.status === 403 && opts.forbiddenTo) redirect(opts.forbiddenTo);
   if (res.status === 404 || res.status === 403) notFound();
   if (!res.ok) throw new Error(`API ${path}: ${res.status}`);

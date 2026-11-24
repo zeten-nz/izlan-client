@@ -1,4 +1,16 @@
-export type NavIconId = "home" | "learn" | "progress" | "rewards" | "profile" | "notebook" | "grammar";
+export type NavIconId =
+  | "home"
+  | "learn"
+  | "progress"
+  | "rewards"
+  | "profile"
+  | "notebook"
+  | "grammar"
+  | "wallet"
+  | "logout"
+  | "chevron"
+  | "check"
+  | "lock";
 
 /** Navigatsiya piktogrammalari: loyihadagi FeatureIcon uslubida (qalin chiziq, to'g'ri burchak). */
 export function NavIcon({ id, className }: { id: NavIconId; className?: string }) {
@@ -31,6 +43,13 @@ export function NavIcon({ id, className }: { id: NavIconId; className?: string }
           <path d="M24 30v8M15 41h18" {...c} />
         </>
       )}
+      {id === "wallet" && (
+        <>
+          <path d="M6 13h32v28H6z" {...c} />
+          <path d="M6 13l24-7v7" {...c} />
+          <path d="M42 22H30v10h12z" {...c} />
+        </>
+      )}
       {id === "profile" && (
         <>
           <circle cx="24" cy="16" r="9" {...c} />
@@ -38,10 +57,25 @@ export function NavIcon({ id, className }: { id: NavIconId; className?: string }
         </>
       )}
       {id === "grammar" && (
+        // Ochiq qoidalar kitobi + "§" belgisi: avvalgi "A" + "i" belgisi "AI" deb o'qilardi (UI-01)
         <>
-          <path d="M8 40L20 8l12 32" {...c} />
-          <path d="M12 29h16" {...c} />
-          <path d="M37 18v22M37 11v1" {...c} />
+          <path d="M6 9h14a4 4 0 014 4v28a3 3 0 00-3-3H6z" {...c} />
+          <path d="M42 9H28a4 4 0 00-4 4v28a3 3 0 013-3h15z" {...c} />
+          <path d="M11 17h8M11 24h8M29 17h8M29 24h8M29 31h5" {...c} />
+        </>
+      )}
+      {id === "logout" && (
+        <>
+          <path d="M20 7H7v34h13" {...c} />
+          <path d="M18 24h24M33 15l9 9-9 9" {...c} />
+        </>
+      )}
+      {id === "chevron" && <path d="M12 18l12 12 12-12" {...c} />}
+      {id === "check" && <path d="M8 25l10 10 22-22" {...c} />}
+      {id === "lock" && (
+        <>
+          <rect x="9" y="21" width="30" height="21" {...c} />
+          <path d="M15 21v-6a9 9 0 0118 0v6" {...c} />
         </>
       )}
       {id === "notebook" && (

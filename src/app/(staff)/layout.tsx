@@ -16,15 +16,25 @@ async function Who() {
   );
 }
 
+/** Logo rolga mos bosh sahifaga olib boradi (TEACHER -> /teacher, ADMIN -> /admin). */
+async function HomeLogo() {
+  const user = await requireUser();
+  return (
+    <Link href={roleHome(user.role)} aria-label="Izlan, bosh sahifa">
+      <Logo />
+    </Link>
+  );
+}
+
 /** Admin va ustoz qismi: umumiy yuqori panel. */
 export default function StaffLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-paper">
       <header className="border-b-[3px] border-ink">
         <div className="mx-auto flex max-w-[1100px] items-center justify-between gap-4 px-4 py-3 sm:px-8">
-          <Link href={roleHome("ADMIN")} aria-label="Izlan">
-            <Logo />
-          </Link>
+          <Suspense fallback={<Logo />}>
+            <HomeLogo />
+          </Suspense>
           <nav aria-label="Bo'limlar" className="ml-auto">
             <Link
               href={ROUTES.grammar}

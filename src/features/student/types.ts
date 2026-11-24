@@ -2,7 +2,8 @@ export type TopicState = "open" | "current" | "upcoming" | "locked";
 export type LevelState = "done" | "current" | "locked";
 
 export type TopicLessonCounts = { total: number; completed: number; topicCompleted: boolean; contentPreparing: boolean };
-export type Topic = { id: string; ord: number; title: string; state: TopicState; lessons?: TopicLessonCounts | null };
+/** paywalled: kurs pullik va obuna yo'q — mavzu ochilmaydi, «Kursni sotib olish» ko'rsatiladi */
+export type Topic = { id: string; ord: number; title: string; state: TopicState; lessons?: TopicLessonCounts | null; paywalled?: boolean };
 export type Level = {
   ord: number;
   code: string;
@@ -19,6 +20,10 @@ export type UserDirection = {
   slug: string;
   title: string;
   kind: "LANGUAGE" | "SUBJECT";
+  /** Oylik narx (so'm); null — bepul kurs */
+  monthlyPriceUzs?: number | null;
+  accessEndsAt?: string | null;
+  hasAccess?: boolean;
   currentLevelOrd: number | null;
   levelAccess: "SEQUENTIAL" | "OPEN";
   placedBy: string | null;

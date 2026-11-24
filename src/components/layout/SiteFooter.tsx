@@ -12,7 +12,7 @@ const COLUMNS = [
     links: [
       { label: "Qanday ishlaydi", href: sectionHref(SECTIONS.how) },
       { label: "Imkoniyatlar", href: sectionHref(SECTIONS.features) },
-      { label: "Tariflar", href: sectionHref(SECTIONS.pricing) },
+      { label: "Narxlar", href: sectionHref(SECTIONS.prices) },
       { label: "Savollar", href: sectionHref(SECTIONS.faq) },
     ],
   },
@@ -21,6 +21,13 @@ const COLUMNS = [
     links: [
       { label: "Ro‘yxatdan o‘tish", href: ROUTES.register },
       { label: "Kirish", href: ROUTES.login },
+    ],
+  },
+  {
+    title: "Huquqiy",
+    links: [
+      { label: "Ommaviy oferta", href: "/oferta" },
+      { label: "Maxfiylik", href: "/maxfiylik" },
     ],
   },
 ] as const;
@@ -33,7 +40,7 @@ export function SiteFooter() {
         className="display border-b-[3px] border-paper/30 bg-acid py-4 text-[clamp(28px,5vw,56px)] text-ink"
       />
 
-      <div className="mx-auto grid max-w-[1480px] gap-12 px-4 py-16 md:grid-cols-[1.4fr_1fr_1fr] md:px-8">
+      <div className="mx-auto grid max-w-[1480px] gap-12 px-4 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:px-8">
         <div className="max-w-md">
           <HomeLink aria-label="Izlan, tepaga">
             <Logo tone="light" />

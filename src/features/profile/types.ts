@@ -33,7 +33,7 @@ export type MyProfile = {
   initials: string;
   bio: string;
   privacy: Privacy;
-  wallet: { xpBalance: number; totalXpEarned: number; izlBalance: number };
+  wallet: { xpBalance: number; totalXpEarned: number; izlBalance: number; balanceUzs?: number };
   xp?: { level: LevelInfo };
   equipped: Equipped;
   stats: Stats;

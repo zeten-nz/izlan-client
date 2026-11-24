@@ -2,35 +2,23 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ROUTES } from "@/config/routes";
 import { cn } from "@/lib/cn";
+import { PRIMARY_NAV } from "./nav";
 
-const S = ROUTES.student;
-
-/** Asosiy faqat o'zi (aniq moslik); qolganlari prefiks bo'yicha. Mavzu/dars sahifalari "Yo'nalishlar" ostida. */
-const ITEMS = [
-  { label: "Asosiy", href: S, match: (p: string) => p === S },
-  { label: "Yo'nalishlar", href: `${S}/directions`, match: (p: string) => p.startsWith(`${S}/directions`) || p.startsWith(`${S}/topic`) || p.startsWith(`${S}/lesson`) },
-  { label: "Jarayon", href: `${S}/progress`, match: (p: string) => p.startsWith(`${S}/progress`) },
-  { label: "Daftar", href: `${S}/notebook`, match: (p: string) => p.startsWith(`${S}/notebook`) },
-  { label: "Grammatika", href: ROUTES.grammar, match: (p: string) => p.startsWith(ROUTES.grammar), className: "hidden xl:block" },
-  { label: "Mukofotlar", href: `${S}/rewards`, match: (p: string) => p.startsWith(`${S}/rewards`) },
-  { label: "Profil", href: `${S}/account`, match: (p: string) => p.startsWith(`${S}/account`) },
-] as const;
-
+/** Desktop (lg+) asosiy bo'limlar — mobil pastki panel bilan bir xil ro'yxat va nomlar (nav.ts). */
 export function AppNav() {
   const pathname = usePathname();
   return (
     <ul className="flex items-center gap-1.5">
-      {ITEMS.map((item) => {
+      {PRIMARY_NAV.map((item) => {
         const active = item.match(pathname);
         return (
-          <li key={item.label} className={"className" in item ? item.className : undefined}>
+          <li key={item.href}>
             <Link
               href={item.href}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "label inline-flex items-center gap-2 border-[3px] border-ink px-3 py-2",
+                "label inline-flex min-h-11 items-center gap-2 border-[3px] border-ink px-3 py-2 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-cobalt",
                 active ? "bg-ink text-paper shadow-[3px_3px_0_0_var(--color-acid)]" : "bg-white hover:bg-acid",
               )}
             >

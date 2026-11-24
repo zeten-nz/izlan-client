@@ -25,7 +25,7 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
       aria-pressed={active}
       onClick={onClick}
       className={cn(
-        "label shrink-0 snap-start whitespace-nowrap border-[3px] border-ink px-3 py-1.5 focus-visible:outline-[3px] focus-visible:outline-cobalt",
+        "label shrink-0 whitespace-nowrap border-[3px] border-ink px-3 py-1.5 focus-visible:outline-[3px] focus-visible:outline-cobalt",
         active ? "bg-ink text-paper" : "bg-white hover:bg-acid",
       )}
     >
@@ -34,12 +34,48 @@ function Chip({ active, onClick, children }: { active: boolean; onClick: () => v
   );
 }
 
-/** Filtr qatori: mobilda gorizontal scroll (sahifa kengaymaydi), desktopda o'raladi. */
+/** Filtr qatori (sm+): chiplar o'raladi. Mobilda o'rniga FilterSelect ishlatiladi (UI-05: chiplar ekrandan chiqib ketardi). */
 function ChipRow({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div role="group" aria-label={label} className="no-scrollbar -mx-4 flex snap-x gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
+    <div role="group" aria-label={label} className="hidden flex-wrap gap-2 sm:flex">
       {children}
     </div>
+  );
+}
+
+/** Mobil filtr: native <select> (klaviatura/screen reader qo'llab-quvvatlashi tayyor), brutalist ko'rinishda. */
+function FilterSelect<T extends string>({
+  label,
+  value,
+  allLabel,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: T | null;
+  allLabel: string;
+  options: readonly { value: T; label: string }[];
+  onChange: (v: T | null) => void;
+}) {
+  return (
+    <label className="relative block min-w-0 flex-1">
+      <span className="label mb-1 block text-ink/75">{label}</span>
+      <select
+        value={value ?? ""}
+        onChange={(e) => onChange((e.target.value || null) as T | null)}
+        className="label h-11 w-full appearance-none border-[3px] border-ink bg-white pl-3 pr-9 shadow-[3px_3px_0_0_var(--color-ink)] focus-visible:outline-[3px] focus-visible:outline-cobalt"
+      >
+        <option value="">{allLabel}</option>
+        {options.map((o) => (
+          <option key={o.value} value={o.value}>
+            {o.label}
+          </option>
+        ))}
+      </select>
+      <svg viewBox="0 0 48 48" aria-hidden className="pointer-events-none absolute bottom-3.5 right-3 size-4">
+        <path d="M12 18l12 12 12-12" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="square" />
+      </svg>
+    </label>
   );
 }
 
@@ -202,6 +238,10 @@ export function RewardsView({ me, items, izl }: { me: MyProfile; items: CatalogI
       {tab === "xp" && (
         <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_380px] lg:gap-8">
           <div className="min-w-0">
+            <div className="flex gap-3 sm:hidden">
+              <FilterSelect label="Tur" value={kind} allLabel="Hammasi" options={KINDS.map((k) => ({ value: k, label: KIND_LABEL[k] }))} onChange={setKind} />
+              <FilterSelect label="Noyoblik" value={rarity} allLabel="Barchasi" options={RARITIES.map((r) => ({ value: r, label: RARITY_LABEL[r] }))} onChange={setRarity} />
+            </div>
             <div className="space-y-2" aria-label="Filtrlar">
               <ChipRow label="Tur">
                 <Chip active={kind === null} onClick={() => setKind(null)}>Hammasi</Chip>

@@ -168,7 +168,7 @@ export const FAQ = [
   },
   {
     q: "To‘lov qanday amalga oshiriladi?",
-    a: "Obuna oylik. O‘zbekistonda keng tarqalgan to‘lov tizimlari (Click, Payme) orqali to‘lash rejalashtirilgan. Bepul tarif bilan to‘lovsiz boshlash mumkin.",
+    a: "Har bir kurs alohida, 30 kunga to‘lanadi — faqat kerakli kursingiz uchun. Balans saytning o‘zida kartaga o‘tkazma bilan to‘ldiriladi (pul bir necha daqiqada avtomatik tushadi), so‘ng saytda bir bosishda kurs sotib olinadi. Har darajaning birinchi mavzusi bepul.",
   },
   {
     q: "Bolam uchun mosmi?",

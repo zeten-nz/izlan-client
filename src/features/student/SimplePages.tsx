@@ -80,20 +80,31 @@ export async function DirectionsPage() {
                     </p>
                     <ol className="mt-3 grid gap-2 sm:grid-cols-2">
                       {current.topics.map((t) => {
-                        const open = t.state === "open" || t.state === "current";
+                        const paywalled = !!t.paywalled && (t.state === "open" || t.state === "current");
+                        const open = (t.state === "open" || t.state === "current") && !paywalled;
                         const c = t.lessons;
+                        const status = paywalled ? "Pullik · sotib olish →" : !open ? "Qulflangan" : c?.contentPreparing ? "Kontent tayyorlanmoqda" : c?.topicCompleted ? "Yakunlandi" : `${c?.completed ?? 0} / ${c?.total ?? 0} dars`;
                         const body = (
                           <>
                             <span className="grid size-7 shrink-0 place-items-center border-2 border-ink/60 font-mono text-xs font-bold">{t.ord}</span>
-                            <span className="min-w-0 flex-1 font-semibold leading-tight">{t.title}</span>
-                            <span className="label shrink-0 text-[11px]">
-                              {!open ? "Qulflangan" : c?.contentPreparing ? "Kontent tayyorlanmoqda" : c?.topicCompleted ? "Yakunlandi ✓" : `${c?.completed ?? 0} / ${c?.total ?? 0} dars`}
+                            {/* Mobilda holat sarlavha ostida: yonma-yon turganda sarlavha 3 qatorga sinardi (UI-06) */}
+                            <span className="min-w-0 flex-1">
+                              <span className="block font-semibold leading-tight">{t.title}</span>
+                              <span className="label mt-1 block text-[11px] sm:hidden">{status}</span>
                             </span>
+                            <span className="label hidden shrink-0 text-[11px] sm:inline">{status}</span>
                           </>
                         );
                         return (
                           <li key={t.id}>
-                            {open ? (
+                            {paywalled ? (
+                              <Link
+                                href={`${ROUTES.student}/balance?buy=${d.directionId}`}
+                                className="flex items-center gap-3 border-[3px] border-dashed border-ink bg-paper px-3 py-2.5 hover:-translate-y-0.5 hover:bg-acid/40"
+                              >
+                                {body}
+                              </Link>
+                            ) : open ? (
                               <Link
                                 href={`${ROUTES.student}/topic/${t.id}`}
                                 className={cn("flex items-center gap-3 border-[3px] border-ink px-3 py-2.5 hover:-translate-y-0.5", t.state === "current" ? "bg-acid" : "bg-paper")}

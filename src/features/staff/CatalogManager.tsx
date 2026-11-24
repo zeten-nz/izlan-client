@@ -28,6 +28,8 @@ type Direction = {
   title: string;
   description: string;
   active: boolean;
+  /** Oylik narx (so'm); null — bepul */
+  monthlyPriceUzs: number | null;
   learners: number;
   questions: number;
   placementReady: boolean;
@@ -77,8 +79,9 @@ function Mover({ index, count, disabledReason, onMove, label }: { index: number;
 
 // ───────────── Formalar ─────────────
 
-function DirectionForm({ initial, onSubmit, onCancel, busy }: { initial?: Direction; onSubmit: (v: { title: string; kind: "LANGUAGE" | "SUBJECT"; description: string }) => void; onCancel: () => void; busy: boolean }) {
+function DirectionForm({ initial, onSubmit, onCancel, busy }: { initial?: Direction; onSubmit: (v: { title: string; kind: "LANGUAGE" | "SUBJECT"; description: string; monthlyPriceUzs: number | null }) => void; onCancel: () => void; busy: boolean }) {
   const [title, setTitle] = useState(initial?.title ?? "");
+  const [price, setPrice] = useState(initial?.monthlyPriceUzs ? String(initial.monthlyPriceUzs) : "");
   const [kind, setKind] = useState<"LANGUAGE" | "SUBJECT">(initial?.kind ?? "SUBJECT");
   const [description, setDescription] = useState(initial?.description ?? "");
   return (
@@ -86,7 +89,8 @@ function DirectionForm({ initial, onSubmit, onCancel, busy }: { initial?: Direct
       className="space-y-3 border-[3px] border-ink bg-paper p-3"
       onSubmit={(e) => {
         e.preventDefault();
-        onSubmit({ title, kind, description });
+        const n = Number(price.replace(/s/g, ""));
+        onSubmit({ title, kind, description, monthlyPriceUzs: price.trim() && Number.isFinite(n) && n > 0 ? Math.round(n) : null });
       }}
     >
       <Field label="Yo'nalish nomi *">
@@ -103,6 +107,11 @@ function DirectionForm({ initial, onSubmit, onCancel, busy }: { initial?: Direct
       <Field label="Qisqa tavsif">
         <input className={inputCls} value={description} onChange={(e) => setDescription(e.target.value)} maxLength={200} />
       </Field>
+      {initial ? (
+        <Field label="Oylik narx (so'm)" hint="Bo'sh yoki 0 — kurs bepul. Narx qo'yilsa har darajaning 1-mavzusidan keyingilari faqat sotib olganlarga ochiladi.">
+          <input className={inputCls} inputMode="numeric" value={price} onChange={(e) => setPrice(e.target.value.replace(/[^ds]/g, ""))} placeholder="Masalan: 29000" />
+        </Field>
+      ) : null}
       <div className="flex flex-wrap gap-2">
         <button type="submit" className={primaryBtn} disabled={busy || !title.trim()}>
           {initial ? "Saqlash" : "Yo'nalish yaratish"}
@@ -293,7 +302,7 @@ export function CatalogManager() {
         >
           {editing?.kind === "dir-new" ? (
             <div className="mb-3">
-              <DirectionForm busy={busy} onCancel={() => setEditing(null)} onSubmit={(v) => run(() => apiPost<{ id: string }>(`${C}/directions`, v), "Yo'nalish yaratildi ✓", (d) => setDirId((d as { id: string }).id))} />
+              <DirectionForm busy={busy} onCancel={() => setEditing(null)} onSubmit={(v) => run(() => apiPost<{ id: string }>(`${C}/directions`, { title: v.title, kind: v.kind, description: v.description }), "Yo'nalish yaratildi ✓", (d) => setDirId((d as { id: string }).id))} />
             </div>
           ) : null}
           {tree.directions.length === 0 ? <p className="text-ink/70">Hozircha yo&apos;nalish yo&apos;q.</p> : null}
@@ -319,11 +328,12 @@ export function CatalogManager() {
           {dir ? (
             <div className="mt-4 space-y-3 border-t-[3px] border-ink pt-3">
               {editing?.kind === "dir-edit" ? (
-                <DirectionForm initial={dir} busy={busy} onCancel={() => setEditing(null)} onSubmit={(v) => run(() => apiSend("PATCH", `${C}/directions/${dir.id}`, { title: v.title, description: v.description }), "O'zgarishlar saqlandi ✓")} />
+                <DirectionForm initial={dir} busy={busy} onCancel={() => setEditing(null)} onSubmit={(v) => run(() => apiSend("PATCH", `${C}/directions/${dir.id}`, { title: v.title, description: v.description, monthlyPriceUzs: v.monthlyPriceUzs }), "O'zgarishlar saqlandi ✓")} />
               ) : (
                 <>
                   <p className="font-bold">{dir.title}</p>
                   {dir.description ? <p className="text-sm text-ink/70">{dir.description}</p> : null}
+                  <p className="label text-[11px]">Narx: {dir.monthlyPriceUzs ? `${dir.monthlyPriceUzs.toLocaleString("ru-RU")} so'm / 30 kun` : "bepul"}</p>
                   <div className="flex flex-wrap gap-2">
                     <button type="button" className={smallBtn} onClick={() => setEditing({ kind: "dir-edit" })}>Tahrirlash</button>
                     <button

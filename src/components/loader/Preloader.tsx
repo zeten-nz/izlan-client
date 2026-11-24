@@ -80,7 +80,7 @@ export function Preloader() {
                 transition={{ duration: 1.5, ease: "easeInOut", repeat: Infinity }}
                 className="preserve-3d"
               >
-                <LogoMark className="size-24 border-4 border-paper" />
+                <LogoMark className="size-28" />
               </motion.div>
             </div>
 

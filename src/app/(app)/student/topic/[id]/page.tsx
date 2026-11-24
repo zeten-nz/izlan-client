@@ -36,7 +36,7 @@ async function TopicContent({ params, searchParams }: { params: Promise<{ id: st
         {!progress.contentPreparing ? (
           <p className="label mt-4 inline-block border-[3px] border-ink bg-white px-3 py-1.5" data-testid="topic-progress">
             {progress.completedLessons} / {progress.totalLessons} dars tugatildi
-            {progress.topicCompleted ? " · mavzu yakunlandi ✓" : ""}
+            {progress.topicCompleted ? " · mavzu yakunlandi" : ""}
           </p>
         ) : null}
       </div>
@@ -56,7 +56,7 @@ async function TopicContent({ params, searchParams }: { params: Promise<{ id: st
                   </span>
                 </span>
                 <span className={`label border-[3px] border-ink px-2.5 py-1.5 ${l.completed ? "bg-acid" : "bg-paper"}`}>
-                  {l.completed ? "Tugatilgan ✓" : "Boshlash →"}
+                  {l.completed ? "Tugatilgan" : "Boshlash →"}
                 </span>
               </Link>
             </li>

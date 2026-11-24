@@ -13,7 +13,7 @@ const NAV = [
   { label: "Qanday ishlaydi", href: sectionHref(SECTIONS.how) },
   { label: "Imkoniyatlar", href: sectionHref(SECTIONS.features) },
   { label: "Menga mosmi?", href: sectionHref(SECTIONS.fit) },
-  { label: "Tariflar", href: sectionHref(SECTIONS.pricing) },
+  { label: "Narxlar", href: sectionHref(SECTIONS.prices) },
   { label: "Savollar", href: sectionHref(SECTIONS.faq) },
 ] as const;
 
@@ -74,7 +74,7 @@ export function SiteHeader() {
           >
             Kirish
           </Link>
-          <ButtonLink href={ROUTES.register} variant="acid" className="!px-3 !py-2 text-[12px] md:!px-5 md:!py-2.5 md:text-[13px]">
+          <ButtonLink href={ROUTES.register} variant="acid" className="!px-3 !py-2 text-[12px] max-[389px]:hidden md:!px-5 md:!py-2.5 md:text-[13px]">
             Boshlash <Arrow />
           </ButtonLink>
           <button

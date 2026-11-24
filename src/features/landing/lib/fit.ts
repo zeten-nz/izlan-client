@@ -49,7 +49,7 @@ export function evaluateFit(answers: FitAnswers): FitResult {
   const summary = {
     yes: "Sizning maqsadingiz, o‘rganish uslubingiz va vaqtingiz Izlanga mos keladi. Testdan boshlash eng to‘g‘ri qadam.",
     maybe: "Izlan sizga foyda beradi, lekin ba’zi narsalarni oldindan bilgan ma’qul. Quyida qisqacha.",
-    no: "Hozirgi ehtiyojingiz Izlanning kuchli tomoniga to‘g‘ri kelmaydi. Aldamaymiz: boshqa yo‘l siz uchun yaxshiroq bo‘lishi mumkin. Xohlasangiz, bepul tarif bilan o‘zingiz baho bera olasiz.",
+    no: "Hozirgi ehtiyojingiz Izlanning kuchli tomoniga to‘g‘ri kelmaydi. Aldamaymiz: boshqa yo‘l siz uchun yaxshiroq bo‘lishi mumkin. Xohlasangiz, bepul mavzular bilan o‘zingiz baho bera olasiz.",
   }[tier];
 
   return { tier, summary, notes };

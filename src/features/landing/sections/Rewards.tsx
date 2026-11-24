@@ -1,7 +1,6 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { Sticker } from "@/components/ui/Sticker";
-import { MAX_IZL_DISCOUNT_PERCENT } from "@/config/pricing";
 import { Coin3D } from "../components/Coin3D";
 
 /** XP va IZL: motivatsiya tizimi. Chegirma haqida faqat rejalashtirilgan deb yoziladi. */
@@ -43,8 +42,8 @@ export function Rewards() {
                 </Sticker>
                 <h3 className="display-cond mt-4 text-4xl">Natija uchun tanga</h3>
                 <p className="mt-2 leading-snug">
-                  Haqiqiy o‘zlashtirish uchun beriladi. IZL ni obuna to‘lovining {MAX_IZL_DISCOUNT_PERCENT}% igacha
-                  qismini qoplashga ishlatish rejalashtirilgan.
+                  Haqiqiy o‘zlashtirish uchun beriladi. IZL ni kurs to‘lovining bir qismini qoplashga ishlatish
+                  rejalashtirilgan.
                 </p>
               </div>
             </Reveal>
