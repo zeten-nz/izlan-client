@@ -443,7 +443,7 @@ function LevelStep({
               ))}
             </ul>
             <p className="mt-4 border-t-[3px] border-ink pt-3 text-sm text-ink/75">
-              Test: shu daraja bo&apos;yicha savollar (10 tadan 30 tagacha). 90% dan yuqori bo&apos;lsa keyingi darajaga o&apos;tasiz.
+              Test: shu daraja bo&apos;yicha 20 ta savol. 90% dan yuqori bo&apos;lsa keyingi darajaga o&apos;tasiz.
             </p>
           </div>
         ) : (
@@ -474,7 +474,7 @@ function UnknownStep({ title, busy, error, onBack, onStart }: { title: string; b
       <ol className="mt-6 space-y-3">
         {[
           "Savollar A1 dan boshlanadi va har bosqichda qiyinlashib boradi.",
-          "Jami 10 tadan 30 tagacha savol beriladi.",
+          "Har bosqichda 8 ta savol, natija chegarada bo'lsa yana 4 ta (aniqroq bo'lishi uchun).",
           "Bir bosqichda 75% dan past natija bo'lsa, o'sha daraja sizning darajangiz deb olinadi.",
           "Shu darajani noldan o'rgatamiz va oldingi darajalar ochiq bo'ladi.",
         ].map((t, i) => (

@@ -77,6 +77,8 @@ export type PlacementQuestionView = {
   levelCode: string | null;
   index: number;
   total: number | null;
+  /** UNKNOWN rejimi: joriy pog'ona */
+  stage: { ord: number; code: string; of: number } | null;
   question: { id: string; prompt: string; instruction: string; options: string[] };
 };
 
