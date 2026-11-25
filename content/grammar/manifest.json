@@ -1694,6 +1694,240 @@
       ]
     },
     {
+      "id": "gr_en_000095",
+      "lang": "en",
+      "slug": "verb-object-infinitive",
+      "category": "verb-basics",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "0c676af4872cb5f9"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000096",
+      "lang": "en",
+      "slug": "make-let-allow",
+      "category": "verb-basics",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "b6797732eefd92dd"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000097",
+      "lang": "en",
+      "slug": "would-rather-prefer",
+      "category": "modal-verbs",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "0e4f9452574796d7"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000098",
+      "lang": "en",
+      "slug": "be-able-to",
+      "category": "modal-verbs",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "c8edc058a39bc672"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000099",
+      "lang": "en",
+      "slug": "the-more-the-better",
+      "category": "adjectives-adverbs",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "85c380190c1d18c6"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000100",
+      "lang": "en",
+      "slug": "articles-advanced",
+      "category": "articles",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "e2ae8c95de239459"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000101",
+      "lang": "en",
+      "slug": "cause-result-linkers",
+      "category": "linking-words",
+      "level": {
+        "system": "cefr",
+        "value": "B1"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "56ee0a97907c9ad7"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000102",
+      "lang": "en",
+      "slug": "addition-linkers",
+      "category": "linking-words",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "a137566da024b8ea"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000103",
+      "lang": "en",
+      "slug": "reporting-verbs",
+      "category": "reported-speech",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "92434aa6199da6d1"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000104",
+      "lang": "en",
+      "slug": "its-time",
+      "category": "verb-basics",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "ba6f70dcbc456baf"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000105",
+      "lang": "en",
+      "slug": "as-if-as-though",
+      "category": "sentence-structure",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "af56f8a038c023ac"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000106",
+      "lang": "en",
+      "slug": "be-supposed-to",
+      "category": "modal-verbs",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "991ea6434f925941"
+        }
+      ]
+    },
+    {
+      "id": "gr_en_000107",
+      "lang": "en",
+      "slug": "emphatic-do",
+      "category": "sentence-structure",
+      "level": {
+        "system": "cefr",
+        "value": "B2"
+      },
+      "translations": [
+        {
+          "lang": "uz",
+          "status": "review",
+          "revision": 1,
+          "contentHash": "fd80d1b897806298"
+        }
+      ]
+    },
+    {
       "id": "gr_ja_000001",
       "lang": "ja",
       "slug": "te-form",

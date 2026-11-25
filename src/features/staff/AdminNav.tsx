@@ -3,6 +3,7 @@ import { cn } from "@/lib/cn";
 
 const ITEMS = [
   { id: "teachers", label: "Ustoz qo'shish", href: "/admin" },
+  { id: "incomes", label: "Kirimlar", href: "/admin/incomes" },
   { id: "catalog", label: "Ta'lim tuzilmasi", href: "/admin/catalog" },
   { id: "cosmetics", label: "Bezaklar", href: "/admin/cosmetics" },
   { id: "achievements", label: "Yutuqlar", href: "/admin/achievements" },

@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 import { cn } from "@/lib/cn";
+import { CopyUsername } from "./CopyUsername";
 import type { Cosmetic, Equipped, Rarity } from "./types";
 import { RARITY_LABEL } from "./types";
 import { fmtDay } from "./format";
@@ -153,13 +154,13 @@ export function ProfileHeader({
           <UserAvatar initials={initials} frame={equipped.frame} size="lg" className="bg-white" />
           <div className="hidden min-w-0 flex-1 sm:block sm:pb-1">
             <h1 className="display-cond break-words text-4xl leading-none">{displayName ?? `@${username}`}</h1>
-            <p className="mt-1 font-mono text-sm text-ink/70">@{username}</p>
+            <CopyUsername username={username} className="-ml-1 mt-1" />
           </div>
           {actions && <div className="ml-auto shrink-0 pb-1">{actions}</div>}
         </div>
         <div className="mt-3 min-w-0 sm:hidden">
           <h1 className="display-cond break-words text-3xl leading-none">{displayName ?? `@${username}`}</h1>
-          <p className="mt-1 font-mono text-sm text-ink/70">@{username}</p>
+          <CopyUsername username={username} className="-ml-1 mt-1" />
         </div>
         <UserTitle title={equipped.title} className="mt-2" />
       </div>

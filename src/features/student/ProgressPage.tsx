@@ -97,7 +97,7 @@ function Results({ s }: { s: ProgressSummary }) {
                           <span className="grid size-7 shrink-0 place-items-center border-2 border-ink/60 font-mono text-xs font-bold">{t.ord}</span>
                           <span className="min-w-0 flex-1 font-semibold leading-tight">{t.title}</span>
                           <span className="label shrink-0 text-[11px]">
-                            {!open ? "Qulflangan" : c?.contentPreparing ? "Kontent tayyorlanmoqda" : c?.topicCompleted ? "Yakunlandi ✓" : `${c?.completed ?? 0} / ${c?.total ?? 0}`}
+                            {!open ? "Qulflangan" : c?.contentPreparing ? "Kontent tayyorlanmoqda" : c?.topicCompleted ? "Yakunlandi" : `${c?.completed ?? 0} / ${c?.total ?? 0}`}
                           </span>
                         </li>
                       );

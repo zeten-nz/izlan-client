@@ -22,6 +22,8 @@ type Values = {
 };
 const EMPTY: Values = { firstName: "", lastName: "", username: "", birthYear: "", email: "", password: "", confirmPassword: "" };
 
+const CONSENT_MSG = "Davom etish uchun ommaviy oferta va maxfiylik siyosatiga rozilik bering";
+
 function validate(v: Values): FieldErrors {
   const e: FieldErrors = {};
   if (v.firstName.trim().length < 2) e.firstName = "Ismni kiriting";
@@ -45,6 +47,8 @@ export function RegisterForm() {
   const [pending, setPending] = useState(false);
   const [resendSeconds, setResendSeconds] = useState(60);
   const [code, setCode] = useState("");
+  // Rozilik oldindan belgilanmaydi (aniq, ixtiyoriy harakat) — server ham acceptTerms=true talab qiladi
+  const [accepted, setAccepted] = useState(false);
 
   const set = (k: keyof Values) => (e: { target: { value: string } }) => {
     setValues((v) => ({ ...v, [k]: e.target.value }));
@@ -54,6 +58,7 @@ export function RegisterForm() {
   async function onSubmitForm(e: SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
     const next = validate(values);
+    if (!accepted) next.acceptTerms = CONSENT_MSG;
     setErrors(next);
     setFormError("");
     if (Object.keys(next).length) return;
@@ -62,6 +67,7 @@ export function RegisterForm() {
     const res = await apiPost<{ email: string; resendInSeconds: number }>("/auth/register", {
       ...values,
       birthYear: Number(values.birthYear),
+      acceptTerms: accepted,
     });
     setPending(false);
     if (res.ok) {
@@ -222,6 +228,33 @@ export function RegisterForm() {
           <StrengthMeter password={values.password} />
         </div>
         <PasswordField label="Parolni qayta kiriting" name="confirmPassword" autoComplete="new-password" value={values.confirmPassword} onChange={set("confirmPassword")} error={errors.confirmPassword} />
+        <div>
+          <label className="flex cursor-pointer items-start gap-3">
+            <input
+              type="checkbox"
+              name="acceptTerms"
+              checked={accepted}
+              onChange={(e) => {
+                setAccepted(e.target.checked);
+                if (errors.acceptTerms) setErrors((er) => ({ ...er, acceptTerms: "" }));
+              }}
+              aria-invalid={!!errors.acceptTerms}
+              aria-describedby={errors.acceptTerms ? "acceptTerms-error" : undefined}
+              className="mt-0.5 size-6 shrink-0 accent-ink"
+            />
+            <span className="leading-snug">
+              <a href="/oferta" target="_blank" rel="noopener" className="font-semibold underline decoration-[2px] underline-offset-2 hover:bg-acid">
+                Ommaviy oferta
+              </a>{" "}
+              va{" "}
+              <a href="/maxfiylik" target="_blank" rel="noopener" className="font-semibold underline decoration-[2px] underline-offset-2 hover:bg-acid">
+                maxfiylik siyosati
+              </a>{" "}
+              bilan tanishdim va shaxsiy ma&apos;lumotlarim shu shartlarda qayta ishlanishiga roziman. 18 yoshgacha bo&apos;lsam — ota-onam (qonuniy vakilim) rozi.
+            </span>
+          </label>
+          <FieldError id="acceptTerms-error">{errors.acceptTerms}</FieldError>
+        </div>
         <SubmitButton pending={pending}>Kod yuborish →</SubmitButton>
       </form>
     </AuthFrame>

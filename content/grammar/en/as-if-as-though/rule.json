@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000105",
+  "lang": "en",
+  "slug": "as-if-as-though",
+  "category": "sentence-structure",
+  "level": {
+    "system": "cefr",
+    "value": "B2"
+  },
+  "related": [
+    "gr_en_000076"
+  ]
+}

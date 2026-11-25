@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "gr_en_000103",
+  "lang": "en",
+  "slug": "reporting-verbs",
+  "category": "reported-speech",
+  "level": {
+    "system": "cefr",
+    "value": "B2"
+  },
+  "related": [
+    "gr_en_000078",
+    "gr_en_000057"
+  ]
+}

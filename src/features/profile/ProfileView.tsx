@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { formatUzs } from "@/lib/money";
 import { useState } from "react";
 import { ROUTES } from "@/config/routes";
 import { apiSend } from "@/lib/api";
@@ -180,6 +181,18 @@ export function ProfileView({
       <div role="tabpanel" id={`panel-${tab}`} aria-labelledby={`tab-${tab}`} className="mt-6">
         {tab === "umumiy" && (
           <div className="space-y-6 sm:space-y-8">
+            <Link
+              href="/student/balance"
+              className="group flex flex-wrap items-center justify-between gap-3 border-[3px] border-ink bg-ink px-5 py-4 text-paper shadow-[6px_6px_0_0_var(--color-acid)] transition hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[8px_8px_0_0_var(--color-acid)]"
+            >
+              <span>
+                <span className="label block text-acid">Balans</span>
+                <span className="display text-4xl leading-none">
+                  {formatUzs(w.balanceUzs ?? 0)} <span className="label text-sm text-paper/70">so&apos;m</span>
+                </span>
+              </span>
+              <span className="label border-[3px] border-acid bg-acid px-3 py-2 text-ink">To&apos;ldirish va kurslar →</span>
+            </Link>
             <LevelCard level={profile.xp?.level ?? levelFallback()} totalXp={w.totalXpEarned} balance={w.xpBalance} />
             <div className="grid grid-cols-3 gap-2 sm:gap-4">
               <Stat label="XP" value={String(w.xpBalance)} note="Bezaklar uchun sarflanadi" />

@@ -4,7 +4,7 @@ import { LogoMark } from "@/components/brand/LogoMark";
 export function RouteLoading() {
   return (
     <div className="grid min-h-[60vh] place-items-center" role="status" aria-label="Yuklanmoqda">
-      <LogoMark className="size-14 animate-spin border-[3px] border-ink [animation-duration:1.6s]" />
+      <LogoMark className="size-16 animate-spin [animation-duration:1.6s]" />
     </div>
   );
 }

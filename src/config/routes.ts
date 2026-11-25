@@ -27,7 +27,7 @@ export const SECTIONS = {
   how: "qanday-ishlaydi",
   features: "imkoniyatlar",
   fit: "menga-mosmi",
-  pricing: "tariflar",
+  prices: "narxlar",
   faq: "savollar",
 } as const;
 

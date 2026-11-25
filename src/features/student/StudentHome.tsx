@@ -112,9 +112,22 @@ export async function StudentHome() {
               ) : null}
             </>
           ) : next.allDone ? (
-            <p>Ochiq mavzulardagi barcha darslarni tugatdingiz. Yangi darslar qo&apos;shilganda shu yerda ko&apos;rinadi.</p>
+            <>
+              <p>Ochiq mavzulardagi barcha darslarni tugatdingiz. Yangi darslar qo&apos;shilganda shu yerda ko&apos;rinadi.</p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <Link href={`${ROUTES.student}/notebook`} className={`${btn} bg-acid`}>Daftarni takrorlash →</Link>
+                <Link href={ROUTES.grammar} className={`${btn} bg-white`}>Grammatika</Link>
+              </div>
+            </>
           ) : (
-            <p>Ochiq mavzular uchun darslar hali nashr qilinmagan. Ular tayyor bo&apos;lgach shu yerda ko&apos;rinadi.</p>
+            <>
+              <p>Ochiq mavzular uchun darslar hali nashr qilinmagan. Ular tayyor bo&apos;lgach shu yerda ko&apos;rinadi.</p>
+              {/* Bo'sh holatda ham keyingi qadam bo'lsin (UI-08) */}
+              <div className="mt-4 flex flex-wrap gap-3">
+                <Link href={ROUTES.grammar} className={`${btn} bg-acid`}>Grammatikani o&apos;qish →</Link>
+                <Link href={`${ROUTES.student}/directions`} className={`${btn} bg-white`}>Mavzular ro&apos;yxati</Link>
+              </div>
+            </>
           )}
         </Notice>
       )}

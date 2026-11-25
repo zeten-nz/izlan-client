@@ -59,7 +59,7 @@ export function Hero() {
               Menga mosmi?
             </ButtonLink>
           </div>
-          <p className="label mt-6 text-ink/70">Bepul tarif mavjud · Avval test, keyin qaror</p>
+          <p className="label mt-6 text-ink/70">Birinchi mavzular bepul · Avval test, keyin qaror</p>
         </div>
 
         {/* ── 3D kollaj ── */}

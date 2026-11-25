@@ -3,12 +3,12 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { QuizEditor, type EditorData } from "@/features/quiz/QuizEditor";
 import { apiGet } from "@/server/api";
-import { requireUser } from "@/server/session";
+import { requireRole } from "@/server/session";
 
 export const metadata: Metadata = { title: "Mavzu testi", robots: { index: false } };
 
 async function Editor({ params }: { params: Promise<{ topicId: string }> }) {
-  const [{ topicId }, user] = await Promise.all([params, requireUser()]);
+  const [{ topicId }, user] = await Promise.all([params, requireRole(["TEACHER", "ADMIN"])]);
   // Vakolatni server tekshiradi (begona mavzu -> 403 -> 404 sahifa)
   const data = await apiGet<EditorData>(`/staff/quizzes/topic/${topicId}`);
   const back = user.role === "ADMIN" ? "/admin" : "/teacher/lessons";

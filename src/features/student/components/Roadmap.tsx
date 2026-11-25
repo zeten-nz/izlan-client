@@ -47,18 +47,27 @@ function TopicList({ topics }: { topics: Topic[] }) {
   return (
     <ol className="mt-4 space-y-2">
       {topics.map((t) => {
-        const enabled = t.state === "open" || t.state === "current";
+        const paywalled = !!t.paywalled && (t.state === "open" || t.state === "current");
+        const enabled = (t.state === "open" || t.state === "current") && !paywalled;
         const inner = (
           <>
             <span className="grid size-7 shrink-0 place-items-center border-2 border-ink bg-paper font-mono text-xs font-bold">{t.ord}</span>
             <span className="min-w-0 flex-1 text-left font-semibold leading-tight">{t.title}</span>
             {t.state === "current" && <span className="label shrink-0 border-2 border-ink bg-tomato px-1.5 py-0.5 text-[10px]">Hozir</span>}
-            {!enabled && <span className="text-ink/60">{LOCK}</span>}
+            {paywalled && <span className="label shrink-0 border-2 border-ink bg-acid px-1.5 py-0.5 text-[10px]">Pullik</span>}
+            {!enabled && !paywalled && <span className="text-ink/60">{LOCK}</span>}
           </>
         );
         return (
           <li key={t.id}>
-            {enabled ? (
+            {paywalled ? (
+              <Link
+                href="/student/balance"
+                className="flex items-center gap-3 border-[3px] border-dashed border-ink bg-paper px-3 py-2.5 transition hover:-translate-y-0.5 hover:bg-acid/40"
+              >
+                {inner}
+              </Link>
+            ) : enabled ? (
               <Link
                 href={`/student/topic/${t.id}`}
                 className={cn(

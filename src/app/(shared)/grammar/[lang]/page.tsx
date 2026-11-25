@@ -51,7 +51,7 @@ async function LanguageContent({ params }: Props) {
         <div className="bg-grid pointer-events-none absolute inset-0 -z-10 opacity-50" aria-hidden />
         <div className="mx-auto max-w-[1480px] px-4 py-10 md:px-8 md:py-16">
           <Crumbs items={[{ label: "Grammatika", href: grammarHref() }, { label: l.name }]} />
-          <h1 className="display mt-6 text-[clamp(40px,8vw,112px)]">{l.name} grammatikasi</h1>
+          <h1 className="display mt-6 text-[clamp(26px,8vw,112px)]">{l.name} grammatikasi</h1>
           <p className="mt-4 max-w-2xl text-xl leading-snug">
             <span lang={lang}>{l.nativeName}</span> tilining qoidalari o‘zbek tilida tushuntirilgan.
           </p>

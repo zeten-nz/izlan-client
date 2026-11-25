@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 /**
  * Landing har gal ko'ringanda (login/register'dan qaytganda ham) tepadan boshlansin.
- * Next oldingi sahifani xotirada saqlaydi va skroll joyini eslab qoladi; hash bor havolalarga (/#tariflar) tegmaymiz.
+ * Next oldingi sahifani xotirada saqlaydi va skroll joyini eslab qoladi; hash bor havolalarga (/#narxlar) tegmaymiz.
  */
 export function ScrollToTop() {
   useEffect(() => {

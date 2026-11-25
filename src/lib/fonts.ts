@@ -34,6 +34,8 @@ export const instrumentSerif = localFont({
   ],
   variable: "--font-instrument-serif",
   display: "swap",
+  // Faqat landing va auth sahifalaridagi aksent matnda ishlatiladi: har sahifada 2 ta faylni oldindan yuklamaslik (PERF-01)
+  preload: false,
 });
 
 export const fontVariables = [

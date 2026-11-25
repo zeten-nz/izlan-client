@@ -5,18 +5,13 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ROUTES } from "@/config/routes";
 import { cn } from "@/lib/cn";
-import { NavIcon, type NavIconId } from "./NavIcon";
+import { NavIcon } from "./NavIcon";
+import { PRIMARY_NAV } from "./nav";
 
 const S = ROUTES.student;
 
-/** Mobil pastki navigatsiya (lg dan past). Daftar sarlavhadagi ikonkada; barcha marshrutlar saqlanadi. */
-const ITEMS: { label: string; href: string; icon: NavIconId; match: (p: string) => boolean }[] = [
-  { label: "Asosiy", href: S, icon: "home", match: (p) => p === S },
-  { label: "O'qish", href: `${S}/directions`, icon: "learn", match: (p) => p.startsWith(`${S}/directions`) || p.startsWith(`${S}/topic`) || p.startsWith(`${S}/lesson`) || p.startsWith(`${S}/test`) },
-  { label: "Jarayon", href: `${S}/progress`, icon: "progress", match: (p) => p.startsWith(`${S}/progress`) },
-  { label: "Mukofotlar", href: `${S}/rewards`, icon: "rewards", match: (p) => p.startsWith(`${S}/rewards`) },
-  { label: "Profil", href: `${S}/account`, icon: "profile", match: (p) => p.startsWith(`${S}/account`) || p.startsWith("/u/") },
-];
+/** Mobil pastki navigatsiya (lg dan past): 5 ta bo'lim (nav.ts). Daftar, Grammatika va Balans — sarlavhada. */
+const ITEMS = PRIMARY_NAV;
 
 /** Dars/test (fokus rejimi) va forma yozilayotganda (klaviatura ochiq) navigatsiya yashirinadi. */
 const FOCUS_MODE = (p: string) => p.startsWith(`${S}/lesson/`) || p.startsWith(`${S}/test/`);
@@ -63,12 +58,12 @@ export function BottomNav() {
         {ITEMS.map((item) => {
           const active = item.match(pathname);
           return (
-            <li key={item.label} className="min-w-0">
+            <li key={item.href} className="min-w-0">
               <Link
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "flex h-[60px] flex-col items-center justify-center gap-0.5 border-r-[3px] border-ink text-[9px] font-black uppercase leading-none tracking-tighter min-[360px]:text-[10px] min-[360px]:tracking-tight last:border-r-0 focus-visible:outline-[3px] focus-visible:-outline-offset-4 focus-visible:outline-cobalt",
+                  "flex h-[60px] flex-col items-center justify-center gap-0.5 border-r-[3px] border-ink text-[10px] font-black uppercase leading-none tracking-tight min-[360px]:text-[11px] last:border-r-0 focus-visible:outline-[3px] focus-visible:-outline-offset-4 focus-visible:outline-cobalt",
                   active ? "bg-acid" : "bg-paper active:bg-acid/60",
                 )}
               >
